@@ -8,6 +8,7 @@ import { MotionInitializer } from "@/components/common/MotionInitializer";
 import { DepartmentJsonLd } from "@/components/seo/DepartmentJsonLd";
 import { getClubs } from "@/lib/db-data";
 import { getHeroPresentation } from "@/lib/hero-data";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: {
@@ -116,6 +117,7 @@ export default async function RootLayout({
           <RouteContentFade>{children}</RouteContentFade>
         </main>
         <Footer heroImageSrc={heroPresentation.slides[0]?.url ?? null} />
+        <SpeedInsights />
       </body>
     </html>
   );
