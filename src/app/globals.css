@@ -1,26 +1,512 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-outfit: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-plus-jakarta: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-newsreader: "Georgia", "Times New Roman", serif;
+  --font-noto-tamil: "Noto Sans Tamil", "Tamil Sangam MN", "Nirmala UI", sans-serif;
+  --font-merriweather: "Merriweather", Georgia, serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --font-heading: var(--font-outfit), var(--font-plus-jakarta), sans-serif;
+  --font-body: var(--font-plus-jakarta), sans-serif;
+  --font-editorial: var(--font-newsreader), Georgia, serif;
+  --font-outfit: var(--font-outfit), sans-serif;
+  --font-plus-jakarta: var(--font-plus-jakarta), sans-serif;
+  --font-newsreader: var(--font-newsreader), Georgia, serif;
+  --font-merriweather: "Merriweather", Georgia, serif;
+  --font-source-sans: var(--font-plus-jakarta), sans-serif;
+
+  /* Neutrals */
+  --color-ivory: #F8F6F0;
+  --color-white: #FFFFFF;
+  --color-mist: #EDF1F7;
+  --color-sand: #E3DED2;
+  --color-placeholder: #E8E4D8;
+  --color-text: #0F172A;
+  --color-text-muted: #475569;
+
+  /* Dark colours */
+  --color-ink: #070B18;
+  --color-midnight: #0C1535;
+  --color-deep-navy: #11224F;
+  --color-burgundy-deep: #3E0F25;
+  --color-teal-deep: #06363F;
+  --color-emerald-deep: #0B3B2E;
+  --color-indigo-deep: #1E1B4B;
+
+  /* Brand colours */
+  --color-royal-blue: #2447C0;
+  --color-teal: #0F7F86;
+  --color-burgundy: #8C1F46;
+  --color-emerald: #1C8A5B;
+  --color-gold: #D9A441;
+  --color-coral: #E4572E;
+
+  /* Text-safe versions for light backgrounds */
+  --color-blue-text: #1E3A8A;
+  --color-teal-text: #0B5F66;
+  --color-burgundy-text: #8C1F46;
+  --color-emerald-text: #146C43;
+  --color-gold-text: #8A6212;
+
+  /* Admin status colours */
+  --color-status-success: #3B6D11;
+  --color-status-success-bg: #EAF3DE;
+  --color-status-warning: #854F0B;
+  --color-status-warning-bg: #FAEEDA;
+  --color-status-error: #A32D2D;
+  --color-status-error-bg: #FCEBEB;
+  --color-status-info: #1E3A8A;
+  --color-status-info-bg: #E3EBFB;
 }
 
-@media (prefers-color-scheme: dark) {
+:root {
+  --bg-primary: #F8F6F0;
+  --text-primary: #0F172A;
+  --hero-overlay-opacity: 0.70;
+  --hero-crossfade-duration: 1200ms;
+
+  /* Shared one-time text and content motion tokens */
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-distance: 16px;
+  --motion-distance-small: 10px;
+  --motion-blur: 10px;
+  --motion-duration-fast: 400ms;
+  --motion-duration-filter: 150ms;
+  --motion-duration-hover: 250ms;
+  --motion-duration-base: 700ms;
+  --motion-duration-bar: 600ms;
+  --motion-duration-reduced: 150ms;
+  --motion-stagger-word: 70ms;
+  --motion-stagger-line: 140ms;
+  --motion-stagger-card: 80ms;
+  --motion-stagger-row: 40ms;
+  --motion-stagger-footer: 100ms;
+  --motion-trigger-margin: 80px;
+  --motion-max-wait: 1200ms;
+
+  /* ── Navbar transparency tokens ─────────────────────────────────────────
+     STATE 1  (top of page, floating over hero — transparent right panel)
+     STATE 2  (scrolled — solid bar, values set inline in Navbar.tsx)
+     Tune every number here; Navbar.tsx reads via var().                  */
+
+  /* Left logo panel */
+  --nav-left-alpha:     rgba(255, 255, 255, 0.95);
+
+  /* Right panel — fully transparent over hero (State 1 only) */
+  --nav-right-hero:     transparent;
+
+  /* Pills / hamburger / call button */
+  --nav-pill-alpha:     rgba(0, 0, 0, 0.40);
+  --nav-pill-border:    rgba(255, 255, 255, 0.45);
+
+  /* Reel strip */
+  --nav-strip-alpha:    rgba(0, 0, 0, 0.35);
+  --nav-strip-border:   rgba(255, 255, 255, 0.25);
+
+  /* Dropdown panels — nearly solid for readability over any page content */
+  --nav-dropdown-alpha: rgba(7, 11, 24, 0.92);
+
+  /* 1 px divider between pill row and menu row */
+  --nav-divider-alpha:  rgba(255, 255, 255, 0.70);
+
+  /* Card outline */
+  --nav-outline-alpha:  rgba(255, 255, 255, 0.40);
+
+  /* Backdrop blur — applied only to navbar elements */
+  --nav-blur:           blur(6px);
+
+  /* Readability scrim — dark top-fade behind the full navbar zone.
+     Increase this if any hero image makes the menu text hard to read.   */
+  --nav-scrim-top:      rgba(7, 11, 24, 0.78);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #F8F6F0;
+  color: #0F172A;
+}
+
+/* Motion starts hidden only after the beforeInteractive script runs. */
+.motion-js [data-motion-state="pending"][data-motion-kind="block"],
+.motion-js [data-motion-state="pending"][data-motion-kind="group"],
+.motion-js [data-motion-state="pending"][data-motion-kind="item"] {
+  opacity: 0;
+  transform: translate3d(0, var(--motion-distance), 0);
+}
+.motion-js [data-motion-state="pending"][data-motion-kind="fade"],
+.motion-js [data-motion-state="pending"][data-motion-kind="row"] {
+  opacity: 0;
+  transform: none;
+}
+.motion-js [data-motion-state="pending"][data-motion-effect="row"] {
+  opacity: 0;
+  transform: none;
+}
+.motion-js [data-motion-state="pending"][data-motion-effect="eyebrow"] {
+  transform: translate3d(0, var(--motion-distance-small), 0);
+}
+.motion-js [data-motion-state="pending"][data-motion-effect="bar"] {
+  opacity: 1;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.motion-js [data-motion-state="pending"][data-motion-kind="words"] [data-motion-piece] {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, var(--motion-distance), 0);
+  filter: blur(var(--motion-blur));
+}
+.motion-js [data-motion-state="pending"][data-motion-kind="lines"] [data-motion-piece] {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, var(--motion-distance), 0);
+}
+.motion-js .hero-title-fade[data-motion-state="pending"] {
+  opacity: 0;
+  transform: translate3d(0, var(--motion-distance), 0);
+}
+.motion-js.motion-reveal-timeout [data-motion-state="pending"],
+.motion-js.motion-reveal-timeout [data-motion-state="pending"] [data-motion-piece] {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+.motion-text-block { display: inline-block; }
+.motion-word,
+.motion-line-word { display: inline-block; }
+.motion-js .motion-reel-caption[data-motion-state="pending"] { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-js .hero-title-fade[data-motion-state="pending"],
+  .motion-js [data-motion-state="pending"][data-motion-kind="words"] [data-motion-piece],
+  .motion-js [data-motion-state="pending"][data-motion-kind="lines"] [data-motion-piece] {
+    transform: none;
+    filter: none;
+  }
+  .motion-js .motion-reel-caption[data-motion-state="pending"] { opacity: 1; }
+}
+
+@media print {
+  .motion-js [data-motion-state="pending"],
+  .motion-js [data-motion-state="animating"],
+  .motion-js [data-motion-piece] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+html.reader-mode.motion-js [data-motion-state="pending"],
+html.reader-mode.motion-js [data-motion-state="animating"],
+html.reader-mode.motion-js [data-motion-piece] {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* ── No backdrop-filter support → raise fills so text stays readable ───────*/
+@supports not (backdrop-filter: blur(1px)) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --nav-left-alpha:     rgba(255, 255, 255, 0.97);
+    --nav-pill-alpha:     rgba(0, 0, 0, 0.60);
+    --nav-strip-alpha:    rgba(0, 0, 0, 0.60);
+    --nav-dropdown-alpha: rgba(7, 11, 24, 0.96);
+    --nav-blur:           none;
+  }
+}
+
+/* ── prefers-reduced-transparency: fully opaque, no blur ───────────────────*/
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --nav-left-alpha:     #FFFFFF;
+    --nav-right-hero:     #000000;
+    --nav-pill-alpha:     #6E6E6E;
+    --nav-pill-border:    rgba(255,255,255,0.30);
+    --nav-strip-alpha:    #5A5A5A;
+    --nav-strip-border:   rgba(255,255,255,0.20);
+    --nav-dropdown-alpha: #070B18;
+    --nav-divider-alpha:  #FFFFFF;
+    --nav-outline-alpha:  rgba(255,255,255,0.30);
+    --nav-blur:           none;
+    --nav-scrim-top:      rgba(7, 11, 24, 0.90);
+  }
+}
+
+/* ── forced-colors (Windows High Contrast) ─────────────────────────────────*/
+@media (forced-colors: active) {
+  :root {
+    --nav-left-alpha:     Canvas;
+    --nav-right-hero:     Canvas;
+    --nav-pill-alpha:     ButtonFace;
+    --nav-pill-border:    ButtonText;
+    --nav-strip-alpha:    Canvas;
+    --nav-strip-border:   CanvasText;
+    --nav-dropdown-alpha: Canvas;
+    --nav-divider-alpha:  CanvasText;
+    --nav-outline-alpha:  CanvasText;
+    --nav-blur:           none;
+    --nav-scrim-top:      transparent;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), sans-serif;
+  font-size: 17.5px;
+  line-height: 1.6;
+  background-color: #F8F6F0;
+  color: #0F172A;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* Headings: Outfit + Plus Jakarta Sans, bold, left-aligned, tight line-height */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-align: left;
+  line-height: 1.2;
+}
+
+h1 {
+  font-weight: 900;
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
+  line-height: 1.15;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3.5vw, 2.9rem);
+  line-height: 1.2;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+  line-height: 1.25;
+}
+
+/* Small text rule: never below 14px */
+small,
+.text-xs {
+  font-size: 14px;
+}
+
+/* Section Title CSS Color Bar */
+.section-color-bar {
+  width: 56px;
+  height: 4px;
+  border-radius: 1px;
+  background-color: #D9A441;
+  margin-top: 10px;
+  margin-bottom: 14px;
+}
+
+/* Inner content wrapper spanning laptop/desktop screens cleanly */
+.site-container,
+.content-wrapper {
+  width: min(calc(100% - 2 * clamp(20px, 3.5vw, 64px)), 1840px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Human-crafted Editorial Card (white surface, 1px sand border, 4px colored top bar, square/2-4px corners) */
+.editorial-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-sand);
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.editorial-card:hover {
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+.editorial-card-bar-blue::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: #2447C0;
+}
+
+.editorial-card-bar-gold::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: #D9A441;
+}
+
+.editorial-card-bar-teal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: #0F7F86;
+}
+
+.editorial-card-bar-burgundy::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: #8C1F46;
+}
+
+.editorial-card-bar-emerald::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: #1C8A5B;
+}
+
+/* Focus outline standards */
+:focus-visible {
+  outline: 2px solid #2447C0;
+  outline-offset: 2px;
+}
+
+.focus-dark:focus-visible {
+  outline: 2px solid #D9A441;
+  outline-offset: 2px;
+}
+
+/* Dedicated navbar word-reel animation */
+@keyframes word-reel-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* translate by the width of ONE set (25% of 4 sets = -25%, but we use
+       the CSS animation on the full track that is 4× the set width, so
+       translateX(-25%) moves exactly one set length.                      */
+    transform: translateX(-25%);
+  }
+}
+
+.nav-hover-underline {
+  position: relative;
+  transition: color var(--motion-duration-hover) var(--motion-ease) !important;
+}
+.nav-hover-underline:hover {
+  color: #FFFFFF !important;
+}
+.nav-hover-underline::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  bottom: 0;
+  height: 2px;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--motion-duration-hover) var(--motion-ease);
+}
+.nav-hover-underline:hover::after,
+.nav-hover-underline.nav-active::after {
+  transform: scaleX(1);
+}
+.motion-link-underline {
+  position: relative;
+  transition: color var(--motion-duration-hover) var(--motion-ease);
+}
+.motion-link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--motion-duration-hover) var(--motion-ease);
+}
+.motion-link-underline:hover::after,
+.motion-link-underline:focus-visible::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: var(--motion-duration-reduced) !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: var(--motion-duration-reduced) !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes hero-image-crossfade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes reel-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.reel-marquee-track {
+  animation: reel-marquee var(--reel-duration, 24s) linear infinite;
+  will-change: transform;
+}
+
+.reel-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.hero-slide-image {
+  object-position: var(--hero-focal-desktop, 50% 50%);
+}
+
+.hero-crossfade-layer {
+  animation: hero-image-crossfade var(--hero-crossfade-duration) ease-in-out both;
+}
+
+@media (max-width: 767px) {
+  .hero-slide-image {
+    object-position: var(--hero-focal-mobile, 50% 50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel-marquee-track {
+    animation: none;
+  }
+}
+
