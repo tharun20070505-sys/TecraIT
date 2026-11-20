@@ -83,7 +83,7 @@ export default async function HomePage() {
       <AssociationHomeSection association={associationData} />
 
       {/* 10. Home Image Reel Section */}
-      <section className="py-20 lg:py-24 bg-mist border-t border-sand text-text" aria-label="Campus Life Reel">
+      <section className="py-20 lg:py-24 bg-sky-wash border-t border-sand text-text" aria-label="Campus Life Reel">
         <div className="w-[min(calc(100%-2*clamp(20px,3.5vw,64px)),1840px)] mx-auto space-y-8">
           <SectionHeading
             eyebrow="Campus Life in Motion"

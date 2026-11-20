@@ -24,6 +24,15 @@ const iconMap: Record<string, LucideIcon> = {
   Cpu,
 };
 
+const disciplineColors = [
+  "bg-sky-wash text-blue-text",
+  "bg-teal-wash text-teal-text",
+  "bg-rose-wash text-burgundy-text",
+  "bg-mint-wash text-emerald-text",
+  "bg-amber-wash text-gold-text",
+  "bg-indigo-50 text-indigo-deep",
+] as const;
+
 export function WhyITSection({ cards }: WhyITSectionProps) {
   return (
     <section className="py-20 lg:py-24 bg-ivory text-text border-b border-sand/30" aria-label="Why Information Technology at SRIET?">
@@ -38,6 +47,7 @@ export function WhyITSection({ cards }: WhyITSectionProps) {
         <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {cards.map((card, idx) => {
             const IconComponent = iconMap[card.iconName] || Code2;
+            const color = disciplineColors[idx % disciplineColors.length];
 
             return (
               <div
@@ -46,7 +56,7 @@ export function WhyITSection({ cards }: WhyITSectionProps) {
               >
                 <div className="space-y-4">
                   {/* Icon Tile */}
-                  <div className="w-12 h-12 rounded-lg bg-mist flex items-center justify-center text-royal-blue motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-105">
+                  <div className={`flex h-12 w-12 items-center justify-center rounded-lg motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-105 ${color}`}>
                     <IconComponent className="w-6 h-6" aria-hidden="true" />
                   </div>
 
@@ -59,7 +69,6 @@ export function WhyITSection({ cards }: WhyITSectionProps) {
                     </p>
                   </div>
                 </div>
-
               </div>
             );
           })}

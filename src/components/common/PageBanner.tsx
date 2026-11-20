@@ -26,7 +26,7 @@ export async function PageBanner({
     : undefined;
 
   return (
-    <section className="relative bg-midnight text-white overflow-hidden border-b border-sand/20 min-h-[280px] lg:min-h-[320px] flex items-center py-10 lg:py-12">
+    <section className="relative bg-midnight bg-linear-to-br from-midnight via-deep-navy to-teal-deep text-white overflow-hidden border-b border-sand/20 min-h-[280px] lg:min-h-[320px] flex items-center py-10 lg:py-12">
       {/* 20% Opacity Campus Image Background */}
       <div className="absolute inset-0 opacity-20 pointer-events-none select-none">
         {heroImageSrc && (
@@ -42,8 +42,7 @@ export async function PageBanner({
         <div className="absolute inset-0 bg-gradient-to-r from-ink via-midnight/90 to-midnight/80" />
       </div>
 
-      {/* Decorative Gold Hairline Accent Top */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
+      <div className="brand-spectrum absolute inset-x-0 bottom-0 h-1" aria-hidden="true" />
 
       {/* Full Laptop/Desktop Width Coverage */}
       <div className="relative z-10 w-[min(calc(100%-2*clamp(20px,3.5vw,64px)),1840px)] mx-auto">

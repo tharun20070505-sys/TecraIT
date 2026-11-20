@@ -9,7 +9,7 @@ interface ProgramOverviewProps {
 
 export function ProgramOverviewSection({ overview }: ProgramOverviewProps) {
   return (
-    <section className="py-20 lg:py-24 bg-mist border-y border-sand text-text" aria-labelledby="program-overview">
+    <section className="py-20 lg:py-24 bg-teal-wash border-y border-sand text-text" aria-labelledby="program-overview">
       <div className="w-[min(calc(100%-2*clamp(20px,3.5vw,64px)),1840px)] mx-auto space-y-12">
         <SectionHeading
           eyebrow="Curriculum and Degree Framework"
@@ -23,7 +23,7 @@ export function ProgramOverviewSection({ overview }: ProgramOverviewProps) {
           {/* 4px Top Bar in Teal */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-teal" />
 
-          <div className="bg-midnight text-white px-6 py-4 flex items-center justify-between border-b border-sand/20">
+          <div className="bg-teal-deep text-white px-6 py-4 flex items-center justify-between border-b border-sand/20">
             <span className="text-[13px] font-semibold uppercase tracking-wider text-gold">
               Undergraduate Degree Specifications
             </span>

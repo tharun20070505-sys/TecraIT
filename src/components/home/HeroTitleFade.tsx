@@ -194,7 +194,7 @@ export function HeroTitleFade({
           <p className="mt-4 max-w-xl font-heading text-xl font-semibold leading-snug text-ivory sm:text-3xl">
             {cleanLineTwo}
           </p>
-          <div className="mt-5 h-1 w-[72px] rounded-full bg-gold" />
+          <div className="mt-5 h-1 w-28 rounded-full brand-spectrum" />
         </div>
       </div>
     );
@@ -301,11 +301,10 @@ export function HeroTitleFade({
             </motion.div>
           )}
 
-          {/* Short gold bar (72px wide, 4px tall) */}
           <motion.div
             key={`bar-${activeSlot}`}
             aria-hidden="true"
-            className="mt-4 sm:mt-5 h-[4px] w-[72px] rounded-full bg-gold origin-left"
+            className="mt-4 sm:mt-5 h-[4px] w-28 rounded-full brand-spectrum origin-left"
             initial={isPausedHold ? false : { opacity: 0, scaleX: 0 }}
             animate={
               phase === "exit"
