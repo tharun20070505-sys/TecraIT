@@ -17,7 +17,7 @@ export default function AdminRootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-[#070B18] text-sand antialiased">
+    <div className="admin-content min-h-screen bg-[#070B18] text-sand antialiased">
       <AdminRouteFade>{children}</AdminRouteFade>
     </div>
   );

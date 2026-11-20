@@ -26,7 +26,7 @@ export async function PageBanner({
     : undefined;
 
   return (
-    <section className="relative bg-midnight bg-linear-to-br from-midnight via-deep-navy to-teal-deep text-white overflow-hidden border-b border-sand/20 min-h-[280px] lg:min-h-[320px] flex items-center py-10 lg:py-12">
+    <section className="relative bg-midnight bg-linear-to-br from-midnight via-deep-navy to-teal-deep text-white overflow-hidden border-b border-sand/20 min-h-[240px] lg:min-h-[280px] flex items-center py-10 lg:py-12">
       {/* 20% Opacity Campus Image Background */}
       <div className="absolute inset-0 opacity-20 pointer-events-none select-none">
         {heroImageSrc && (
@@ -72,7 +72,7 @@ export async function PageBanner({
           {/* Description */}
           {description && (
             <Reveal delay={motionTokens.sectionTitleDelay}>
-              <p className="text-[16px] sm:text-[17px] text-sand/85 leading-relaxed pt-1 max-w-3xl">
+              <p className="text-[16px] sm:text-[17px] text-teal-100 leading-relaxed pt-1 max-w-3xl">
                 {description}
               </p>
             </Reveal>

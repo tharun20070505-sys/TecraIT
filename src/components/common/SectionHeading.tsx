@@ -105,7 +105,7 @@ export function SectionHeading({
           <p
             className={cn(
               "text-[17px] sm:text-[18px] leading-[1.6] pt-1 text-left max-w-3xl",
-              isDark ? "text-sand/85" : "text-text-muted"
+              isDark ? "text-teal-100" : eyebrowColorsLight[eyebrowColor]
             )}
           >
             {description}

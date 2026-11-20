@@ -108,7 +108,7 @@ export default async function RootLayout({
       className={`scroll-smooth ${manrope.variable} ${dmSans.variable}`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen flex flex-col bg-ivory text-text font-body antialiased selection:bg-gold/30 selection:text-ink">
+      <body className="min-h-screen flex flex-col text-text font-body antialiased selection:bg-gold/30 selection:text-ink">
         <MotionInitializer />
         <noscript>
           <style>{`.motion-pending,[data-motion-state="pending"],[data-motion-state="animating"]{opacity:1!important;transform:none!important;filter:none!important}`}</style>
@@ -126,7 +126,7 @@ export default async function RootLayout({
 
         <ScrollProgress />
         <Navbar clubs={clubs} />
-        <main id="main-content" className="flex-1 w-full focus:outline-hidden">
+        <main id="main-content" className="site-content flex-1 w-full focus:outline-hidden">
           <RouteContentFade>{children}</RouteContentFade>
         </main>
         <Footer heroImageSrc={heroPresentation.slides[0]?.url ?? null} />
