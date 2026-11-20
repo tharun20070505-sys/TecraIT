@@ -78,7 +78,10 @@ export function observeMotion(
   options: { animateOnMount?: boolean; onSkip?: (element: HTMLElement) => void } = {}
 ): () => void {
   if (element.dataset.motionState === "visible") return () => undefined;
-  if (document.documentElement.classList.contains("motion-reveal-timeout")) {
+  if (
+    (element.closest(".site-content") && !element.closest(".admin-content")) ||
+    document.documentElement.classList.contains("motion-reveal-timeout")
+  ) {
     setMotionVisible(element);
     options.onSkip?.(element);
     return () => undefined;

@@ -83,9 +83,9 @@ export function SectionHeading({
           isDark ? "text-white" : "text-text"
         )}
       >
-        <RevealText mode="words" delay={motionTokens.sectionTitleDelay}>
-          {title}
-        </RevealText>
+        <span className="heading-highlight">
+          <RevealText mode="words" delay={motionTokens.sectionTitleDelay}>{title}</RevealText>
+        </span>
       </h2>
 
       {/* Short Thick CSS Colour Bar Below Title */}
@@ -105,7 +105,7 @@ export function SectionHeading({
           <p
             className={cn(
               "text-[17px] sm:text-[18px] leading-[1.6] pt-1 text-left max-w-3xl",
-              isDark ? "text-teal-100" : eyebrowColorsLight[eyebrowColor]
+              isDark ? "text-sand/85" : "text-text-muted"
             )}
           >
             {description}

@@ -4,7 +4,6 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar/Navbar";
 import { Footer } from "@/components/footer/Footer";
 import { ScrollProgress } from "@/components/common/ScrollProgress";
-import { RouteContentFade } from "@/components/common/RouteContentFade";
 import { MotionInitializer } from "@/components/common/MotionInitializer";
 import { DepartmentJsonLd } from "@/components/seo/DepartmentJsonLd";
 import { getClubs } from "@/lib/db-data";
@@ -127,7 +126,7 @@ export default async function RootLayout({
         <ScrollProgress />
         <Navbar clubs={clubs} />
         <main id="main-content" className="site-content flex-1 w-full focus:outline-hidden">
-          <RouteContentFade>{children}</RouteContentFade>
+          {children}
         </main>
         <Footer heroImageSrc={heroPresentation.slides[0]?.url ?? null} />
       </body>

@@ -520,7 +520,6 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 height: `${FULL_NAV_H}px`,
                 display: "flex",
                 background: "linear-gradient(110deg, rgba(7, 11, 24, 0.97), rgba(12, 21, 53, 0.95) 70%, rgba(6, 54, 63, 0.94))",
-                backdropFilter: "blur(16px)",
                 borderBottom: "1px solid rgba(0,0,0,0.15)",
                 boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
                 opacity: isScrolled ? 0 : 1,

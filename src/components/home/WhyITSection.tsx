@@ -41,7 +41,7 @@ export function WhyITSection({ cards }: WhyITSectionProps) {
     <section className="relative isolate overflow-hidden bg-ink py-20 lg:py-24" aria-labelledby="why-it-heading">
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[36rem]" aria-hidden="true">
         <Image
-          src="/images/home/computing-lab.webp"
+          src="/images/home/rathinam-site-background.webp"
           alt=""
           fill
           sizes="100vw"
@@ -57,9 +57,9 @@ export function WhyITSection({ cards }: WhyITSectionProps) {
             <span className="block">
               <RevealText mode="words">Why Information Technology</RevealText>
             </span>
-            <span className="mt-1 block text-[#79e5d2]">
+            <span className="mt-1 block text-[#79e5d2]"><span className="heading-highlight">
               <RevealText mode="words" delay={140}>{`at ${siteSettings.institutionName}?`}</RevealText>
-            </span>
+            </span></span>
           </h2>
           <div className="brand-spectrum mt-5 h-1 w-24 rounded-full" aria-hidden="true" />
           <Reveal delay={220}>
