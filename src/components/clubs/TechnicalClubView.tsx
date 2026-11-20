@@ -60,7 +60,7 @@ export function TechnicalClubView({ club }: TechnicalClubViewProps) {
 
           {/* Club Logo Poster (4 cols) */}
           <div className="lg:col-span-4 flex justify-center">
-            <div className="relative w-full max-w-xs min-h-36 rounded-[3px] bg-white border-2 border-gold/40 shadow-md p-8 flex items-center justify-center">
+            <div className={`relative w-full max-w-xs min-h-36 rounded-[3px] p-8 flex items-center justify-center ${club.slug === "technexus" ? "" : "bg-white border-2 border-gold/40 shadow-md"}`}>
               <Image
                 src={club.logoUrl}
                 alt={`${club.name} Official Logo`}

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Club } from "@/types";
+import { clubsData } from "@/data/clubs";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { StatusChip } from "@/components/common/StatusChip";
 import { LogoReel, type LogoItem, type LogoReelSettingsProps } from "@/components/reels/LogoReel";
@@ -25,7 +26,23 @@ export function ClubsHomeSection({
     href: `/clubs/${c.slug}`,
   }));
 
-  const activeReelLogos = reelLogos && reelLogos.length > 0 ? reelLogos : fallbackLogos;
+  const configuredLogos = reelLogos?.length ? reelLogos : fallbackLogos;
+  const techNexus = clubsData.find((club) => club.slug === "technexus");
+  const isTechNexus = (item: LogoItem) =>
+    item.href?.replace(/\/$/, "").endsWith("/clubs/technexus") ||
+    item.name.replace(/[^a-z]/gi, "").toLowerCase().startsWith("technexus");
+  const activeReelLogos = techNexus
+    ? [
+        {
+          id: "technexus-logo",
+          name: techNexus.name,
+          logoUrl: techNexus.logoUrl,
+          href: "/clubs/technexus",
+          transparent: true,
+        },
+        ...configuredLogos.filter((item) => !isTechNexus(item)),
+      ]
+    : configuredLogos;
 
   return (
     <section className="py-20 lg:py-24 bg-mint-wash border-y border-sand text-text" aria-labelledby="clubs-heading">
@@ -58,7 +75,7 @@ export function ClubsHomeSection({
 
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <div className={`relative rounded-[2px] bg-mist p-2 border border-sand/30 flex items-center justify-center ${club.slug === "technexus" ? "w-28 h-12" : "w-12 h-12"}`}>
+                    <div className={`relative rounded-[2px] p-2 flex items-center justify-center ${club.slug === "technexus" ? "w-28 h-12" : "w-12 h-12 bg-mist border border-sand/30"}`}>
                       <Image
                         src={club.logoUrl}
                         alt={`${club.name} logo`}
