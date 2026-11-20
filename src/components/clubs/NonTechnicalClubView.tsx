@@ -21,7 +21,7 @@ export function NonTechnicalClubView({ club }: NonTechnicalClubViewProps) {
             <div className="flex items-center gap-2">
               <StatusChip label="Non-Technical Club" color="teal" size="sm" icon={<Palette className="w-3.5 h-3.5" aria-hidden="true" />} />
               <span className="text-xs font-mono text-text-muted">
-                Department of Information Technology, SRIET
+                Department of Information Technology, Rathinam Institute of Technology
               </span>
             </div>
 

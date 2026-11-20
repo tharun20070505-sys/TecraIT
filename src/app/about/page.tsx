@@ -16,7 +16,7 @@ import { motionTokens } from "@/lib/motion";
 export const metadata: Metadata = {
   title: "About Department",
   description:
-    "Discover the vision, mission, academic framework, and computing laboratories of the Department of Information Technology at Sri Ranganathar Institute of Engineering and Technology.",
+    "Discover the vision, mission, academic framework, and computing laboratories of the Department of Information Technology at Rathinam Institute of Technology.",
 };
 
 export default function AboutPage() {
@@ -27,7 +27,7 @@ export default function AboutPage() {
         title="About Department"
         eyebrow="DEPARTMENT OVERVIEW"
         breadcrumbs={[{ label: "About Department" }]}
-        description="Fostering computational ingenuity, robust software architecture, and research-driven engineering education at SRIET."
+        description="Fostering computational ingenuity, robust software architecture, and research-driven engineering education at Rathinam Institute of Technology."
       />
 
       {/* 2. Introduction to Information Technology: Text Beside Image */}
@@ -98,7 +98,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal>
             <p className="text-[13px] text-sand/70 uppercase tracking-wider font-semibold">
-              Guiding Charter, Department of Information Technology, SRIET
+              Guiding Charter, Department of Information Technology, Rathinam Institute of Technology
             </p>
           </Reveal>
         </div>
@@ -173,7 +173,7 @@ export default function AboutPage() {
                 <span>Academic Parameters</span>
               </span>
               <span className="text-[13px] text-sand/80">
-                Department of Information Technology, SRIET
+                Department of Information Technology, Rathinam Institute of Technology
               </span>
             </div>
 

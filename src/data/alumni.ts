@@ -56,7 +56,7 @@ export const alumniData: AlumniInfo = {
     {
       id: "alm-2",
       url: "/images/hero/sriet-campus.png",
-      caption: "Campus Reunion at SRIET Main Building",
+      caption: "Campus Reunion at Rathinam Institute of Technology Main Building",
       altText: "Campus reunion photograph",
     },
   ],

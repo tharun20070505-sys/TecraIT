@@ -44,7 +44,7 @@ export default function AdminEventsPage() {
     slug: "",
     date: new Date().toISOString().split("T")[0],
     time: "09:30 AM - 04:30 PM IST",
-    venue: "TECRA High Performance Lab, SRIET",
+    venue: "TECRA High Performance Lab, Rathinam Institute of Technology",
     description: "",
     fullContent: "",
     posterUrl: "/images/events/placeholder-event.png",
@@ -105,7 +105,7 @@ export default function AdminEventsPage() {
       slug: "",
       date: new Date().toISOString().split("T")[0],
       time: "09:30 AM - 04:30 PM IST",
-      venue: "TECRA High Performance Computing Center, SRIET",
+      venue: "TECRA High Performance Computing Center, Rathinam Institute of Technology",
       description: "Comprehensive hands-on technical workshop organized by TECRA Department of IT.",
       fullContent: "Participants will engage in deep-dive architectural discussions and building real-world software modules.",
       posterUrl: "/images/events/placeholder-event.png",
@@ -561,7 +561,7 @@ export default function AdminEventsPage() {
                     required
                     value={formData.venue}
                     onChange={(e) => setFormData({ ...formData, venue: e.target.value })}
-                    placeholder="TECRA AI Labs, SRIET Campus"
+                    placeholder="TECRA AI Labs, Rathinam Institute of Technology Campus"
                     className="w-full px-3 py-2 bg-black/40 border border-white/15 rounded-xl text-xs text-sand outline-none focus:border-gold/60"
                   />
                 </div>

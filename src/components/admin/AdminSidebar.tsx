@@ -145,7 +145,7 @@ export function AdminSidebar({
                   ADMIN
                 </span>
               </div>
-              <div className="text-[11px] text-sand/50">Dept. of IT, SRIET</div>
+              <div className="text-[11px] text-sand/50">Dept. of IT, Rathinam Institute of Technology</div>
             </div>
           </Link>
 

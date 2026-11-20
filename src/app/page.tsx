@@ -88,7 +88,7 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="Campus Life in Motion"
             eyebrowColor="teal"
-            title="Life and Learning at SRIET"
+            title="Life and Learning at Rathinam Institute of Technology"
             description="Explore our laboratories, technical symposiums, research studios, and student community spaces."
           />
 

@@ -8,7 +8,7 @@ import { ShieldCheck, Lock, Eye, FileText } from "lucide-react";
 export const metadata: Metadata = {
   title: "Privacy Policy - Department of Information Technology",
   description:
-    "Data privacy and student information handling policies for the Department of Information Technology at SRIET.",
+    "Data privacy and student information handling policies for the Department of Information Technology at Rathinam Institute of Technology.",
 };
 
 export default function PrivacyPolicyPage() {
@@ -36,7 +36,7 @@ export default function PrivacyPolicyPage() {
                 <RevealText mode="words">Information Privacy and Records Policy</RevealText>
               </h2>
               <p className="text-xs text-text-muted">
-                Effective Date: Academic Session 2026 to 2027, SRIET Coimbatore
+                Effective Date: Academic Session 2026 to 2027, Rathinam Institute of Technology Coimbatore
               </p>
             </div>
 
@@ -71,7 +71,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div className="pt-6 border-t border-sand flex items-center justify-between text-xs text-text-muted">
-              <span>{siteSettings.institutionName} (SRIET)</span>
+              <span>{siteSettings.institutionName}</span>
               <span className="font-mono">Document Ref: POL-IT-2026</span>
             </div>
           </div>

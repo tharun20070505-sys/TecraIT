@@ -17,7 +17,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Student Life",
   description:
-    "Explore student life at the Department of Information Technology, SRIET: IT Association, alumni network, student achievements, placement training, and campus activities.",
+    "Explore student life at the Department of Information Technology, Rathinam Institute of Technology: IT Association, alumni network, student achievements, placement training, and campus activities.",
 };
 
 const studentLifeCards = [

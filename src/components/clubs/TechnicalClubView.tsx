@@ -29,7 +29,7 @@ export function TechnicalClubView({ club }: TechnicalClubViewProps) {
             <div className="flex items-center gap-2">
               <StatusChip label="Technical Society" color="emerald" size="sm" />
               <span className="text-xs font-mono text-text-muted">
-                Department of Information Technology, SRIET
+                Department of Information Technology, Rathinam Institute of Technology
               </span>
             </div>
 

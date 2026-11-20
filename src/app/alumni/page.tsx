@@ -12,7 +12,7 @@ import { Stagger } from "@/components/common/Stagger";
 export const metadata: Metadata = {
   title: "Alumni Network",
   description:
-    "Connect with the distinguished alumni network of the Department of Information Technology at SRIET. Download batch records and read graduate experiences.",
+    "Connect with the distinguished alumni network of the Department of Information Technology at Rathinam Institute of Technology. Download batch records and read graduate experiences.",
 };
 
 export default async function AlumniPage() {

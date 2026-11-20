@@ -106,7 +106,7 @@ export default function AdminGalleryPage() {
       title: "",
       imageUrl: "/images/gallery/lab-workstation-1.png",
       category: "Campus",
-      caption: "Students engaged in advanced computing practice at SRIET.",
+      caption: "Students engaged in advanced computing practice at Rathinam Institute of Technology.",
       date: new Date().toISOString().split("T")[0],
       order: items.length + 1,
     });

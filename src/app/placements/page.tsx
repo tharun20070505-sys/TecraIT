@@ -13,7 +13,7 @@ import { BookOpen, Building2 } from "lucide-react";
 export const metadata: Metadata = {
   title: "Career and Placements - Department of Information Technology",
   description:
-    "Placement training framework, career preparation, batch recruitment records, and placed students of the Department of Information Technology at SRIET.",
+    "Placement training framework, career preparation, batch recruitment records, and placed students of the Department of Information Technology at Rathinam Institute of Technology.",
 };
 
 export default async function PlacementsPage() {

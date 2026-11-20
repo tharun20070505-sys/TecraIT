@@ -40,7 +40,7 @@ export function NavDrawer({ isOpen, onClose, clubs = [], navItems = [] }: NavDra
 
   if (!isOpen) return null;
 
-  const logoSrc = siteSettings.srietLogoSrc || "/images/logos/sriet-logo.png";
+  const logoSrc = siteSettings.srietLogoSrc || "/images/logos/tecra-logo.png";
   const phone = siteSettings.officePhone || siteSettings.departmentOffice?.phone || "";
   const isPhoneValid =
     phone &&
@@ -119,7 +119,7 @@ export function NavDrawer({ isOpen, onClose, clubs = [], navItems = [] }: NavDra
             aria-label="TECRA home"
           >
             <div className="relative h-9 w-9 bg-white p-0.5 shrink-0 flex items-center justify-center">
-              <Image src={logoSrc} alt="SRIET logo" width={36} height={36} className="object-contain" />
+              <Image src={logoSrc} alt="TECRA logo" width={36} height={36} className="object-contain" />
             </div>
             <div>
               <div
@@ -275,7 +275,7 @@ export function NavDrawer({ isOpen, onClose, clubs = [], navItems = [] }: NavDra
             >
               Privacy Policy
             </Link>
-            <span>SRIET IT Dept</span>
+            <span>Rathinam Institute of Technology IT Dept</span>
           </div>
 
           {/* Social links */}

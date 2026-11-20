@@ -363,7 +363,7 @@ function NavLink({
 export function Navbar({ clubs = [] }: NavbarProps) {
   const pathname = usePathname();
   const navItems = useNavItems(clubs);
-  const [tneaCode, setTneaCode] = useState(siteSettings.tneaCode || "2738");
+  const [tneaCode, setTneaCode] = useState(siteSettings.tneaCode ?? "");
   const [isScrolled, setIsScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -442,7 +442,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
   const phone = siteSettings.officePhone || siteSettings.departmentOffice?.phone || "+91 422 269 7799";
   const isPhoneValid = phone && !phone.toLowerCase().includes("content") && !phone.toLowerCase().includes("required");
   const brochureUrl = siteSettings.brochurePdfUrl?.trim() || "/docs/brochure.pdf";
-  const logoSrc = siteSettings.srietLogoSrc || "/images/logos/sriet-logo.png";
+  const logoSrc = siteSettings.srietLogoSrc || "/images/logos/tecra-logo.png";
   const badgeLogos = siteSettings.navbarBadgeLogos || [];
 
   const isActive = (href: string) =>
@@ -544,10 +544,10 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                   flexShrink: 0,
                 }}
               >
-                {/* 1. SRIET Logo */}
+                {/* 1. Rathinam Institute of Technology Logo */}
                 <Link
                   href="/"
-                  aria-label="TECRA – SRIET Home"
+                  aria-label="TECRA – Rathinam Institute of Technology Home"
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -567,7 +567,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                   >
                     <Image
                       src={logoSrc}
-                      alt="Sri Ranganathar Institute of Engineering and Technology Logo"
+                      alt="TECRA logo"
                       width={46}
                       height={46}
                       style={{ objectFit: "contain" }}
@@ -630,7 +630,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                         letterSpacing: "0.01em",
                       }}
                     >
-                      Sri Ranganathar Institute of Engineering and Technology (Autonomous)
+                      Rathinam Institute of Technology
                     </span>
                   </div>
                 </Link>
@@ -680,13 +680,15 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                   }}
                 >
                   {/* TNEA Counselling Code Pill */}
-                  <div
-                    style={topPillStyle}
-                    title="Anna University TNEA Counselling Code"
-                  >
-                    <span style={{ color: "rgba(255,255,255,0.85)" }}>TNEA Counselling Code :</span>
-                    <span style={{ color: "#F1C40F", fontWeight: 700 }}>{tneaCode}</span>
-                  </div>
+                  {tneaCode && tneaCode !== "2738" && (
+                    <div
+                      style={topPillStyle}
+                      title="Anna University TNEA Counselling Code"
+                    >
+                      <span style={{ color: "rgba(255,255,255,0.85)" }}>TNEA Counselling Code :</span>
+                      <span style={{ color: "#F1C40F", fontWeight: 700 }}>{tneaCode}</span>
+                    </div>
+                  )}
 
                   {/* Call Us Pill */}
                   {isPhoneValid && (
@@ -823,7 +825,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 >
                   <Image
                     src={logoSrc}
-                    alt="SRIET logo"
+                    alt="TECRA logo"
                     width={32}
                     height={32}
                     style={{ objectFit: "contain" }}
@@ -948,7 +950,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
               {/* White Left Logo Block */}
               <Link
                 href="/"
-                aria-label="TECRA – SRIET Home"
+                aria-label="TECRA – Rathinam Institute of Technology Home"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -972,7 +974,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 >
                   <Image
                     src={logoSrc}
-                    alt="SRIET logo"
+                    alt="TECRA logo"
                     width={30}
                     height={30}
                     style={{ objectFit: "contain" }}
@@ -1020,17 +1022,19 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 }}
               >
                 {/* Mobile TNEA Badge */}
-                <div
-                  style={{
-                    ...topPillStyle,
-                    height: "26px",
-                    padding: "0 8px",
-                    fontSize: "10.5px",
-                  }}
-                >
-                  <span style={{ color: "rgba(255,255,255,0.7)" }}>TNEA:</span>
-                  <span style={{ color: "#F1C40F", fontWeight: 700 }}>{tneaCode}</span>
-                </div>
+                {tneaCode && tneaCode !== "2738" && (
+                  <div
+                    style={{
+                      ...topPillStyle,
+                      height: "26px",
+                      padding: "0 8px",
+                      fontSize: "10.5px",
+                    }}
+                  >
+                    <span style={{ color: "rgba(255,255,255,0.7)" }}>TNEA:</span>
+                    <span style={{ color: "#F1C40F", fontWeight: 700 }}>{tneaCode}</span>
+                  </div>
+                )}
 
                 {/* Mobile Call Button */}
                 {isPhoneValid && (

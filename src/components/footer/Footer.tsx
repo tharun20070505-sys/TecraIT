@@ -74,7 +74,7 @@ export function Footer({ heroImageSrc }: { heroImageSrc?: string | null }) {
           <div className="flex items-center gap-3">
             <span className="w-2.5 h-2.5 rounded-full bg-gold" />
             <span className="text-[14px] uppercase tracking-widest text-gold font-semibold">
-              SRIET Campus, Coimbatore, India
+              Rathinam Institute of Technology Campus, Coimbatore, India
             </span>
           </div>
           <div className="hidden sm:flex items-center gap-2 text-[14px] text-sand/70">
@@ -110,7 +110,7 @@ export function Footer({ heroImageSrc }: { heroImageSrc?: string | null }) {
               </div>
             </div>
             <p className="text-[15px] leading-relaxed text-sand/80 max-w-sm">
-              {siteSettings.institutionName} (SRIET). Committed to academic rigor, ethical engineering, and computing innovation.
+              {siteSettings.institutionName}. Committed to academic rigor, ethical engineering, and computing innovation.
             </p>
             <div className="pt-2 text-[14px] text-gold flex items-center gap-3 font-medium">
               <span>Department Code: {siteSettings.departmentCode}</span>
@@ -270,7 +270,7 @@ export function Footer({ heroImageSrc }: { heroImageSrc?: string | null }) {
                   href={siteSettings.socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visit SRIET on LinkedIn (opens in a new tab)"
+                  aria-label="Visit Rathinam Institute of Technology on LinkedIn (opens in a new tab)"
                   className="text-sand/75 hover:text-gold transition-colors"
                 >
                   LinkedIn
@@ -281,7 +281,7 @@ export function Footer({ heroImageSrc }: { heroImageSrc?: string | null }) {
                   href={siteSettings.socialLinks.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visit SRIET on YouTube (opens in a new tab)"
+                  aria-label="Visit Rathinam Institute of Technology on YouTube (opens in a new tab)"
                   className="text-sand/75 hover:text-gold transition-colors"
                 >
                   YouTube
@@ -294,10 +294,10 @@ export function Footer({ heroImageSrc }: { heroImageSrc?: string | null }) {
         {/* Dynamic Copyright Footer Line (Words only, no copyright symbol, no bullet characters) */}
         <div className="mt-12 pt-6 border-t border-gold/30 flex flex-col sm:flex-row items-center justify-between text-[14px] text-sand/70 gap-4">
           <p>
-            Copyright {currentYear} TECRA, Department of Information Technology, Sri Ranganathar Institute of Engineering and Technology.
+            Copyright {currentYear} TECRA, Department of Information Technology, Rathinam Institute of Technology.
           </p>
           <p className="text-[13px] text-sand/50">
-            Sri Ranganathar Institute of Engineering and Technology, Coimbatore
+            Rathinam Institute of Technology, Coimbatore
           </p>
         </div>
       </div>

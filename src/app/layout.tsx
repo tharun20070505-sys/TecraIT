@@ -26,22 +26,21 @@ const dmSans = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "TECRA - Department of Information Technology - SRIET",
-    template: "%s - TECRA IT SRIET",
+    default: "TECRA - Department of Information Technology - Rathinam Institute of Technology",
+    template: "%s - TECRA IT Rathinam Institute of Technology",
   },
   description:
-    "Official portal for the Department of Information Technology (TECRA), Sri Ranganathar Institute of Engineering and Technology (SRIET). Advancing technical education, student innovation, and engineering leadership.",
+    "Official portal for the Department of Information Technology (TECRA), Rathinam Institute of Technology. Advancing technical education, student innovation, and engineering leadership.",
   keywords: [
     "TECRA",
     "Information Technology",
-    "SRIET",
-    "Sri Ranganathar Institute of Engineering and Technology",
+    "Rathinam Institute of Technology",
     "Engineering College Coimbatore",
     "B.Tech IT",
     "Autonomous College",
     "Anna University Affiliated",
   ],
-  authors: [{ name: "Department of Information Technology, SRIET" }],
+  authors: [{ name: "Department of Information Technology, Rathinam Institute of Technology" }],
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "https://tecra.sriet.ac.in"
   ),
@@ -49,11 +48,11 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "TECRA - Department of Information Technology - SRIET",
+    title: "TECRA - Department of Information Technology - Rathinam Institute of Technology",
     description:
-      "Department of Information Technology, Sri Ranganathar Institute of Engineering and Technology. Advancing computing education and student innovation.",
+      "Department of Information Technology, Rathinam Institute of Technology. Advancing computing education and student innovation.",
     url: "https://tecra.sriet.ac.in",
-    siteName: "TECRA SRIET IT",
+    siteName: "TECRA IT | Rathinam Institute of Technology",
     locale: "en_IN",
     type: "website",
     images: [
@@ -61,15 +60,15 @@ export const metadata: Metadata = {
         url: "/images/hero/sriet-campus.png",
         width: 1200,
         height: 630,
-        alt: "SRIET Campus - Department of Information Technology",
+        alt: "Campus illustration for the TECRA website",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TECRA - Department of Information Technology - SRIET",
+    title: "TECRA - Department of Information Technology - Rathinam Institute of Technology",
     description:
-      "Official portal for Department of Information Technology, Sri Ranganathar Institute of Engineering and Technology.",
+      "Official portal for Department of Information Technology, Rathinam Institute of Technology.",
     images: ["/images/hero/sriet-campus.png"],
     creator: "@srietofficial",
   },

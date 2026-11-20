@@ -7,7 +7,7 @@ import { getGalleryItems } from "@/lib/db-data";
 export const metadata: Metadata = {
   title: "Department Gallery",
   description:
-    "Explore the visual archive of the Department of Information Technology at SRIET: events, academic symposiums, hackathons, lab sessions, and campus facilities.",
+    "Explore the visual archive of the Department of Information Technology at Rathinam Institute of Technology: events, academic symposiums, hackathons, lab sessions, and campus facilities.",
 };
 
 export default async function GalleryPage() {

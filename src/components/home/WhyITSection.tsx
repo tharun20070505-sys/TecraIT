@@ -35,12 +35,12 @@ const disciplineColors = [
 
 export function WhyITSection({ cards }: WhyITSectionProps) {
   return (
-    <section className="py-20 lg:py-24 bg-ivory text-text border-b border-sand/30" aria-label="Why Information Technology at SRIET?">
+    <section className="py-20 lg:py-24 bg-ivory text-text border-b border-sand/30" aria-label="Why Information Technology at Rathinam Institute of Technology?">
       <div className="w-[min(calc(100%-2*clamp(20px,3.5vw,64px)),1840px)] mx-auto space-y-12">
         <SectionHeading
           eyebrow="Academic and Technical Disciplines"
           eyebrowColor="royal-blue"
-          title="Why Information Technology at SRIET?"
+          title="Why Information Technology at Rathinam Institute of Technology?"
           description="A curriculum structured between algorithmic depth and real-world system engineering, preparing students for careers across modern computing disciplines."
         />
 
