@@ -57,9 +57,9 @@ export function WhyITSection({ cards }: WhyITSectionProps) {
             <span className="block">
               <RevealText mode="words">Why Information Technology</RevealText>
             </span>
-            <span className="mt-1 block text-[#79e5d2]"><span className="heading-highlight">
+            <span className="mt-1 block text-[#79e5d2]">
               <RevealText mode="words" delay={140}>{`at ${siteSettings.institutionName}?`}</RevealText>
-            </span></span>
+            </span>
           </h2>
           <div className="brand-spectrum mt-5 h-1 w-24 rounded-full" aria-hidden="true" />
           <Reveal delay={220}>

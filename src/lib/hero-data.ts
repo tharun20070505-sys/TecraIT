@@ -18,7 +18,6 @@ export interface HeroPresentation {
 }
 
 const fallbackFiles = [
-  "/images/home/rathinam-site-background.webp",
   "/images/hero/hero-background.jpg",
   "/images/hero/hero-background.jpeg",
   "/images/hero/hero-background.png",

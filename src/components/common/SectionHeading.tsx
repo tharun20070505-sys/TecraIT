@@ -83,9 +83,7 @@ export function SectionHeading({
           isDark ? "text-white" : "text-text"
         )}
       >
-        <span className="heading-highlight">
-          <RevealText mode="words" delay={motionTokens.sectionTitleDelay}>{title}</RevealText>
-        </span>
+        <RevealText mode="words" delay={motionTokens.sectionTitleDelay}>{title}</RevealText>
       </h2>
 
       {/* Short Thick CSS Colour Bar Below Title */}

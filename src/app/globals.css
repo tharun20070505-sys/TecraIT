@@ -529,7 +529,7 @@ small,
 .site-content section.bg-rose-wash { --section-wash: var(--color-rose-wash); }
 .site-content section.bg-amber-wash { --section-wash: var(--color-amber-wash); }
 
-.site-content section:not(.admin-content *):is(.bg-midnight, .bg-deep-navy):not([class*="bg-linear"], [aria-label="Homepage Hero"]) {
+.site-content section:not(.admin-content *):is(.bg-midnight, .bg-deep-navy):not([class*="bg-linear"], [aria-label="Department Hero Poster"]) {
   background-image: linear-gradient(100deg, #070b18ef, #070b18b8), var(--lab-image);
   background-position: center;
   background-size: cover;
@@ -539,7 +539,7 @@ small,
   padding-block: clamp(2.75rem, 5vw, 4.75rem);
 }
 
-.site-content :where(section:not(.admin-content *)) [class*="1840px"],
+.site-content :where(section:not(.admin-content *, [aria-label="Department Hero Poster"])) [class*="1840px"],
 .site-content section[class*="1840px"]:not(.admin-content *) {
   width: min(calc(100% - 2 * var(--content-gutter)), 1320px);
 }
@@ -572,17 +572,6 @@ small,
   background-image: linear-gradient(100deg, #070b18ed, #070b1873), var(--lab-image);
   background-position: center;
   background-size: cover;
-}
-
-.site-content .heading-highlight {
-  padding-inline: 0.13em;
-  border-radius: 0.12em;
-  background-color: #dceeea;
-  box-decoration-break: clone;
-}
-
-.site-content section:is(.text-white, .bg-ink, .bg-midnight) .heading-highlight {
-  background-color: #123344;
 }
 
 /* Keep public content readable from the first frame. */

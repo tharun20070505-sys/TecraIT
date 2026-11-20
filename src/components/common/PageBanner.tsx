@@ -63,7 +63,7 @@ export function PageBanner({
 
           {/* Page Title (Merriweather, weight 900, clamp, left-aligned) */}
           <h1 className="font-heading font-black text-[clamp(2.25rem,4.5vw,3.75rem)] text-white tracking-tight leading-[1.15]">
-            <span className="heading-highlight"><RevealText mode="words" animateOnMount>{title}</RevealText></span>
+            <RevealText mode="words" animateOnMount>{title}</RevealText>
           </h1>
 
           {/* Description */}
