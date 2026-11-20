@@ -81,11 +81,11 @@ export default async function ClubsOverviewPage() {
 
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
-                    <div className="relative w-14 h-14 rounded-[3px] bg-midnight p-2 border border-sand/30 flex items-center justify-center">
+                    <div className={`relative rounded-[3px] bg-mist p-2 border border-sand/30 flex items-center justify-center ${club.slug === "technexus" ? "w-28 h-12" : "w-14 h-14"}`}>
                       <Image
                         src={club.logoUrl}
                         alt={`${club.name} logo`}
-                        width={40}
+                        width={club.slug === "technexus" ? 96 : 40}
                         height={40}
                         className="object-contain"
                       />
@@ -158,11 +158,11 @@ export default async function ClubsOverviewPage() {
 
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
-                    <div className="relative w-14 h-14 rounded-[3px] bg-midnight p-2 border border-sand/30 flex items-center justify-center">
+                    <div className={`relative rounded-[3px] bg-mist p-2 border border-sand/30 flex items-center justify-center ${club.slug === "technexus" ? "w-28 h-12" : "w-14 h-14"}`}>
                       <Image
                         src={club.logoUrl}
                         alt={`${club.name} logo`}
-                        width={40}
+                        width={club.slug === "technexus" ? 96 : 40}
                         height={40}
                         className="object-contain"
                       />

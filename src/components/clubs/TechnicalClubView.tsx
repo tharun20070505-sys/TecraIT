@@ -60,12 +60,12 @@ export function TechnicalClubView({ club }: TechnicalClubViewProps) {
 
           {/* Club Logo Poster (4 cols) */}
           <div className="lg:col-span-4 flex justify-center">
-            <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-[3px] bg-midnight border-2 border-gold/40 shadow-md p-8 flex items-center justify-center">
+            <div className="relative w-full max-w-xs min-h-36 rounded-[3px] bg-white border-2 border-gold/40 shadow-md p-8 flex items-center justify-center">
               <Image
                 src={club.logoUrl}
                 alt={`${club.name} Official Logo`}
-                width={160}
-                height={160}
+                width={280}
+                height={90}
                 className="object-contain"
                 priority
               />

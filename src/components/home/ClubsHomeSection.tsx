@@ -58,11 +58,11 @@ export function ClubsHomeSection({
 
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <div className="relative w-12 h-12 rounded-[2px] bg-midnight p-2 border border-sand/30 flex items-center justify-center">
+                    <div className={`relative rounded-[2px] bg-mist p-2 border border-sand/30 flex items-center justify-center ${club.slug === "technexus" ? "w-28 h-12" : "w-12 h-12"}`}>
                       <Image
                         src={club.logoUrl}
                         alt={`${club.name} logo`}
-                        width={36}
+                        width={club.slug === "technexus" ? 96 : 36}
                         height={36}
                         className="object-contain"
                       />
