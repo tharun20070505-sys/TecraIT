@@ -187,14 +187,14 @@ export function HeroTitleFade({
         <h1 className="sr-only">{`${cleanLineOne}, ${cleanLineTwo}`}</h1>
         <div aria-hidden="true" className="text-left">
           <div
-            className="block text-[clamp(4.5rem,12vw,11rem)] leading-none font-black tracking-tight text-ivory"
-            style={{ fontFamily: 'var(--font-merriweather), "Merriweather", Georgia, serif' }}
+            className="block font-heading text-[clamp(3rem,13vw,11rem)] font-extrabold leading-none tracking-[-0.07em] text-ivory"
           >
             {cleanLineOne}
           </div>
-          <div
-            className="mt-4 sm:mt-5 h-[4px] w-[72px] bg-gold rounded-full"
-          />
+          <p className="mt-4 max-w-xl font-heading text-xl font-semibold leading-snug text-ivory sm:text-3xl">
+            {cleanLineTwo}
+          </p>
+          <div className="mt-5 h-1 w-[72px] rounded-full bg-gold" />
         </div>
       </div>
     );
@@ -219,22 +219,18 @@ export function HeroTitleFade({
           {activeSlot === 0 ? (
             <motion.div
               key={`slot-0-${cleanLineOne}`}
-              className="block font-black text-ivory text-left"
-              style={{
-                fontFamily: 'var(--font-merriweather), "Merriweather", Georgia, serif',
-                fontWeight: 900,
-              }}
+              className="block font-heading font-extrabold text-ivory text-left"
               animate={
                 phase === "exit"
-                  ? { opacity: 0, filter: `blur(${HERO_TITLE_TIMINGS.EXIT_BLUR_PX}px)`, y: 0 }
-                  : { opacity: 1, filter: "blur(0px)", y: 0 }
+                  ? { opacity: 0, y: -8 }
+                  : { opacity: 1, y: 0 }
               }
               transition={{
                 duration: EXIT / 1000,
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              <span className="inline-block text-[clamp(4.5rem,12vw,11rem)] leading-none tracking-tight">
+              <span className="inline-block text-[clamp(3rem,13vw,11rem)] leading-none tracking-[-0.07em]">
                 {lettersLineOne.map((letter, index) => (
                   <motion.span
                     key={`${letter}-${index}`}
@@ -243,23 +239,21 @@ export function HeroTitleFade({
                         ? false
                         : {
                             opacity: 0,
-                            filter: `blur(${HERO_TITLE_TIMINGS.ENTER_BLUR_PX}px)`,
                             y: HERO_TITLE_TIMINGS.RISE_PX,
                           }
                     }
                     animate={{
                       opacity: 1,
-                      filter: "blur(0px)",
                       y: 0,
                     }}
                     transition={{
                       duration: isPausedHold ? 0 : HERO_TITLE_TIMINGS.LINE1_DURATION / 1000,
                       delay: isPausedHold
                         ? 0
-                        : (index * HERO_TITLE_TIMINGS.LINE1_STAGGER) / 1000,
+                        : (Math.min(index, 8) * HERO_TITLE_TIMINGS.LINE1_STAGGER) / 1000,
                       ease: [0.22, 1, 0.36, 1],
                     }}
-                    className="inline-block"
+                    className="inline-block whitespace-pre"
                   >
                     {letter}
                   </motion.span>
@@ -269,39 +263,33 @@ export function HeroTitleFade({
           ) : (
             <motion.div
               key={`slot-1-${cleanLineTwo}`}
-              className="block max-w-5xl font-black text-ivory text-left"
-              style={{
-                fontFamily: 'var(--font-merriweather), "Merriweather", Georgia, serif',
-                fontWeight: 900,
-              }}
+              className="block max-w-5xl font-heading font-extrabold text-ivory text-left"
               animate={
                 phase === "exit"
-                  ? { opacity: 0, filter: `blur(${HERO_TITLE_TIMINGS.EXIT_BLUR_PX}px)`, y: 0 }
-                  : { opacity: 1, filter: "blur(0px)", y: 0 }
+                  ? { opacity: 0, y: -8 }
+                  : { opacity: 1, y: 0 }
               }
               transition={{
                 duration: EXIT / 1000,
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              <span className="block text-[clamp(2.25rem,4.6vw,5rem)] leading-tight tracking-tight">
+              <span className="block text-[clamp(1.85rem,5.7vw,5rem)] leading-[1.08] tracking-[-0.045em]">
                 {wordsLineTwo.map((word, index) => (
                   <motion.span
                     key={`${word}-${index}`}
                     initial={{
                       opacity: 0,
-                      filter: `blur(${HERO_TITLE_TIMINGS.ENTER_BLUR_PX}px)`,
                       y: HERO_TITLE_TIMINGS.RISE_PX,
                     }}
                     animate={{
                       opacity: 1,
-                      filter: "blur(0px)",
                       y: 0,
                     }}
                     transition={{
                       duration: HERO_TITLE_TIMINGS.LINE2_DURATION / 1000,
                       delay:
-                        (index * HERO_TITLE_TIMINGS.LINE2_STAGGER) / 1000,
+                        (Math.min(index, 5) * HERO_TITLE_TIMINGS.LINE2_STAGGER) / 1000,
                       ease: [0.22, 1, 0.36, 1],
                     }}
                     className="mr-[0.3em] inline-block last:mr-0"

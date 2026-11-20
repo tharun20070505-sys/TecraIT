@@ -123,12 +123,12 @@ export function NavDrawer({ isOpen, onClose, clubs = [], navItems = [] }: NavDra
             </div>
             <div>
               <div
-                className="font-[var(--font-merriweather)] font-black text-white leading-none"
+                className="font-heading font-extrabold text-white leading-none"
                 style={{ fontSize: "22px" }}
               >
                 TECRA
               </div>
-              <div className="font-[var(--font-source-sans)] font-bold text-[11px] uppercase tracking-wider text-[#BDBDBD] mt-0.5">
+              <div className="font-body font-bold text-[11px] uppercase tracking-wider text-[#BDBDBD] mt-0.5">
                 Information Technology
               </div>
             </div>
@@ -150,7 +150,7 @@ export function NavDrawer({ isOpen, onClose, clubs = [], navItems = [] }: NavDra
             {isPhoneValid && (
               <a
                 href={`tel:${phone.replace(/[^0-9+]/g, "")}`}
-                className="w-full min-h-[48px] flex items-center justify-center gap-2.5 rounded-full bg-[#6E6E6E] text-white font-[var(--font-source-sans)] font-bold text-[14px] hover:bg-[#585858] transition-colors focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
+                className="w-full min-h-[48px] flex items-center justify-center gap-2.5 rounded-full bg-[#6E6E6E] text-white font-body font-bold text-[14px] hover:bg-[#585858] transition-colors focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
               >
                 <Phone className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Call us</span>
@@ -164,7 +164,7 @@ export function NavDrawer({ isOpen, onClose, clubs = [], navItems = [] }: NavDra
                 download
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full min-h-[48px] flex items-center justify-center gap-2.5 rounded-full border border-[#6E6E6E] text-white font-[var(--font-source-sans)] font-bold text-[14px] hover:bg-[#1A1A1A] transition-colors focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
+                className="w-full min-h-[48px] flex items-center justify-center gap-2.5 rounded-full border border-[#6E6E6E] text-white font-body font-bold text-[14px] hover:bg-[#1A1A1A] transition-colors focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
               >
                 <FileText className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Department Brochure</span>

@@ -26,7 +26,7 @@ const iconMap: Record<string, LucideIcon> = {
 
 export function WhyITSection({ cards }: WhyITSectionProps) {
   return (
-    <section className="py-20 lg:py-24 bg-ivory text-text border-b border-sand/30" aria-labelledby="why-it-heading">
+    <section className="py-20 lg:py-24 bg-ivory text-text border-b border-sand/30" aria-label="Why Information Technology at SRIET?">
       <div className="w-[min(calc(100%-2*clamp(20px,3.5vw,64px)),1840px)] mx-auto space-y-12">
         <SectionHeading
           eyebrow="Academic and Technical Disciplines"
@@ -42,14 +42,11 @@ export function WhyITSection({ cards }: WhyITSectionProps) {
             return (
               <div
                 key={card.id || idx}
-                className="group relative bg-white p-7 rounded-[3px] border border-sand flex flex-col justify-between overflow-hidden"
+                className="group relative h-full overflow-hidden rounded-xl border border-sand bg-white p-7 shadow-sm hover:border-blue-text/30 hover:shadow-md motion-safe:transition-[translate,box-shadow,border-color] motion-safe:duration-300 motion-safe:hover:-translate-y-1"
               >
-                {/* 4px Top Bar in Royal Blue */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-royal-blue" />
-
                 <div className="space-y-4">
                   {/* Icon Tile */}
-                  <div className="w-12 h-12 rounded-[2px] bg-mist border border-sand flex items-center justify-center text-royal-blue">
+                  <div className="w-12 h-12 rounded-lg bg-mist flex items-center justify-center text-royal-blue motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-105">
                     <IconComponent className="w-6 h-6" aria-hidden="true" />
                   </div>
 
@@ -63,12 +60,6 @@ export function WhyITSection({ cards }: WhyITSectionProps) {
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-sand/60 flex items-center justify-between text-[13px] text-text-muted">
-                  <span className="font-medium">Track {idx + 1}</span>
-                  <span className="text-blue-text font-semibold">
-                    Core Specialization
-                  </span>
-                </div>
               </div>
             );
           })}

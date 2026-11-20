@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Navbar } from "@/components/navbar/Navbar";
 import { Footer } from "@/components/footer/Footer";
@@ -8,6 +9,20 @@ import { MotionInitializer } from "@/components/common/MotionInitializer";
 import { DepartmentJsonLd } from "@/components/seo/DepartmentJsonLd";
 import { getClubs } from "@/lib/db-data";
 import { getHeroPresentation } from "@/lib/hero-data";
+
+const manrope = localFont({
+  src: "./fonts/manrope-latin.woff2",
+  variable: "--type-display",
+  weight: "400 800",
+  display: "swap",
+});
+
+const dmSans = localFont({
+  src: "./fonts/dm-sans-latin.woff2",
+  variable: "--type-body",
+  weight: "400 800",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -91,7 +106,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className="scroll-smooth"
+      className={`scroll-smooth ${manrope.variable} ${dmSans.variable}`}
       suppressHydrationWarning
     >
       <body className="min-h-screen flex flex-col bg-ivory text-text font-body antialiased selection:bg-gold/30 selection:text-ink">
