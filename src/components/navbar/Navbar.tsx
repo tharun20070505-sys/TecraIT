@@ -23,7 +23,9 @@ interface NavbarProps {
 const FULL_NAV_H  = 88;  // Height of 2-tier navbar on desktop
 const NOTICE_H    = 38;  // Height of notice strip
 const COND_NAV_H  = 56;  // Height of condensed sticky navbar
-const TOTAL_TOP_H = FULL_NAV_H + NOTICE_H; // 126px
+const TOTAL_TOP_H = FULL_NAV_H + NOTICE_H;
+const MOBILE_NAV_H = 56;
+const MOBILE_NOTICE_H = 34;
 
 // ─── Nav item fetch with clubs fallback ───────────────────────────────────────
 function useNavItems(clubs: Club[]): DbNavItem[] {
@@ -405,7 +407,8 @@ export function Navbar({ clubs = [] }: NavbarProps) {
     onScroll();
     return () => {
       window.removeEventListener("scroll", onScroll);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
     };
   }, []);
 
@@ -504,17 +507,19 @@ export function Navbar({ clubs = [] }: NavbarProps) {
       {/* FIXED TOP HEADER */}
       <header
         ref={navRef as React.RefObject<HTMLElement>}
-        className="fixed top-0 left-0 right-0 z-40 w-full select-none"
+        className="fixed top-0 left-0 right-0 z-40 w-full select-none pointer-events-none"
         aria-label="Site header"
       >
         <nav aria-label="Main navigation" className="w-full">
           {/* ============================================================
               DESKTOP (≥ 1024 px)
           ============================================================ */}
-          <div className="hidden lg:block w-full">
+          <div className="relative hidden w-full lg:block" style={{ height: TOTAL_TOP_H }}>
             {/* FULL TWO-TIER NAVBAR (When at top of page) */}
             <div
+              className="motion-safe:transition-[opacity,transform] motion-safe:duration-150 motion-safe:ease-out"
               aria-hidden={isScrolled}
+              inert={isScrolled}
               style={{
                 width: "100%",
                 height: `${FULL_NAV_H}px`,
@@ -524,9 +529,9 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
                 opacity: isScrolled ? 0 : 1,
                 pointerEvents: isScrolled ? "none" : "auto",
-                transition: "opacity 320ms cubic-bezier(0.22, 1, 0.36, 1), transform 320ms cubic-bezier(0.22, 1, 0.36, 1)",
+
                 transform: isScrolled ? "translateY(-10px)" : "translateY(0)",
-                position: isScrolled ? "absolute" : "relative",
+                position: "absolute",
                 top: 0,
                 left: 0,
                 zIndex: 2,
@@ -778,7 +783,9 @@ export function Navbar({ clubs = [] }: NavbarProps) {
 
             {/* CONDENSED STICKY NAVBAR (Active when scrolled past 80px) */}
             <div
+              className="motion-safe:transition-[opacity,transform] motion-safe:duration-150 motion-safe:ease-out"
               aria-hidden={!isScrolled}
+              inert={!isScrolled}
               style={{
                 width: "100%",
                 height: `${COND_NAV_H}px`,
@@ -787,13 +794,13 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 background: "#000000",
                 borderBottom: "1px solid rgba(255,255,255,0.15)",
                 boxShadow: "0 6px 25px rgba(0,0,0,0.65)",
-                position: isScrolled ? "relative" : "absolute",
+                position: "absolute",
                 top: 0,
                 left: 0,
                 opacity: isScrolled ? 1 : 0,
                 pointerEvents: isScrolled ? "auto" : "none",
                 transform: isScrolled ? "translateY(0)" : "translateY(-100%)",
-                transition: "transform 220ms ease, opacity 200ms ease",
+
                 zIndex: 3,
               }}
             >
@@ -816,7 +823,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 <div
                   style={{
                     width: "34px",
-                    height: "34px",
+                    height: MOBILE_NOTICE_H,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -913,7 +920,9 @@ export function Navbar({ clubs = [] }: NavbarProps) {
 
             {/* NOTICE STRIP (Directly Below Desktop Navbar) */}
             <div
+              className="motion-safe:transition-[opacity,transform] motion-safe:duration-150 motion-safe:ease-out"
               aria-hidden={isScrolled}
+              inert={isScrolled}
               style={{
                 width: "100%",
                 height: `${NOTICE_H}px`,
@@ -922,9 +931,10 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 overflow: "hidden",
                 opacity: isScrolled ? 0 : 1,
                 pointerEvents: isScrolled ? "none" : "auto",
-                transition: "opacity 160ms ease, transform 160ms ease",
+
                 transform: isScrolled ? "translateY(-6px)" : "translateY(0)",
-                display: isScrolled ? "none" : "block",
+                position: "absolute",
+                top: FULL_NAV_H,
               }}
             >
               <WordReelStrip fullWidth />
@@ -934,12 +944,12 @@ export function Navbar({ clubs = [] }: NavbarProps) {
           {/* ============================================================
               MOBILE & TABLET (< 1024 px)
           ============================================================ */}
-          <div className="lg:hidden w-full">
+          <div className="pointer-events-auto w-full lg:hidden">
             {/* Mobile Bar */}
             <div
               style={{
                 width: "100%",
-                height: "56px",
+                height: MOBILE_NAV_H,
                 display: "flex",
                 alignItems: "center",
                 background: "#000000",
@@ -1071,28 +1081,21 @@ export function Navbar({ clubs = [] }: NavbarProps) {
             <div
               style={{
                 width: "100%",
-                height: "34px",
+                height: MOBILE_NOTICE_H,
                 background: "#374151",
                 borderBottom: "1px solid rgba(255,255,255,0.12)",
                 overflow: "hidden",
               }}
             >
-              <WordReelStrip fullWidth style={{ height: "34px" }} />
+              <WordReelStrip fullWidth style={{ height: MOBILE_NOTICE_H }} />
             </div>
           </div>
         </nav>
       </header>
 
-      {/* PAGE TOP SPACER
-          Keeps hero poster / top content perfectly aligned under the fixed header */}
-      <div
-        aria-hidden="true"
-        style={{
-          width: "100%",
-          height: isScrolled ? `${COND_NAV_H}px` : `${TOTAL_TOP_H}px`,
-          transition: "height 200ms ease",
-        }}
-      />
+      {/* Reserve the initial header height so collapsing never moves the page. */}
+      <div aria-hidden="true" className="w-full shrink-0 lg:hidden" style={{ height: MOBILE_NAV_H + MOBILE_NOTICE_H }} />
+      <div aria-hidden="true" className="hidden w-full shrink-0 lg:block" style={{ height: TOTAL_TOP_H }} />
 
       {/* FULL DRAWER MENU */}
       <NavDrawer
