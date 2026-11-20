@@ -519,12 +519,13 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 width: "100%",
                 height: `${FULL_NAV_H}px`,
                 display: "flex",
-                background: "#000000",
+                background: "linear-gradient(110deg, rgba(7, 11, 24, 0.97), rgba(12, 21, 53, 0.95) 70%, rgba(6, 54, 63, 0.94))",
+                backdropFilter: "blur(16px)",
                 borderBottom: "1px solid rgba(0,0,0,0.15)",
                 boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
                 opacity: isScrolled ? 0 : 1,
                 pointerEvents: isScrolled ? "none" : "auto",
-                transition: "opacity 200ms ease, transform 200ms ease",
+                transition: "opacity 320ms cubic-bezier(0.22, 1, 0.36, 1), transform 320ms cubic-bezier(0.22, 1, 0.36, 1)",
                 transform: isScrolled ? "translateY(-10px)" : "translateY(0)",
                 position: isScrolled ? "absolute" : "relative",
                 top: 0,
@@ -600,7 +601,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                         fontFamily: "Calibri",
                         fontWeight: 900,
                         fontSize: "24px",
-                        color: "#7C1A77", // Vibrant institutional purple from reference screenshot
+                        color: "#2447C0",
                         letterSpacing: "-0.02em",
                         lineHeight: 1,
                       }}
@@ -623,9 +624,9 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                     <span
                       style={{
                         fontFamily: "Calibri",
-                        fontWeight: 500,
-                        fontSize: "9px",
-                        color: "#64748B",
+                        fontSize: "12px",
+                        fontWeight: 700,
+                        color: "#0F5B68",
                         marginTop: "2px",
                         letterSpacing: "0.01em",
                       }}
@@ -659,7 +660,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
               <div
                 style={{
                   flex: 1,
-                  background: "#000000",
+                  background: "linear-gradient(120deg, #070B18, #0C1535 72%, #06363F)",
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
@@ -838,7 +839,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                       fontFamily: "var(--font-heading)",
                       fontWeight: 900,
                       fontSize: "19px",
-                      color: "#7C1A77",
+                      color: "#2447C0",
                       letterSpacing: "-0.01em",
                       lineHeight: 1,
                     }}

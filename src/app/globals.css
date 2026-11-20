@@ -119,6 +119,10 @@
 html {
   scroll-behavior: smooth;
   background-color: #F8F6F0;
+  background-image: linear-gradient(rgba(248, 246, 240, 0.94), rgba(248, 246, 240, 0.94)), url("/images/home/rathinam-site-background.webp");
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
   color: #0F172A;
 }
 
@@ -248,7 +252,8 @@ body {
   font-family: var(--type-body), "Segoe UI", sans-serif;
   font-size: 17.5px;
   line-height: 1.6;
-  background-color: #F8F6F0;
+  background-color: transparent;
+  background-image: none;
   color: #0F172A;
   min-height: 100vh;
   margin: 0;
@@ -505,3 +510,9 @@ small,
   }
 }
 
+
+@media (max-width: 767px), (prefers-reduced-motion: reduce) {
+  html {
+    background-attachment: scroll;
+  }
+}

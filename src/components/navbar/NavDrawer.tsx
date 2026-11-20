@@ -128,8 +128,11 @@ export function NavDrawer({ isOpen, onClose, clubs = [], navItems = [] }: NavDra
               >
                 TECRA
               </div>
-              <div className="font-body font-bold text-[11px] uppercase tracking-wider text-[#BDBDBD] mt-0.5">
+              <div className="mt-0.5 font-body text-[11px] font-bold uppercase tracking-wider text-[#BDBDBD]">
                 Information Technology
+              </div>
+              <div className="mt-1 font-body text-xs font-bold text-teal-200">
+                Rathinam Institute of Technology
               </div>
             </div>
           </Link>
