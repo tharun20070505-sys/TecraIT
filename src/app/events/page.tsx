@@ -7,7 +7,7 @@ import { getEvents } from "@/lib/db-data";
 export const metadata: Metadata = {
   title: "Department and College Events",
   description:
-    "Official schedule of academic conferences, coding workshops, technical symposia, and athletic championships at the Department of Information Technology, SRIET.",
+    "Official schedule of academic conferences, coding workshops, technical symposia, and athletic championships at the Department of Information Technology, Rathinam Institute of Technology.",
 };
 
 export default async function EventsPage() {

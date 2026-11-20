@@ -10,27 +10,24 @@ export const HERO_TITLE_TIMINGS = {
   EXIT: 500,
   SLOT: 3000,
   BAR_ENTER: 600,
-  LINE1_STAGGER: 70,
+  LINE1_STAGGER: 42,
   LINE1_DURATION: 550,
-  LINE2_STAGGER: 90,
+  LINE2_STAGGER: 64,
   LINE2_DURATION: 550,
-  RISE_PX: 14,
-  ENTER_BLUR_PX: 12,
-  EXIT_BLUR_PX: 8,
+  RISE_PX: 26,
 } as const;
 
 export const motionTokens = {
   ease: "cubic-bezier(0.22, 1, 0.36, 1)",
-  distance: 16,
+  distance: 22,
   smallDistance: 10,
-  blur: 10,
   durationFast: 400,
   durationFilter: 150,
   durationHover: 250,
   durationBase: 700,
   durationBar: 600,
   durationReduced: 150,
-  wordStagger: 70,
+  wordStagger: 52,
   lineStagger: 140,
   cardStagger: 80,
   rowStagger: 40,
@@ -81,7 +78,10 @@ export function observeMotion(
   options: { animateOnMount?: boolean; onSkip?: (element: HTMLElement) => void } = {}
 ): () => void {
   if (element.dataset.motionState === "visible") return () => undefined;
-  if (document.documentElement.classList.contains("motion-reveal-timeout")) {
+  if (
+    (element.closest(".site-content") && !element.closest(".admin-content")) ||
+    document.documentElement.classList.contains("motion-reveal-timeout")
+  ) {
     setMotionVisible(element);
     options.onSkip?.(element);
     return () => undefined;
@@ -155,7 +155,6 @@ export function animateMotion(element: Element, options: MotionOptions): Animati
   const css = getComputedStyle(document.documentElement);
   const distance = css.getPropertyValue("--motion-distance").trim() || `${motionTokens.distance}px`;
   const smallDistance = css.getPropertyValue("--motion-distance-small").trim() || `${motionTokens.smallDistance}px`;
-  const blur = css.getPropertyValue("--motion-blur").trim() || `${motionTokens.blur}px`;
   const easing = css.getPropertyValue("--motion-ease").trim() || motionTokens.ease;
   const safeDelay = reduced ? 0 : delay;
   const safeDuration = reduced ? Math.min(duration, motionTokens.durationReduced) : duration;
@@ -170,11 +169,6 @@ export function animateMotion(element: Element, options: MotionOptions): Animati
       { opacity: 0, transform: `translate3d(0, ${smallDistance}, 0)` },
       { opacity: 1, transform: "translate3d(0, 0, 0)" },
     ];
-  } else if (effect === "heading") {
-    frames = [
-      { opacity: 0, transform: `translate3d(0, ${distance}, 0)`, filter: `blur(${blur})` },
-      { opacity: 1, transform: "translate3d(0, 0, 0)", filter: "blur(0px)" },
-    ];
   } else {
     frames = [
       { opacity: 0, transform: `translate3d(0, ${distance}, 0)` },
@@ -186,9 +180,7 @@ export function animateMotion(element: Element, options: MotionOptions): Animati
     ? "opacity"
     : effect === "bar"
       ? "transform"
-      : effect === "heading"
-        ? "opacity, transform, filter"
-        : "opacity, transform";
+      : "opacity, transform";
   const animation = element.animate(frames, {
     duration: safeDuration,
     delay: safeDelay,

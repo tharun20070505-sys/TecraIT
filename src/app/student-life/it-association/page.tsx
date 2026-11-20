@@ -14,7 +14,7 @@ import { Users } from "lucide-react";
 export const metadata: Metadata = {
   title: "IT Association",
   description:
-    "Official student governing association of the Department of Information Technology at SRIET. Student executive council, technical symposiums, and initiatives.",
+    "Official student governing association of the Department of Information Technology at Rathinam Institute of Technology. Student executive council, technical symposiums, and initiatives.",
 };
 
 export default async function ITAssociationPage() {

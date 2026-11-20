@@ -377,7 +377,7 @@ export function HeroImagesManager() {
               {selected && <Image src={selected.url} alt="" aria-hidden="true" fill sizes="(max-width: 1280px) 100vw, 60vw" className="object-cover" style={{ objectPosition: `${focal.x}% ${focal.y}%` }} />}
               <div className="absolute inset-0 bg-midnight" style={{ opacity: effectiveOverlay }} />
               <div className="absolute inset-x-0 top-0 z-10 flex h-[15%] items-center justify-between border-b border-white/60 bg-black/50 px-4 text-[10px] font-bold uppercase tracking-[0.12em] text-white">
-                <span>SRIET navigation</span><span>Links and contact</span>
+                <span>Rathinam Institute of Technology navigation</span><span>Links and contact</span>
               </div>
               <div className="absolute left-[4%] top-[34%] z-10 h-[42%] w-[56%] rounded border border-dashed border-gold/80 bg-black/10 p-3 text-white">
                 <span className="text-[9px] font-bold uppercase tracking-wider text-gold">Title safe area</span>

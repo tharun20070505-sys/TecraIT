@@ -7,7 +7,7 @@ import { HeadquartersSection } from "@/components/contact/HeadquartersSection";
 export const metadata: Metadata = {
   title: "Inquiry Portal and Contact - Department of Information Technology",
   description:
-    "Official Inquiry Portal of the Department of Information Technology at Sri Ranganathar Institute of Engineering and Technology. Submit admissions, academic queries, or industry collaboration requests.",
+    "Official Inquiry Portal of the Department of Information Technology at Rathinam Institute of Technology. Submit admissions, academic queries, or industry collaboration requests.",
 };
 
 export default function ContactPage() {

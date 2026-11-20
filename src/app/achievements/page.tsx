@@ -7,7 +7,7 @@ import { achievementsData } from "@/data/achievements";
 export const metadata: Metadata = {
   title: "Department Achievements",
   description:
-    "Student, faculty, and departmental awards, competitive hackathon laurels, and academic honors won by the Department of Information Technology at SRIET.",
+    "Student, faculty, and departmental awards, competitive hackathon laurels, and academic honors won by the Department of Information Technology at Rathinam Institute of Technology.",
 };
 
 export default function AchievementsPage() {

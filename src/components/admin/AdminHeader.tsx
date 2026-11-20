@@ -69,9 +69,7 @@ export function AdminHeader({
       <div className="hidden lg:flex items-center justify-center flex-1">
         <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-center">
           <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
-          <span className="text-sand/90 font-medium">SRIET IT Central Node</span>
-          <span className="text-white/20">·</span>
-          <span className="text-gold font-semibold">TNEA Code 2738</span>
+          <span className="text-sand/90 font-medium">Rathinam Institute of Technology IT Central Node</span>
           <span className="text-white/20">·</span>
           <span className="text-emerald-400 text-[11px]">System Online</span>
         </div>

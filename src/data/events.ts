@@ -7,7 +7,7 @@ export const eventsData: EventItem[] = [
     title: "National Conference on Emerging Advances in Computing Technologies",
     date: "2026-11-15",
     time: "09:30 AM to 04:30 PM",
-    venue: "Main Auditorium, SRIET",
+    venue: "Main Auditorium, Rathinam Institute of Technology",
     category: "Conference",
     scope: "Department",
     description: "An academic forum discussing high-performance architectures, machine learning models, and security resilience.",
@@ -32,7 +32,7 @@ export const eventsData: EventItem[] = [
   {
     id: "evt-3",
     slug: "annual-inter-collegiate-sports-meet",
-    title: "SRIET Inter-Collegiate Athletic and Sports Championship",
+    title: "Rathinam Institute of Technology Inter-Collegiate Athletic and Sports Championship",
     date: "2026-12-05",
     time: "08:00 AM to 06:00 PM",
     venue: "College Sports Arena",
@@ -45,7 +45,7 @@ export const eventsData: EventItem[] = [
   {
     id: "evt-4",
     slug: "institute-innovation-hackathon-2026",
-    title: "SRIET Grand Smart Campus Hackathon",
+    title: "Rathinam Institute of Technology Grand Smart Campus Hackathon",
     date: "2026-12-18",
     time: "24-Hour Continuous Event",
     venue: "Central Innovation Hub",

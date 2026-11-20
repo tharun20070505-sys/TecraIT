@@ -12,6 +12,7 @@ export interface LogoItem {
   logoDarkUrl?: string;
   href?: string;
   badge?: string;
+  transparent?: boolean;
 }
 
 export interface LogoReelSettingsProps {
@@ -64,20 +65,20 @@ export function LogoReel({
           const CardContent = (
             <div
               className={`flex items-center gap-3.5 px-5 py-3 rounded-xl border transition-all ${
-                theme === "dark"
+                item.transparent ? "border-transparent" : theme === "dark"
                   ? "bg-[#0B132B]/70 border-white/10"
                   : "bg-white border-sand shadow-xs"
-              } ${greyscale ? "grayscale hover:grayscale-0 focus-within:grayscale-0" : ""}`}
+              } ${greyscale && !item.transparent ? "grayscale hover:grayscale-0 focus-within:grayscale-0" : ""}`}
             >
               <div
                 className="relative shrink-0 flex items-center justify-center"
-                style={{ height: `${height}px`, width: `${height * 1.3}px` }}
+                style={{ height: `${height}px`, width: `${height * (item.transparent ? 2.6 : 1.3)}px` }}
               >
                 <Image
                   src={emblemSrc}
                   alt={`${item.name} emblem`}
                   fill
-                  sizes="120px"
+                  sizes={item.transparent ? "200px" : "120px"}
                   className="object-contain"
                 />
               </div>
@@ -228,24 +229,24 @@ export function LogoReel({
             const ItemCard = (
               <div
                 className={`flex items-center gap-3.5 px-4 py-2.5 rounded-xl border transition-all ${
-                  theme === "dark"
+                  item.transparent ? "border-transparent" : theme === "dark"
                     ? "bg-[#0B132B]/80 border-white/10"
                     : "bg-white border-sand shadow-xs"
                 } ${
-                  greyscale
+                  greyscale && !item.transparent
                     ? "grayscale hover:grayscale-0 focus-within:grayscale-0"
                     : "grayscale-0"
                 }`}
               >
                 <div
                   className="relative shrink-0 flex items-center justify-center"
-                  style={{ height: `${height}px`, width: `${height * 1.3}px` }}
+                  style={{ height: `${height}px`, width: `${height * (item.transparent ? 2.6 : 1.3)}px` }}
                 >
                   <Image
                     src={emblemSrc}
                     alt={`${item.name} emblem`}
                     fill
-                    sizes="120px"
+                    sizes={item.transparent ? "200px" : "120px"}
                     className="object-contain"
                   />
                 </div>

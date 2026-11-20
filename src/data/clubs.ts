@@ -6,7 +6,7 @@ export const clubsData: Club[] = [
     slug: "technexus",
     name: "TechNexus",
     type: "technical",
-    logoUrl: "/images/clubs/technexus-logo.png",
+    logoUrl: "/images/clubs/technexus-brand.webp",
     shortDescription: "Department technical society dedicated to software development, algorithmic problem solving, and competitive hackathons.",
     about: "TechNexus serves as the core technical forum for IT students to bridge academic principles with open-source development and competitive programming.",
     vision: "To establish a vibrant community of proactive coders, problem solvers, and technical innovators ready for global engineering challenges.",

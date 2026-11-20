@@ -14,7 +14,7 @@ export function AssociationHomeSection({ association }: AssociationHomeSectionPr
   return (
     <section className="py-20 lg:py-24 bg-ivory text-text border-b border-sand/30" aria-labelledby="association-heading">
       <div className="w-[min(calc(100%-2*clamp(20px,3.5vw,64px)),1840px)] mx-auto">
-        <div className="relative rounded-[3px] bg-midnight text-white p-8 sm:p-12 lg:p-14 overflow-hidden border border-sand/20">
+        <div className="relative rounded-[3px] bg-midnight bg-linear-to-br from-midnight to-teal-deep text-white p-8 sm:p-12 lg:p-14 overflow-hidden border border-sand/20">
           {/* 4px Top Bar in Teal */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-teal" />
 

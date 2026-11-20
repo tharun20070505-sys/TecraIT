@@ -6,7 +6,7 @@ import { Reveal } from "@/components/common/Reveal";
 import { RevealText } from "@/components/common/RevealText";
 
 export function TneaCounsellingHighlight() {
-  const [tneaCode, setTneaCode] = useState(siteSettings.tneaCode || "2738");
+  const [tneaCode, setTneaCode] = useState(siteSettings.tneaCode ?? "");
 
   useEffect(() => {
     let cancelled = false;
@@ -24,6 +24,8 @@ export function TneaCounsellingHighlight() {
       cancelled = true;
     };
   }, []);
+
+  if (!tneaCode || tneaCode === "2738") return null;
 
   return (
     <section
@@ -48,8 +50,7 @@ export function TneaCounsellingHighlight() {
           {tneaCode}
         </p>
         <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-white/75 sm:text-base">
-          Keep this code handy when choosing Sri Ranganathar Institute of
-          Engineering and Technology during TNEA counselling.
+          Keep this code handy when choosing Rathinam Institute of Technology during TNEA counselling.
         </p>
       </div>
       </Reveal>

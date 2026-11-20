@@ -3,7 +3,6 @@ import { Breadcrumbs, BreadcrumbItem } from "./Breadcrumbs";
 import { Reveal } from "./Reveal";
 import { RevealText } from "./RevealText";
 import { motionTokens } from "@/lib/motion";
-import { getHeroPresentation } from "@/lib/hero-data";
 
 interface PageBannerProps {
   title: string;
@@ -13,28 +12,28 @@ interface PageBannerProps {
   campusImageSrc?: string;
 }
 
-export async function PageBanner({
+export function PageBanner({
   title,
   eyebrow,
   breadcrumbs,
   description,
   campusImageSrc,
 }: PageBannerProps) {
-  const heroImageSrc = campusImageSrc ?? (await getHeroPresentation()).slides[0]?.url;
   const cleanEyebrow = eyebrow
     ? eyebrow.replace(/[•|/&]/g, " ").replace(/\s+/g, " ").trim()
     : undefined;
 
   return (
-    <section className="relative bg-midnight text-white overflow-hidden border-b border-sand/20 min-h-[280px] lg:min-h-[320px] flex items-center py-10 lg:py-12">
+    <section className="page-banner relative bg-midnight bg-linear-to-br from-midnight via-deep-navy to-teal-deep text-white overflow-hidden border-b border-sand/20 min-h-[240px] lg:min-h-[280px] flex items-center py-10 lg:py-12">
       {/* 20% Opacity Campus Image Background */}
       <div className="absolute inset-0 opacity-20 pointer-events-none select-none">
-        {heroImageSrc && (
+        {campusImageSrc && (
           <Image
-            src={heroImageSrc}
+            src={campusImageSrc}
             alt=""
             aria-hidden="true"
             fill
+            sizes="100vw"
             className="object-cover object-center"
           />
         )}
@@ -42,8 +41,7 @@ export async function PageBanner({
         <div className="absolute inset-0 bg-gradient-to-r from-ink via-midnight/90 to-midnight/80" />
       </div>
 
-      {/* Decorative Gold Hairline Accent Top */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
+      <div className="brand-spectrum absolute inset-x-0 bottom-0 h-1" aria-hidden="true" />
 
       {/* Full Laptop/Desktop Width Coverage */}
       <div className="relative z-10 w-[min(calc(100%-2*clamp(20px,3.5vw,64px)),1840px)] mx-auto">
@@ -65,9 +63,7 @@ export async function PageBanner({
 
           {/* Page Title (Merriweather, weight 900, clamp, left-aligned) */}
           <h1 className="font-heading font-black text-[clamp(2.25rem,4.5vw,3.75rem)] text-white tracking-tight leading-[1.15]">
-            <RevealText mode="words" animateOnMount>
-              {title}
-            </RevealText>
+            <RevealText mode="words" animateOnMount>{title}</RevealText>
           </h1>
 
           {/* Description */}

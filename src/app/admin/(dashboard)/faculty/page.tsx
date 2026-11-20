@@ -116,7 +116,7 @@ export default function AdminFacultyPage() {
       showContactNumber: true,
       photoUrl: "/images/faculty/avatar-placeholder.png",
       isHod: false,
-      bio: "Faculty member in the Department of Information Technology at SRIET.",
+      bio: "Faculty member in the Department of Information Technology at Rathinam Institute of Technology.",
       quote: "Committed to nurturing technical innovation and engineering leadership.",
       quota: "",
       quotaLabel: "",

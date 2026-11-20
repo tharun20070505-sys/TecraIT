@@ -53,7 +53,7 @@ export const campusLifeReelImages: ReelImage[] = [
   {
     id: "clr-2",
     url: "/images/hero/sriet-campus.png",
-    caption: "SRIET Main Administrative and Engineering Complex",
+    caption: "Rathinam Institute of Technology Main Administrative and Engineering Complex",
     altText: "Main college building illustration",
   },
   {

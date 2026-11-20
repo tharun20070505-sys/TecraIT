@@ -79,7 +79,7 @@ export function HeroSection({
         onClick={() => setManualPaused((current) => !current)}
         aria-label={manualPaused ? "Play hero animation" : "Pause hero animation"}
         aria-pressed={manualPaused}
-        className="absolute bottom-6 left-[clamp(20px,3.5vw,64px)] z-20 flex h-11 w-11 items-center justify-center rounded-[3px] border border-sand/40 bg-midnight/85 text-gold backdrop-blur-xs transition-colors hover:bg-deep-navy hover:text-white focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2"
+        className="absolute bottom-6 left-[clamp(20px,3.5vw,64px)] z-20 flex h-11 w-11 items-center justify-center rounded-full border border-sand/40 bg-midnight/85 text-gold backdrop-blur-xs transition-colors motion-reduce:hidden hover:bg-deep-navy hover:text-white focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2"
       >
         {manualPaused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
       </button>
