@@ -59,18 +59,15 @@ export default async function ITAssociationPage() {
 
         {/* Association Logo Centred under Page Title */}
         <div className="pt-4 flex justify-center">
-          <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-[3px] bg-midnight border border-gold/40 shadow-md flex items-center justify-center p-6">
+          <div className="relative w-60 h-60 sm:w-80 sm:h-80 flex items-center justify-center">
             <Image
               src={effectiveLogo}
               alt={logoConfig.alt}
-              width={160}
-              height={160}
-              className="object-contain"
+              width={320}
+              height={320}
+              className="h-full w-full object-contain"
               priority
             />
-            <div className="absolute -bottom-3 px-3 py-1 bg-deep-navy text-gold text-[11px] uppercase tracking-widest rounded-[2px] border border-gold/40 font-semibold">
-              Official Insignia
-            </div>
           </div>
         </div>
       </section>

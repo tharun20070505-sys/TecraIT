@@ -330,7 +330,7 @@ export async function getAssociationLogoConfig(): Promise<{
       const doc = await AssociationLogo.findOne().lean();
       if (doc) {
         const resolveAssociationLogo = (url?: string) =>
-          !url || ["/images/association/association-logo.png", "/images/logos/tecra-logo.png"].includes(url)
+          !url || ["/images/association/association-logo.png", "/images/logos/tecra-logo.png", "/images/logos/tecra-department-emblem.webp"].includes(url)
             ? associationData.logoUrl
             : url;
         return {

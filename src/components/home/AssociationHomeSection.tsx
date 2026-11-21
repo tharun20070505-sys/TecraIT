@@ -62,17 +62,14 @@ export function AssociationHomeSection({ association }: AssociationHomeSectionPr
 
             {/* Right Association Logo Poster (4 cols) */}
             <div className="lg:col-span-4 flex flex-col items-center justify-center">
-              <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-[3px] bg-ink border border-sand/20 shadow-md flex items-center justify-center p-8">
+              <div className="relative w-56 h-56 sm:w-72 sm:h-72 flex items-center justify-center">
                 <Image
                   src={association.logoUrl}
                   alt={`${association.name} Logo`}
-                  width={160}
-                  height={160}
-                  className="object-contain"
+                  width={288}
+                  height={288}
+                  className="h-full w-full object-contain"
                 />
-                <div className="absolute -bottom-3 px-3 py-1 bg-deep-navy text-gold text-[11px] uppercase tracking-widest rounded-[2px] border border-gold/40 font-semibold">
-                  Official Insignia
-                </div>
               </div>
             </div>
           </div>
