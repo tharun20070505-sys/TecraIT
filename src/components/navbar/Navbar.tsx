@@ -539,7 +539,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
               {/* Institute identity and department brand */}
               <div className="flex h-full shrink-0 items-center gap-3 border-r border-slate-200 bg-white px-3 xl:gap-4 xl:px-5">
                 <Link href="/" aria-label="Rathinam Institute of Technology, TECRA home" className="flex items-center">
-                  <Image src={instituteBanner} alt="Rathinam Institute of Technology (Autonomous), NAAC A+ and NBA accreditation" width={252} height={84} className="h-[72px] w-[216px] object-contain xl:h-[80px] xl:w-[240px]" priority />
+                  <Image src={instituteBanner} alt="Rathinam Institute of Technology (Autonomous), NAAC A+ and NBA accreditation" width={252} height={84} style={{ width: "auto" }} className="h-[72px] max-w-[216px] object-contain xl:h-[80px] xl:max-w-[240px]" priority />
                 </Link>
                 <div className="flex items-center gap-2 border-l border-slate-200 pl-3 xl:gap-3 xl:pl-4">
                   <Image src={departmentLogo} alt="TECRA Department of Information Technology emblem" width={56} height={56} className="size-[66px] shrink-0 object-contain xl:size-[76px]" priority />
@@ -695,7 +695,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
               }}
             >
               <Link href="/" aria-label="Rathinam Institute of Technology, TECRA home" className="flex h-full shrink-0 items-center gap-2 border-r border-slate-200 bg-white px-3">
-                <Image src={instituteBanner} alt="Rathinam Institute of Technology" width={132} height={44} className="h-11 w-[132px] object-contain" priority />
+                <Image src={instituteBanner} alt="Rathinam Institute of Technology" width={132} height={44} style={{ width: "auto" }} className="h-11 max-w-[132px] object-contain" priority />
                 <Image src={departmentLogo} alt="TECRA department emblem" width={40} height={40} className="size-[50px] object-contain" priority />
                 <span className="hidden text-lg font-black text-[#7C1A77] xl:inline">TECRA</span>
               </Link>
@@ -790,7 +790,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
               }}
             >
               <Link href="/" aria-label="Rathinam Institute of Technology, TECRA home" className="flex h-full shrink-0 items-center border-r border-slate-200 bg-white px-2 sm:px-3">
-                <Image src={instituteBanner} alt="Rathinam Institute of Technology" width={138} height={46} className="h-[46px] w-[clamp(92px,33vw,138px)] object-contain sm:w-[150px]" priority />
+                <Image src={instituteBanner} alt="Rathinam Institute of Technology" width={138} height={46} style={{ width: "auto" }} className="h-[46px] max-w-[clamp(92px,33vw,138px)] object-contain sm:max-w-[150px]" priority />
                 <Image src={departmentLogo} alt="TECRA department emblem" width={42} height={42} className="ml-1 h-[50px] w-[50px] shrink-0 rounded object-contain" priority />
               </Link>
 
