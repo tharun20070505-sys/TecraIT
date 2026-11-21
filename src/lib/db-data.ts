@@ -329,9 +329,13 @@ export async function getAssociationLogoConfig(): Promise<{
     if (isConnected) {
       const doc = await AssociationLogo.findOne().lean();
       if (doc) {
+        const resolveAssociationLogo = (url?: string) =>
+          !url || ["/images/association/association-logo.png", "/images/logos/tecra-logo.png"].includes(url)
+            ? associationData.logoUrl
+            : url;
         return {
-          logoLight: doc.logoLight || associationData.logoUrl,
-          logoDark: doc.logoDark || "",
+          logoLight: resolveAssociationLogo(doc.logoLight),
+          logoDark: doc.logoDark ? resolveAssociationLogo(doc.logoDark) : "",
           alt: doc.alt || "TECRA IT Association Logo",
           showInFooter: Boolean(doc.showInFooter),
           showInReel: Boolean(doc.showInReel),
