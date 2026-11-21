@@ -445,6 +445,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
   const isPhoneValid = phone && !phone.toLowerCase().includes("content") && !phone.toLowerCase().includes("required");
   const brochureUrl = siteSettings.brochurePdfUrl?.trim() || "/docs/brochure.pdf";
   const instituteBanner = "/images/logos/rathinam-institute-banner.webp";
+  const departmentLogo = siteSettings.srietLogoSrc || "/images/logos/tecra-department-emblem.webp";
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : !!pathname?.startsWith(href);
@@ -540,9 +541,12 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 <Link href="/" aria-label="Rathinam Institute of Technology, TECRA home" className="flex items-center">
                   <Image src={instituteBanner} alt="Rathinam Institute of Technology (Autonomous), NAAC A+ and NBA accreditation" width={252} height={84} className="h-[72px] w-[216px] object-contain xl:h-[80px] xl:w-[240px]" priority />
                 </Link>
-                <div className="hidden min-w-0 border-l border-slate-200 pl-4 xl:block">
+                <div className="flex items-center gap-2 border-l border-slate-200 pl-3 xl:gap-3 xl:pl-4">
+                  <Image src={departmentLogo} alt="TECRA Department of Information Technology emblem" width={56} height={56} className="h-12 w-12 shrink-0 rounded-md object-contain xl:h-14 xl:w-14" priority />
+                  <div className="hidden min-w-0 xl:block">
                   <span className="block text-[22px] font-black leading-none text-[#7C1A77]">TECRA</span>
                   <span className="mt-1 block max-w-[180px] text-[10px] font-bold uppercase leading-tight tracking-wide text-slate-900">Department of Information Technology</span>
+                  </div>
                 </div>
               </div>
 
@@ -692,6 +696,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
             >
               <Link href="/" aria-label="Rathinam Institute of Technology, TECRA home" className="flex h-full shrink-0 items-center gap-2 border-r border-slate-200 bg-white px-3">
                 <Image src={instituteBanner} alt="Rathinam Institute of Technology" width={132} height={44} className="h-11 w-[132px] object-contain" priority />
+                <Image src={departmentLogo} alt="TECRA department emblem" width={40} height={40} className="h-10 w-10 rounded object-contain" priority />
                 <span className="hidden text-lg font-black text-[#7C1A77] xl:inline">TECRA</span>
               </Link>
 
@@ -786,6 +791,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
             >
               <Link href="/" aria-label="Rathinam Institute of Technology, TECRA home" className="flex h-full shrink-0 items-center border-r border-slate-200 bg-white px-2 sm:px-3">
                 <Image src={instituteBanner} alt="Rathinam Institute of Technology" width={138} height={46} className="h-[46px] w-[138px] object-contain sm:w-[150px]" priority />
+                <Image src={departmentLogo} alt="TECRA department emblem" width={42} height={42} className="ml-1 h-[42px] w-[42px] shrink-0 rounded object-contain" priority />
               </Link>
 
               {/* Black Right Mobile Utilities */}

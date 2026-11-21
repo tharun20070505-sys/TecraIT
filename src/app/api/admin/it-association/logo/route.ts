@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
     if (!isConnected) {
       return NextResponse.json({
         logo: {
-          logoLight: "/images/logos/tecra-logo.png",
+          logoLight: "/images/logos/tecra-department-emblem.webp",
           logoDark: "",
           alt: "TECRA IT Association Emblem",
           showInFooter: false,
@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
     let doc = await AssociationLogo.findOne().lean();
     if (!doc) {
       doc = {
-        logoLight: "/images/logos/tecra-logo.png",
+        logoLight: "/images/logos/tecra-department-emblem.webp",
         logoDark: "",
         alt: "TECRA IT Association Emblem",
         showInFooter: false,
@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
     let doc = await AssociationLogo.findOne();
     if (!doc) {
       doc = new AssociationLogo({
-        logoLight: "/images/logos/tecra-logo.png",
+        logoLight: "/images/logos/tecra-department-emblem.webp",
         logoDark: "",
         alt: "TECRA IT Association Emblem",
         showInFooter: false,
@@ -198,7 +198,7 @@ export async function DELETE(req: NextRequest) {
         await deleteUploadedFile(doc.logoDark);
       }
 
-      doc.logoLight = "/images/logos/tecra-logo.png";
+      doc.logoLight = "/images/logos/tecra-department-emblem.webp";
       doc.logoDark = "";
       doc.showInFooter = false;
       doc.showInReel = false;

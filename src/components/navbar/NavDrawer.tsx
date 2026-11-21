@@ -40,7 +40,7 @@ export function NavDrawer({ isOpen, onClose, clubs = [], navItems = [] }: NavDra
 
   if (!isOpen) return null;
 
-  const logoSrc = siteSettings.srietLogoSrc || "/images/logos/tecra-logo.png";
+  const logoSrc = siteSettings.srietLogoSrc || "/images/logos/tecra-department-emblem.webp";
   const phone = siteSettings.officePhone || siteSettings.departmentOffice?.phone || "";
   const isPhoneValid =
     phone &&

@@ -97,7 +97,7 @@ export function Footer({ heroImageSrc }: { heroImageSrc?: string | null }) {
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-[3px] bg-midnight border border-sand/20 flex items-center justify-center p-1">
                 <Image
-                  src="/images/logos/tecra-logo.png"
+                  src="/images/logos/tecra-department-emblem.webp"
                   alt="TECRA Logo"
                   width={36}
                   height={36}

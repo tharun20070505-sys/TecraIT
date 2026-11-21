@@ -34,7 +34,7 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
     officePhone: { type: String, default: "" },
     highlightPillText: { type: String, default: "" },
     brochurePdfUrl: { type: String, default: "" },
-    srietLogoSrc: { type: String, default: "/images/logos/tecra-logo.png" },
+    srietLogoSrc: { type: String, default: "/images/logos/tecra-department-emblem.webp" },
     heroCampusImage: { type: String, default: "/images/hero/hero-background.jpg" },
     heroIntervalSeconds: { type: Number, min: 5, max: 20, default: 10 },
     heroOverlayMinimum: { type: Number, min: 0.7, max: 0.95, default: 0.7 },
