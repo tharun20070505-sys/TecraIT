@@ -539,8 +539,7 @@ small,
   padding-block: clamp(2.75rem, 5vw, 4.75rem);
 }
 
-.site-content :where(section:not(.admin-content *, [aria-label="Department Hero Poster"])) [class*="1840px"],
-.site-content section[class*="1840px"]:not(.admin-content *) {
+.site-content :where(section:not(.admin-content *, [aria-label="Department Hero Poster"])) [class*="1840px"] {
   width: min(calc(100% - 2 * var(--content-gutter)), 1320px);
 }
 
@@ -572,6 +571,14 @@ small,
   background-image: var(--lab-image);
   background-position: center;
   background-size: cover;
+}
+
+/* Paint section backgrounds edge to edge, keeping content on the banner grid. */
+.site-content section[class*="1840px"]:not(.admin-content *) {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  padding-inline: max(var(--content-gutter), calc((100% - 1320px) / 2));
 }
 
 /* Keep public content readable from the first frame. */
