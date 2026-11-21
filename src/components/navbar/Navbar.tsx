@@ -10,7 +10,6 @@ import { defaultNavItems } from "@/data/navItems";
 import { clubsData } from "@/data/clubs";
 import { WordReelStrip } from "./WordReelStrip";
 import { NavDrawer } from "./NavDrawer";
-import { NavbarAccreditationBadges } from "./NavbarAccreditationBadges";
 import type { Club, DbNavItem } from "@/types";
 
 interface NavbarProps {
@@ -442,8 +441,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
   const phone = siteSettings.officePhone || siteSettings.departmentOffice?.phone || "+91 422 269 7799";
   const isPhoneValid = phone && !phone.toLowerCase().includes("content") && !phone.toLowerCase().includes("required");
   const brochureUrl = siteSettings.brochurePdfUrl?.trim() || "/docs/brochure.pdf";
-  const logoSrc = siteSettings.srietLogoSrc || "/images/logos/sriet-logo.png";
-  const badgeLogos = siteSettings.navbarBadgeLogos || [];
+  const instituteBanner = "/images/logos/rathinam-institute-banner.webp";
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : !!pathname?.startsWith(href);
@@ -532,126 +530,14 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 zIndex: 2,
               }}
             >
-              {/* LEFT PANEL: 100% Solid Pure White (#FFFFFF) */}
-              <div
-                style={{
-                  background: "#FFFFFF",
-                  height: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "0 18px 0 20px",
-                  borderRight: "1px solid #E2E8F0",
-                  flexShrink: 0,
-                }}
-              >
-                {/* 1. SRIET Logo */}
-                <Link
-                  href="/"
-                  aria-label="TECRA – SRIET Home"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "12px",
-                    textDecoration: "none",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "48px",
-                      height: "48px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                    }}
-                  >
-                    <Image
-                      src={logoSrc}
-                      alt="Sri Ranganathar Institute of Engineering and Technology Logo"
-                      width={46}
-                      height={46}
-                      style={{ objectFit: "contain" }}
-                      priority
-                    />
-                  </div>
-
-                  {/* Vertical Divider */}
-                  <div
-                    style={{
-                      width: "1px",
-                      height: "46px",
-                      background: "#E2E8F0",
-                      flexShrink: 0,
-                    }}
-                    aria-hidden="true"
-                  />
-
-                  {/* 2. Text Brand Block */}
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      lineHeight: 1.15,
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: "Calibri",
-                        fontWeight: 900,
-                        fontSize: "24px",
-                        color: "#7C1A77", // Vibrant institutional purple from reference screenshot
-                        letterSpacing: "-0.02em",
-                        lineHeight: 1,
-                      }}
-                    >
-                      TECRA
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "Calibri",
-                        fontWeight: 700,
-                        fontSize: "10.5px",
-                        color: "#0F172A",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.06em",
-                        marginTop: "3px",
-                      }}
-                    >
-                      Department of Information Technology
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "Calibri",
-                        fontWeight: 500,
-                        fontSize: "9px",
-                        color: "#64748B",
-                        marginTop: "2px",
-                        letterSpacing: "0.01em",
-                      }}
-                    >
-                      Sri Ranganathar Institute of Engineering and Technology (Autonomous)
-                    </span>
-                  </div>
+              {/* Institute identity and department brand */}
+              <div className="flex h-full shrink-0 items-center gap-3 border-r border-slate-200 bg-white px-3 xl:gap-4 xl:px-5">
+                <Link href="/" aria-label="Rathinam Institute of Technology, TECRA home" className="flex items-center">
+                  <Image src={instituteBanner} alt="Rathinam Institute of Technology (Autonomous), NAAC A+ and NBA accreditation" width={252} height={84} className="h-[72px] w-[216px] object-contain xl:h-[80px] xl:w-[240px]" priority />
                 </Link>
-
-                {/* Vertical Divider before Accreditation Badges */}
-                <div
-                  style={{
-                    width: "1px",
-                    height: "46px",
-                    background: "#E2E8F0",
-                    marginLeft: "16px",
-                    marginRight: "6px",
-                    flexShrink: 0,
-                  }}
-                  className="hidden xl:block"
-                  aria-hidden="true"
-                />
-
-                {/* 3. Accreditation Badges (NBA, NAAC A+, NIRF, AUTONOMOUS) */}
-                <div className="hidden xl:flex items-center h-full">
-                  <NavbarAccreditationBadges customBadges={badgeLogos} />
+                <div className="hidden min-w-0 border-l border-slate-200 pl-4 xl:block">
+                  <span className="block text-[22px] font-black leading-none text-[#7C1A77]">TECRA</span>
+                  <span className="mt-1 block max-w-[180px] text-[10px] font-bold uppercase leading-tight tracking-wide text-slate-900">Department of Information Technology</span>
                 </div>
               </div>
 
@@ -795,68 +681,9 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 zIndex: 3,
               }}
             >
-              {/* White Left Badge Block */}
-              <Link
-                href="/"
-                aria-label="TECRA home"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  padding: "0 18px",
-                  height: "100%",
-                  background: "#FFFFFF",
-                  borderRight: "1px solid #E2E8F0",
-                  textDecoration: "none",
-                  flexShrink: 0,
-                }}
-              >
-                <div
-                  style={{
-                    width: "34px",
-                    height: "34px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  <Image
-                    src={logoSrc}
-                    alt="SRIET logo"
-                    width={32}
-                    height={32}
-                    style={{ objectFit: "contain" }}
-                    priority
-                  />
-                </div>
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      fontWeight: 900,
-                      fontSize: "19px",
-                      color: "#7C1A77",
-                      letterSpacing: "-0.01em",
-                      lineHeight: 1,
-                    }}
-                  >
-                    TECRA
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      fontWeight: 700,
-                      fontSize: "9px",
-                      color: "#0F172A",
-                      letterSpacing: "0.06em",
-                      textTransform: "uppercase",
-                      marginTop: "1px",
-                    }}
-                  >
-                    Information Technology
-                  </span>
-                </div>
+              <Link href="/" aria-label="Rathinam Institute of Technology, TECRA home" className="flex h-full shrink-0 items-center gap-2 border-r border-slate-200 bg-white px-3">
+                <Image src={instituteBanner} alt="Rathinam Institute of Technology" width={132} height={44} className="h-11 w-[132px] object-contain" priority />
+                <span className="hidden text-lg font-black text-[#7C1A77] xl:inline">TECRA</span>
               </Link>
 
               {/* Black Right Nav Bar */}
@@ -945,67 +772,8 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 boxShadow: "0 4px 15px rgba(0,0,0,0.5)",
               }}
             >
-              {/* White Left Logo Block */}
-              <Link
-                href="/"
-                aria-label="TECRA – SRIET Home"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  padding: "0 14px",
-                  height: "100%",
-                  background: "#FFFFFF",
-                  borderRight: "1px solid #E2E8F0",
-                  textDecoration: "none",
-                }}
-              >
-                <div
-                  style={{
-                    width: "32px",
-                    height: "32px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  <Image
-                    src={logoSrc}
-                    alt="SRIET logo"
-                    width={30}
-                    height={30}
-                    style={{ objectFit: "contain" }}
-                    priority
-                  />
-                </div>
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      fontWeight: 900,
-                      fontSize: "18px",
-                      color: "#7C1A77",
-                      letterSpacing: "-0.01em",
-                      lineHeight: 1,
-                    }}
-                  >
-                    TECRA
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      fontWeight: 700,
-                      fontSize: "8.5px",
-                      color: "#0F172A",
-                      letterSpacing: "0.06em",
-                      textTransform: "uppercase",
-                      marginTop: "1px",
-                    }}
-                  >
-                    Information Technology
-                  </span>
-                </div>
+              <Link href="/" aria-label="Rathinam Institute of Technology, TECRA home" className="flex h-full shrink-0 items-center border-r border-slate-200 bg-white px-2 sm:px-3">
+                <Image src={instituteBanner} alt="Rathinam Institute of Technology" width={138} height={46} className="h-[46px] w-[138px] object-contain sm:w-[150px]" priority />
               </Link>
 
               {/* Black Right Mobile Utilities */}
