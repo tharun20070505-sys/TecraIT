@@ -119,9 +119,6 @@
 html {
   scroll-behavior: smooth;
   background-color: #F8F6F0;
-  background-image: url("/images/home/rathinam-site-background.webp");
-  background-position: center top;
-  background-size: cover;
   color: #0F172A;
 }
 
@@ -513,26 +510,6 @@ small,
 .site-content {
   --lab-image: url("/images/home/rathinam-site-background.webp");
   --content-gutter: clamp(20px, 3.5vw, 56px);
-}
-
-/* Preserve the section palette while bringing the lab image into content bands. */
-.site-content :where(section):not(.admin-content *):is(.bg-ivory, .bg-white, .bg-mist, .bg-sky-wash, .bg-mint-wash, .bg-teal-wash, .bg-rose-wash, .bg-amber-wash, .py-20:not([class*="bg-"])) {
-  background-image: var(--lab-image);
-  background-blend-mode: normal;
-  background-position: center;
-  background-size: cover;
-}
-
-.site-content section.bg-sky-wash { --section-wash: var(--color-sky-wash); }
-.site-content section.bg-mint-wash { --section-wash: var(--color-mint-wash); }
-.site-content section.bg-teal-wash { --section-wash: var(--color-teal-wash); }
-.site-content section.bg-rose-wash { --section-wash: var(--color-rose-wash); }
-.site-content section.bg-amber-wash { --section-wash: var(--color-amber-wash); }
-
-.site-content section:not(.admin-content *):is(.bg-midnight, .bg-deep-navy):not([class*="bg-linear"], [aria-label="Department Hero Poster"]) {
-  background-image: var(--lab-image);
-  background-position: center;
-  background-size: cover;
 }
 
 .site-content :where(section:not(.admin-content *)):is(.py-20, .py-24) {
