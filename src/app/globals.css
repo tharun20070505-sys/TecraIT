@@ -119,7 +119,7 @@
 html {
   scroll-behavior: smooth;
   background-color: #F8F6F0;
-  background-image: linear-gradient(rgba(248, 246, 240, 0.94), rgba(248, 246, 240, 0.94)), url("/images/home/rathinam-site-background.webp");
+  background-image: url("/images/home/rathinam-site-background.webp");
   background-position: center top;
   background-size: cover;
   color: #0F172A;
@@ -517,7 +517,7 @@ small,
 
 /* Preserve the section palette while bringing the lab image into content bands. */
 .site-content :where(section):not(.admin-content *):is(.bg-ivory, .bg-white, .bg-mist, .bg-sky-wash, .bg-mint-wash, .bg-teal-wash, .bg-rose-wash, .bg-amber-wash, .py-20:not([class*="bg-"])) {
-  background-image: linear-gradient(100deg, color-mix(in srgb, var(--section-wash, #f8f6f0) 96%, transparent), color-mix(in srgb, var(--section-wash, #f8f6f0) 87%, transparent)), var(--lab-image);
+  background-image: var(--lab-image);
   background-blend-mode: normal;
   background-position: center;
   background-size: cover;
@@ -530,7 +530,7 @@ small,
 .site-content section.bg-amber-wash { --section-wash: var(--color-amber-wash); }
 
 .site-content section:not(.admin-content *):is(.bg-midnight, .bg-deep-navy):not([class*="bg-linear"], [aria-label="Department Hero Poster"]) {
-  background-image: linear-gradient(100deg, #070b18ef, #070b18b8), var(--lab-image);
+  background-image: var(--lab-image);
   background-position: center;
   background-size: cover;
 }
@@ -569,7 +569,7 @@ small,
 }
 
 .site-content .page-banner {
-  background-image: linear-gradient(100deg, #070b18ed, #070b1873), var(--lab-image);
+  background-image: var(--lab-image);
   background-position: center;
   background-size: cover;
 }

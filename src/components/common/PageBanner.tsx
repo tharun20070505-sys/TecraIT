@@ -37,8 +37,6 @@ export function PageBanner({
             className="object-cover object-center"
           />
         )}
-        {/* Dark Vignette / Left Weighted Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-midnight/90 to-midnight/80" />
       </div>
 
       <div className="brand-spectrum absolute inset-x-0 bottom-0 h-1" aria-hidden="true" />
