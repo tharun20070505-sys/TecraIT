@@ -11,7 +11,7 @@ interface QuickMetricsProps {
 export function QuickMetrics({ metrics }: QuickMetricsProps) {
   return (
     <section
-      className="relative bg-deep-navy text-white border-y border-sand/20 py-10 sm:py-12"
+      className="relative bg-deep-navy bg-linear-to-r from-midnight via-deep-navy to-teal-deep text-white border-y border-sand/20 py-10 sm:py-12"
       aria-label="Department Metrics and Statistics"
     >
       <div className="w-[min(calc(100%-2*clamp(20px,3.5vw,64px)),1840px)] mx-auto">
@@ -24,7 +24,7 @@ export function QuickMetrics({ metrics }: QuickMetricsProps) {
             return (
               <div
                 key={metric.id || idx}
-                className="flex flex-col items-start p-5 rounded-[3px] bg-ink/40 border border-sand/20"
+                className="flex flex-col items-start p-5 rounded-[3px] bg-ink/55 border border-sand/25"
               >
                 <div className="flex items-baseline gap-1">
                   {metric.prefix && (

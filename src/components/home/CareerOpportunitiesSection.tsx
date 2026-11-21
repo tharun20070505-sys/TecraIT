@@ -9,11 +9,11 @@ interface CareerOpportunitiesSectionProps {
 
 export function CareerOpportunitiesSection({ careers }: CareerOpportunitiesSectionProps) {
   return (
-    <section className="py-20 lg:py-24 bg-ivory text-text border-b border-sand/30" aria-labelledby="career-paths">
+    <section className="py-20 lg:py-24 bg-amber-wash text-text border-b border-sand/30" aria-labelledby="career-paths">
       <div className="w-[min(calc(100%-2*clamp(20px,3.5vw,64px)),1840px)] mx-auto space-y-12">
         <SectionHeading
           eyebrow="Industry Pathways"
-          eyebrowColor="royal-blue"
+          eyebrowColor="gold"
           title="Career Opportunities and Trajectories"
           description="Graduates in Information Technology are equipped with computational foundations, qualifying them for technical roles across software engineering, analytics, security, and academic research."
         />
@@ -25,11 +25,11 @@ export function CareerOpportunitiesSection({ careers }: CareerOpportunitiesSecti
               className="relative bg-white p-7 rounded-[3px] border border-sand flex flex-col justify-between overflow-hidden"
             >
               {/* 4px Top Bar in Royal Blue */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-royal-blue" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
 
               <div>
                 <div className="mb-4">
-                  <div className="w-10 h-10 rounded-[2px] bg-mist text-royal-blue border border-sand flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-[2px] bg-amber-wash text-gold-text border border-sand flex items-center justify-center">
                     <Briefcase className="w-5 h-5" aria-hidden="true" />
                   </div>
                 </div>
@@ -50,7 +50,7 @@ export function CareerOpportunitiesSection({ careers }: CareerOpportunitiesSecti
                   {career.skills.map((skill, sIdx) => (
                     <span
                       key={sIdx}
-                      className="px-2.5 py-0.5 rounded-[2px] bg-mist text-text text-[13px] border border-sand"
+                      className="px-2.5 py-0.5 rounded-[2px] bg-amber-wash text-text text-[13px] border border-sand"
                     >
                       {skill}
                     </span>

@@ -44,8 +44,8 @@ export const navItems: NavItem[] = [
 export const siteSettings: SiteSettings = {
   departmentName: "Department of Information Technology",
   departmentCode: "IT",
-  institutionName: "Sri Ranganathar Institute of Engineering and Technology",
-  institutionShort: "SRIET",
+  institutionName: "Rathinam Institute of Technology",
+  institutionShort: "Rathinam",
   tagline: "Advancing Computing Education and Technical Innovation",
   heroEyebrow: "DEPARTMENT OF INFORMATION TECHNOLOGY",
   heroHeadline: "TECRA Information Technology",
@@ -69,10 +69,10 @@ export const siteSettings: SiteSettings = {
     instagram: "https://instagram.com/sriet_it",
     youtube: "https://youtube.com/@srietofficial",
   },
-  footerNotice: "Sri Ranganathar Institute of Engineering and Technology (SRIET). All rights reserved.",
+  footerNotice: "Rathinam Institute of Technology. All rights reserved.",
   accreditationNote: "Approved by AICTE, New Delhi and Affiliated to Anna University, Chennai.",
-  srietLogoSrc: "/images/logos/sriet-logo.png",
-  tneaCode: "2738",
+  srietLogoSrc: "/images/logos/tecra-logo.png",
+  tneaCode: "",
   officePhone: "+91 422 269 7799",
   highlightPillText: "",
   brochurePdfUrl: "/docs/brochure.pdf",
@@ -92,7 +92,7 @@ export const siteSettings: SiteSettings = {
     },
     {
       id: "br-3",
-      text: "Sri Ranganathar Institute of Engineering and Technology",
+      text: "Rathinam Institute of Technology",
       order: 3,
       active: true,
     },
@@ -152,9 +152,9 @@ export const whyItCards: WhyItCard[] = [
 ];
 
 export const programOverview: ProgramOverview = {
-  title: "Why Choose B.Tech Information Technology at SRIET?",
+  title: "Why Choose B.Tech Information Technology at Rathinam Institute of Technology?",
   description:
-    "Engineering education should be active, grounded, and human-first. At SRIET, the Department of Information Technology pairs classical computational theory with continuous project work, close faculty mentorship, and active industry problem solving in Coimbatore's thriving industrial corridor.",
+    "Engineering education should be active, grounded, and human-first. At Rathinam Institute of Technology, the Department of Information Technology pairs classical computational theory with continuous project work, close faculty mentorship, and active industry problem solving in Coimbatore's thriving industrial corridor.",
   details: [
     { label: "Degree Conferred", value: "Bachelor of Technology (B.Tech in Information Technology)" },
     { label: "Curriculum Standard", value: "Autonomous Scheme affiliated to Anna University, Chennai" },
@@ -162,7 +162,6 @@ export const programOverview: ProgramOverview = {
     { label: "Total Degree Credits", value: "162 Credits (Outcome-Based Education framework)" },
     { label: "Laboratory Practice", value: "6 Hands-On Computing Laboratories & Open Innovation Hub" },
     { label: "Industry Immersion", value: "Mandatory Semester Internships & Capstone Projects" },
-    { label: "TNEA Counselling Code", value: "Code 2738 · SRIET Coimbatore" },
   ],
 };
 
@@ -209,8 +208,8 @@ export const homeReelImages: ReelImage[] = [
   {
     id: "hr1",
     url: "/images/hero/sriet-campus.png",
-    caption: "SRIET Main Campus Infrastructure",
-    altText: "Illustration of the Sri Ranganathar Institute of Engineering and Technology main building",
+    caption: "Rathinam Institute of Technology Main Campus Infrastructure",
+    altText: "Campus building illustration",
   },
   {
     id: "hr2",

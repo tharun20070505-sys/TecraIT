@@ -458,7 +458,7 @@ export default function AdminITAssociationLogoPage() {
                   TECRA IT ASSOCIATION
                 </span>
                 <span className="text-[8px] font-mono text-sand/40 uppercase">
-                  SRIET Department of IT
+                  Rathinam Institute of Technology Department of IT
                 </span>
               </div>
               <span className="text-[10px] text-sand/50 text-center block">

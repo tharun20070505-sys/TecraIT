@@ -26,7 +26,7 @@ export const achievementsData: AchievementItem[] = [
   {
     id: "ach-3",
     title: "Overall Department Championship Trophy",
-    eventName: "SRIET Annual Technical Fest 2024",
+    eventName: "Rathinam Institute of Technology Annual Technical Fest 2024",
     prizePosition: "Overall Champions",
     date: "2024-10-18",
     year: "2024",

@@ -13,7 +13,7 @@ import { Users } from "lucide-react";
 export const metadata: Metadata = {
   title: "Faculty Directory",
   description:
-    "Meet the professors, associate professors, and lecturers of the Department of Information Technology at SRIET. Academic profiles, research specializations, and mentorship.",
+    "Meet the professors, associate professors, and lecturers of the Department of Information Technology at Rathinam Institute of Technology. Academic profiles, research specializations, and mentorship.",
 };
 
 export default async function FacultyPage() {
@@ -49,7 +49,7 @@ export default async function FacultyPage() {
               <span>{facultyGroupImage.caption}</span>
             </span>
             <span className="text-sand/70">
-              Department of Information Technology, SRIET
+              Department of Information Technology, Rathinam Institute of Technology
             </span>
           </Reveal>
         </div>

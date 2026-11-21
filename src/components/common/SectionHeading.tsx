@@ -77,16 +77,13 @@ export function SectionHeading({
         </div>
       )}
 
-      {/* Main Section Title (Merriweather, bold 700/900, clamp, left-aligned, tight line-height) */}
       <h2
         className={cn(
-          "font-heading font-black text-[clamp(1.75rem,3.5vw,2.9rem)] leading-[1.2] tracking-tight text-left",
+          "font-heading text-balance font-extrabold text-[clamp(1.8rem,3.6vw,3.2rem)] leading-[1.13] tracking-[-0.045em] text-left",
           isDark ? "text-white" : "text-text"
         )}
       >
-        <RevealText mode="words" delay={motionTokens.sectionTitleDelay}>
-          {title}
-        </RevealText>
+        <RevealText mode="words" delay={motionTokens.sectionTitleDelay}>{title}</RevealText>
       </h2>
 
       {/* Short Thick CSS Colour Bar Below Title */}

@@ -16,7 +16,7 @@ export const galleryItems: GalleryItem[] = [
   {
     id: "gal-1",
     title: "National Academic Conference on Computing Technologies",
-    caption: "Inaugural address and keynote in the main SRIET auditorium.",
+    caption: "Inaugural address and keynote in the main Rathinam Institute of Technology auditorium.",
     category: "Events",
     date: "2026-03-15",
     imageUrl: "/images/events/event-placeholder.png",
@@ -63,7 +63,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: "gal-7",
-    title: "SRIET Main Administrative Complex and Central Lawns",
+    title: "Rathinam Institute of Technology Main Administrative Complex and Central Lawns",
     caption: "Scenic perspective of the main academic engineering campus.",
     category: "Campus",
     date: "2025-08-14",

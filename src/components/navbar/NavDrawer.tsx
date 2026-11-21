@@ -40,7 +40,7 @@ export function NavDrawer({ isOpen, onClose, clubs = [], navItems = [] }: NavDra
 
   if (!isOpen) return null;
 
-  const logoSrc = siteSettings.srietLogoSrc || "/images/logos/sriet-logo.png";
+  const logoSrc = siteSettings.srietLogoSrc || "/images/logos/tecra-logo.png";
   const phone = siteSettings.officePhone || siteSettings.departmentOffice?.phone || "";
   const isPhoneValid =
     phone &&
@@ -119,17 +119,20 @@ export function NavDrawer({ isOpen, onClose, clubs = [], navItems = [] }: NavDra
             aria-label="TECRA home"
           >
             <div className="relative h-9 w-9 bg-white p-0.5 shrink-0 flex items-center justify-center">
-              <Image src={logoSrc} alt="SRIET logo" width={36} height={36} className="object-contain" />
+              <Image src={logoSrc} alt="TECRA logo" width={36} height={36} className="object-contain" />
             </div>
             <div>
               <div
-                className="font-[var(--font-merriweather)] font-black text-white leading-none"
+                className="font-heading font-extrabold text-white leading-none"
                 style={{ fontSize: "22px" }}
               >
                 TECRA
               </div>
-              <div className="font-[var(--font-source-sans)] font-bold text-[11px] uppercase tracking-wider text-[#BDBDBD] mt-0.5">
+              <div className="mt-0.5 font-body text-[11px] font-bold uppercase tracking-wider text-[#BDBDBD]">
                 Information Technology
+              </div>
+              <div className="mt-1 font-body text-xs font-bold text-teal-200">
+                Rathinam Institute of Technology
               </div>
             </div>
           </Link>
@@ -150,7 +153,7 @@ export function NavDrawer({ isOpen, onClose, clubs = [], navItems = [] }: NavDra
             {isPhoneValid && (
               <a
                 href={`tel:${phone.replace(/[^0-9+]/g, "")}`}
-                className="w-full min-h-[48px] flex items-center justify-center gap-2.5 rounded-full bg-[#6E6E6E] text-white font-[var(--font-source-sans)] font-bold text-[14px] hover:bg-[#585858] transition-colors focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
+                className="w-full min-h-[48px] flex items-center justify-center gap-2.5 rounded-full bg-[#6E6E6E] text-white font-body font-bold text-[14px] hover:bg-[#585858] transition-colors focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
               >
                 <Phone className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Call us</span>
@@ -164,7 +167,7 @@ export function NavDrawer({ isOpen, onClose, clubs = [], navItems = [] }: NavDra
                 download
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full min-h-[48px] flex items-center justify-center gap-2.5 rounded-full border border-[#6E6E6E] text-white font-[var(--font-source-sans)] font-bold text-[14px] hover:bg-[#1A1A1A] transition-colors focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
+                className="w-full min-h-[48px] flex items-center justify-center gap-2.5 rounded-full border border-[#6E6E6E] text-white font-body font-bold text-[14px] hover:bg-[#1A1A1A] transition-colors focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
               >
                 <FileText className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Department Brochure</span>
@@ -275,7 +278,7 @@ export function NavDrawer({ isOpen, onClose, clubs = [], navItems = [] }: NavDra
             >
               Privacy Policy
             </Link>
-            <span>SRIET IT Dept</span>
+            <span>Rathinam Institute of Technology IT Dept</span>
           </div>
 
           {/* Social links */}

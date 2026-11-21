@@ -166,6 +166,8 @@ export async function getGalleryItems(): Promise<GalleryItem[]> {
   return galleryItems;
 }
 
+const techNexusLogo = clubsData.find((club) => club.slug === "technexus")?.logoUrl;
+
 /**
  * Fetch Clubs from MongoDB with resilient fallback.
  */
@@ -180,7 +182,7 @@ export async function getClubs(): Promise<ClubType[]> {
           slug: doc.slug,
           name: doc.name,
           type: doc.type,
-          logoUrl: doc.logoUrl,
+          logoUrl: doc.slug === "technexus" ? techNexusLogo ?? doc.logoUrl : doc.logoUrl,
           shortDescription: doc.shortDescription,
           about: doc.about,
           vision: doc.vision,
@@ -249,7 +251,7 @@ export async function getClubBySlug(slug: string): Promise<ClubType | null> {
           slug: base.slug,
           name: base.name,
           type: base.type,
-          logoUrl: base.logoUrl,
+          logoUrl: base.slug === "technexus" ? techNexusLogo ?? base.logoUrl : base.logoUrl,
           shortDescription: base.shortDescription,
           about: base.about,
           vision: base.vision,

@@ -8,16 +8,15 @@ export function DepartmentJsonLd() {
     "@type": "EducationalOrganization",
     "@id": `${siteUrl}/#organization`,
     name: `${siteSettings.departmentName}, ${siteSettings.institutionName}`,
-    alternateName: ["TECRA IT", "SRIET IT", "TECRA Department of Information Technology"],
+    alternateName: ["TECRA IT", "Rathinam Institute of Technology IT", "TECRA Department of Information Technology"],
     url: siteUrl,
-    logo: `${siteUrl}/images/hero/sriet-campus.png`,
+    logo: `${siteUrl}/images/logos/tecra-logo.png`,
     image: `${siteUrl}/images/hero/sriet-campus.png`,
     description: siteSettings.heroDescription,
     parentOrganization: {
       "@type": "CollegeOrUniversity",
       name: siteSettings.institutionName,
       alternateName: siteSettings.institutionShort,
-      url: "https://sriet.ac.in",
     },
     department: {
       "@type": "Organization",

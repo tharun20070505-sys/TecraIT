@@ -27,7 +27,7 @@ export function EventsHomeSection({ events }: EventsHomeSectionProps) {
   };
 
   return (
-    <section className="py-20 lg:py-24 bg-mist border-y border-sand text-text" aria-labelledby="events-heading">
+    <section className="py-20 lg:py-24 bg-rose-wash border-y border-sand text-text" aria-labelledby="events-heading">
       <div className="w-[min(calc(100%-2*clamp(20px,3.5vw,64px)),1840px)] mx-auto space-y-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <SectionHeading

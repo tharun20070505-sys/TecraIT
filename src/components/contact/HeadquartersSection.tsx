@@ -51,7 +51,7 @@ export function HeadquartersSection() {
               Postal Address
             </span>
             <span className="font-medium text-text leading-relaxed">
-              {siteSettings.institutionName} (SRIET)
+              {siteSettings.institutionName}
               <br />
               {departmentOffice.address}
             </span>
@@ -105,7 +105,7 @@ export function HeadquartersSection() {
             Campus Coordinates
           </span>
           <a
-            href="https://maps.google.com/?q=Sri+Ranganathar+Institute+of+Engineering+and+Technology+Coimbatore"
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteSettings.institutionName + ", Coimbatore")}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-text hover:text-gold flex items-center gap-1 font-semibold transition-colors"
@@ -117,14 +117,14 @@ export function HeadquartersSection() {
 
         <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-[3px] overflow-hidden border border-sand shadow-inner bg-mist">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.887854655495!2d76.9936859748231!3d11.12165898904924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8f62f8373b985%3A0xa64b3ef6f4b63ffb!2sSri%20Ranganathar%20Institute%20of%20Engineering%20and%20Technology!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+            src={`https://maps.google.com/maps?q=${encodeURIComponent(siteSettings.institutionName + ", Coimbatore")}&output=embed`}
             width="100%"
             height="100%"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Sri Ranganathar Institute of Engineering and Technology Location Map"
+            title="Rathinam Institute of Technology Location Map"
           />
         </div>
       </div>

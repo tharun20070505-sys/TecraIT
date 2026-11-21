@@ -1,24 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap");
 @import "tailwindcss";
 
-:root {
-  --font-outfit: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  --font-plus-jakarta: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  --font-newsreader: "Georgia", "Times New Roman", serif;
-  --font-noto-tamil: "Noto Sans Tamil", "Tamil Sangam MN", "Nirmala UI", sans-serif;
-  --font-merriweather: "Merriweather", Georgia, serif;
+@theme inline {
+  --font-heading: var(--type-display), "Segoe UI", sans-serif;
+  --font-body: var(--type-body), "Segoe UI", sans-serif;
 }
 
 @theme {
-  --font-heading: var(--font-outfit), var(--font-plus-jakarta), sans-serif;
-  --font-body: var(--font-plus-jakarta), sans-serif;
-  --font-editorial: var(--font-newsreader), Georgia, serif;
-  --font-outfit: var(--font-outfit), sans-serif;
-  --font-plus-jakarta: var(--font-plus-jakarta), sans-serif;
-  --font-newsreader: var(--font-newsreader), Georgia, serif;
-  --font-merriweather: "Merriweather", Georgia, serif;
-  --font-source-sans: var(--font-plus-jakarta), sans-serif;
-
   /* Neutrals */
   --color-ivory: #F8F6F0;
   --color-white: #FFFFFF;
@@ -27,6 +14,12 @@
   --color-placeholder: #E8E4D8;
   --color-text: #0F172A;
   --color-text-muted: #475569;
+
+  --color-sky-wash: #EEF4FF;
+  --color-mint-wash: #ECF8F2;
+  --color-teal-wash: #EBF7F7;
+  --color-rose-wash: #FCEDF3;
+  --color-amber-wash: #FFF5E2;
 
   /* Dark colours */
   --color-ink: #070B18;
@@ -71,16 +64,15 @@
 
   /* Shared one-time text and content motion tokens */
   --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --motion-distance: 16px;
+  --motion-distance: 22px;
   --motion-distance-small: 10px;
-  --motion-blur: 10px;
   --motion-duration-fast: 400ms;
   --motion-duration-filter: 150ms;
   --motion-duration-hover: 250ms;
   --motion-duration-base: 700ms;
   --motion-duration-bar: 600ms;
   --motion-duration-reduced: 150ms;
-  --motion-stagger-word: 70ms;
+  --motion-stagger-word: 52ms;
   --motion-stagger-line: 140ms;
   --motion-stagger-card: 80ms;
   --motion-stagger-row: 40ms;
@@ -127,6 +119,9 @@
 html {
   scroll-behavior: smooth;
   background-color: #F8F6F0;
+  background-image: linear-gradient(rgba(248, 246, 240, 0.94), rgba(248, 246, 240, 0.94)), url("/images/home/rathinam-site-background.webp");
+  background-position: center top;
+  background-size: cover;
   color: #0F172A;
 }
 
@@ -158,7 +153,6 @@ html {
   display: inline-block;
   opacity: 0;
   transform: translate3d(0, var(--motion-distance), 0);
-  filter: blur(var(--motion-blur));
 }
 .motion-js [data-motion-state="pending"][data-motion-kind="lines"] [data-motion-piece] {
   display: inline-block;
@@ -254,10 +248,11 @@ html.reader-mode.motion-js [data-motion-piece] {
 }
 
 body {
-  font-family: var(--font-body), sans-serif;
+  font-family: var(--type-body), "Segoe UI", sans-serif;
   font-size: 17.5px;
   line-height: 1.6;
-  background-color: #F8F6F0;
+  background-color: transparent;
+  background-image: none;
   color: #0F172A;
   min-height: 100vh;
   margin: 0;
@@ -266,17 +261,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Headings: Outfit + Plus Jakarta Sans, bold, left-aligned, tight line-height */
+@utility brand-spectrum {
+  background-image: linear-gradient(90deg, #65B6FF, #58DBC4 36%, #F6C56B 68%, #F990B8);
+}
+
+/* Shared heading typography */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading), sans-serif;
+  font-family: var(--type-display), "Segoe UI", sans-serif;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
   text-align: left;
   line-height: 1.2;
 }
 
 h1 {
-  font-weight: 900;
+  font-weight: 800;
   font-size: clamp(2.25rem, 5vw, 4.25rem);
   line-height: 1.15;
 }
@@ -510,3 +509,78 @@ small,
   }
 }
 
+
+.site-content {
+  --lab-image: url("/images/home/rathinam-site-background.webp");
+  --content-gutter: clamp(20px, 3.5vw, 56px);
+}
+
+/* Preserve the section palette while bringing the lab image into content bands. */
+.site-content :where(section):not(.admin-content *):is(.bg-ivory, .bg-white, .bg-mist, .bg-sky-wash, .bg-mint-wash, .bg-teal-wash, .bg-rose-wash, .bg-amber-wash, .py-20:not([class*="bg-"])) {
+  background-image: linear-gradient(100deg, color-mix(in srgb, var(--section-wash, #f8f6f0) 96%, transparent), color-mix(in srgb, var(--section-wash, #f8f6f0) 87%, transparent)), var(--lab-image);
+  background-blend-mode: normal;
+  background-position: center;
+  background-size: cover;
+}
+
+.site-content section.bg-sky-wash { --section-wash: var(--color-sky-wash); }
+.site-content section.bg-mint-wash { --section-wash: var(--color-mint-wash); }
+.site-content section.bg-teal-wash { --section-wash: var(--color-teal-wash); }
+.site-content section.bg-rose-wash { --section-wash: var(--color-rose-wash); }
+.site-content section.bg-amber-wash { --section-wash: var(--color-amber-wash); }
+
+.site-content section:not(.admin-content *):is(.bg-midnight, .bg-deep-navy):not([class*="bg-linear"], [aria-label="Department Hero Poster"]) {
+  background-image: linear-gradient(100deg, #070b18ef, #070b18b8), var(--lab-image);
+  background-position: center;
+  background-size: cover;
+}
+
+.site-content :where(section:not(.admin-content *)):is(.py-20, .py-24) {
+  padding-block: clamp(2.75rem, 5vw, 4.75rem);
+}
+
+.site-content :where(section:not(.admin-content *, [aria-label="Department Hero Poster"])) [class*="1840px"],
+.site-content section[class*="1840px"]:not(.admin-content *) {
+  width: min(calc(100% - 2 * var(--content-gutter)), 1320px);
+}
+
+.site-content :where(section:not(.admin-content *)) :where(article, [data-motion-item] > div):is(.p-7, .p-8, .p-10) {
+  padding: clamp(1rem, 2vw, 1.5rem);
+}
+
+.site-content :where(section:not(.admin-content *)) :where(h1, h2, h3) {
+  text-wrap: balance;
+}
+
+.site-content section:not(.admin-content *, .text-white, .bg-ink, .bg-midnight, .bg-deep-navy) :where(h1, h2) {
+  --heading-colors: linear-gradient(100deg, #1e3a8a, #0b5f66 55%, #8c1f46);
+}
+
+.site-content section:is(.text-white, .bg-ink, .bg-midnight, .bg-deep-navy):not(.admin-content *) :where(h1, h2) {
+  --heading-colors: linear-gradient(100deg, #f0f7ff, #86ead8 55%, #f9cc86);
+}
+
+@media (forced-colors: none) {
+  .site-content section:not(.admin-content *) :where(h1, h2):has([data-motion-kind="words"]) [data-motion-kind="words"] [data-motion-piece] {
+    background-image: var(--heading-colors, linear-gradient(currentColor, currentColor));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.site-content .page-banner {
+  background-image: linear-gradient(100deg, #070b18ed, #070b1873), var(--lab-image);
+  background-position: center;
+  background-size: cover;
+}
+
+/* Keep public content readable from the first frame. */
+.motion-js .site-content :not(.admin-content *)[data-motion-state="pending"] {
+  opacity: 1;
+  transform: none;
+}
+.motion-js .site-content :not(.admin-content *)[data-motion-state="pending"] [data-motion-piece] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}

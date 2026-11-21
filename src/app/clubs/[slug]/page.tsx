@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: ClubPageProps): Promise<Metad
     title: `${club.name} - Department of Information Technology`,
     description: club.shortDescription,
     openGraph: {
-      title: `${club.name} - TECRA IT SRIET`,
+      title: `${club.name} - TECRA IT Rathinam Institute of Technology`,
       description: club.shortDescription,
       images: [club.logoUrl],
     },

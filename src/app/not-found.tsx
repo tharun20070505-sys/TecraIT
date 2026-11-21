@@ -10,7 +10,7 @@ export default function NotFound() {
       <div className="absolute inset-0 opacity-15 pointer-events-none select-none">
         <Image
           src={siteSettings.heroCampusImage}
-          alt="Illustration of the Sri Ranganathar Institute of Engineering and Technology main building"
+          alt="Campus building illustration"
           fill
           priority
           className="object-cover object-center"

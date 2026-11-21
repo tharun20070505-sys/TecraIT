@@ -3,12 +3,12 @@ import { AboutContent } from "@/types";
 export const aboutData: AboutContent = {
   introTitle: "Computing Education and Engineering Rigor",
   introParagraphs: [
-    "The Department of Information Technology at Sri Ranganathar Institute of Engineering and Technology (SRIET) was established to equip students with conceptual understanding and practical capability in the computational sciences.",
+    "The Department of Information Technology at Rathinam Institute of Technology was established to equip students with conceptual understanding and practical capability in the computational sciences.",
     "Our academic curriculum combines theoretical foundations in algorithms and discrete systems with active technical domains, including artificial intelligence, cloud architectures, big data systems, and cybersecurity.",
     "Through structured laboratory practice, student-led technical associations, and faculty mentoring, students develop into adaptable, methodical engineers capable of solving complex computational problems.",
   ],
   introImageUrl: "/images/about/about-placeholder.png",
-  introImageCaption: "Information Technology Computing and Networking Laboratory, SRIET",
+  introImageCaption: "Information Technology Computing and Networking Laboratory, Rathinam Institute of Technology",
   visionTitle: "Department Vision",
   visionText:
     "To develop into a recognized center of excellence in Information Technology education and research, producing competent, socially responsible, and innovative computing professionals equipped to address regional and global engineering challenges.",

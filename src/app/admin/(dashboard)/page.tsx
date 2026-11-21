@@ -177,7 +177,7 @@ export default function AdminDashboardPage() {
       <AdminHeader
         onToggleMobile={() => setMobileOpen(!mobileOpen)}
         title="Admin Control Center"
-        subtitle="Department of Information Technology, SRIET"
+        subtitle="Department of Information Technology, Rathinam Institute of Technology"
       />
 
       <div className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 max-w-7xl w-full mx-auto">
@@ -374,7 +374,7 @@ export default function AdminDashboardPage() {
                   TECRA, Department of Information Technology
                 </div>
                 <div className="text-[11px] text-sand/60">
-                  SRIET Coimbatore, Affiliated to Anna University, Chennai
+                  Rathinam Institute of Technology Coimbatore, Affiliated to Anna University, Chennai
                 </div>
               </div>
 

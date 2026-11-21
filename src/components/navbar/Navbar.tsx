@@ -22,7 +22,9 @@ interface NavbarProps {
 const FULL_NAV_H  = 88;  // Height of 2-tier navbar on desktop
 const NOTICE_H    = 38;  // Height of notice strip
 const COND_NAV_H  = 56;  // Height of condensed sticky navbar
-const TOTAL_TOP_H = FULL_NAV_H + NOTICE_H; // 126px
+const TOTAL_TOP_H = FULL_NAV_H + NOTICE_H;
+const MOBILE_NAV_H = 56;
+const MOBILE_NOTICE_H = 34;
 
 // ─── Nav item fetch with clubs fallback ───────────────────────────────────────
 function useNavItems(clubs: Club[]): DbNavItem[] {
@@ -362,7 +364,7 @@ function NavLink({
 export function Navbar({ clubs = [] }: NavbarProps) {
   const pathname = usePathname();
   const navItems = useNavItems(clubs);
-  const [tneaCode, setTneaCode] = useState(siteSettings.tneaCode || "2738");
+  const [tneaCode, setTneaCode] = useState(siteSettings.tneaCode ?? "");
   const [isScrolled, setIsScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -404,7 +406,8 @@ export function Navbar({ clubs = [] }: NavbarProps) {
     onScroll();
     return () => {
       window.removeEventListener("scroll", onScroll);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
     };
   }, []);
 
@@ -502,29 +505,31 @@ export function Navbar({ clubs = [] }: NavbarProps) {
       {/* FIXED TOP HEADER */}
       <header
         ref={navRef as React.RefObject<HTMLElement>}
-        className="fixed top-0 left-0 right-0 z-40 w-full select-none"
+        className="fixed top-0 left-0 right-0 z-40 w-full select-none pointer-events-none"
         aria-label="Site header"
       >
         <nav aria-label="Main navigation" className="w-full">
           {/* ============================================================
               DESKTOP (≥ 1024 px)
           ============================================================ */}
-          <div className="hidden lg:block w-full">
+          <div className="relative hidden w-full lg:block" style={{ height: TOTAL_TOP_H }}>
             {/* FULL TWO-TIER NAVBAR (When at top of page) */}
             <div
+              className="motion-safe:transition-[opacity,transform] motion-safe:duration-150 motion-safe:ease-out"
               aria-hidden={isScrolled}
+              inert={isScrolled}
               style={{
                 width: "100%",
                 height: `${FULL_NAV_H}px`,
                 display: "flex",
-                background: "#000000",
+                background: "linear-gradient(110deg, rgba(7, 11, 24, 0.97), rgba(12, 21, 53, 0.95) 70%, rgba(6, 54, 63, 0.94))",
                 borderBottom: "1px solid rgba(0,0,0,0.15)",
                 boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
                 opacity: isScrolled ? 0 : 1,
                 pointerEvents: isScrolled ? "none" : "auto",
-                transition: "opacity 200ms ease, transform 200ms ease",
+
                 transform: isScrolled ? "translateY(-10px)" : "translateY(0)",
-                position: isScrolled ? "absolute" : "relative",
+                position: "absolute",
                 top: 0,
                 left: 0,
                 zIndex: 2,
@@ -545,7 +550,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
               <div
                 style={{
                   flex: 1,
-                  background: "#000000",
+                  background: "linear-gradient(120deg, #070B18, #0C1535 72%, #06363F)",
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
@@ -566,13 +571,15 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                   }}
                 >
                   {/* TNEA Counselling Code Pill */}
-                  <div
-                    style={topPillStyle}
-                    title="Anna University TNEA Counselling Code"
-                  >
-                    <span style={{ color: "rgba(255,255,255,0.85)" }}>TNEA Counselling Code :</span>
-                    <span style={{ color: "#F1C40F", fontWeight: 700 }}>{tneaCode}</span>
-                  </div>
+                  {tneaCode && tneaCode !== "2738" && (
+                    <div
+                      style={topPillStyle}
+                      title="Anna University TNEA Counselling Code"
+                    >
+                      <span style={{ color: "rgba(255,255,255,0.85)" }}>TNEA Counselling Code :</span>
+                      <span style={{ color: "#F1C40F", fontWeight: 700 }}>{tneaCode}</span>
+                    </div>
+                  )}
 
                   {/* Call Us Pill */}
                   {isPhoneValid && (
@@ -662,7 +669,9 @@ export function Navbar({ clubs = [] }: NavbarProps) {
 
             {/* CONDENSED STICKY NAVBAR (Active when scrolled past 80px) */}
             <div
+              className="motion-safe:transition-[opacity,transform] motion-safe:duration-150 motion-safe:ease-out"
               aria-hidden={!isScrolled}
+              inert={!isScrolled}
               style={{
                 width: "100%",
                 height: `${COND_NAV_H}px`,
@@ -671,13 +680,13 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 background: "#000000",
                 borderBottom: "1px solid rgba(255,255,255,0.15)",
                 boxShadow: "0 6px 25px rgba(0,0,0,0.65)",
-                position: isScrolled ? "relative" : "absolute",
+                position: "absolute",
                 top: 0,
                 left: 0,
                 opacity: isScrolled ? 1 : 0,
                 pointerEvents: isScrolled ? "auto" : "none",
                 transform: isScrolled ? "translateY(0)" : "translateY(-100%)",
-                transition: "transform 220ms ease, opacity 200ms ease",
+
                 zIndex: 3,
               }}
             >
@@ -738,7 +747,9 @@ export function Navbar({ clubs = [] }: NavbarProps) {
 
             {/* NOTICE STRIP (Directly Below Desktop Navbar) */}
             <div
+              className="motion-safe:transition-[opacity,transform] motion-safe:duration-150 motion-safe:ease-out"
               aria-hidden={isScrolled}
+              inert={isScrolled}
               style={{
                 width: "100%",
                 height: `${NOTICE_H}px`,
@@ -747,9 +758,10 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 overflow: "hidden",
                 opacity: isScrolled ? 0 : 1,
                 pointerEvents: isScrolled ? "none" : "auto",
-                transition: "opacity 160ms ease, transform 160ms ease",
+
                 transform: isScrolled ? "translateY(-6px)" : "translateY(0)",
-                display: isScrolled ? "none" : "block",
+                position: "absolute",
+                top: FULL_NAV_H,
               }}
             >
               <WordReelStrip fullWidth />
@@ -759,12 +771,12 @@ export function Navbar({ clubs = [] }: NavbarProps) {
           {/* ============================================================
               MOBILE & TABLET (< 1024 px)
           ============================================================ */}
-          <div className="lg:hidden w-full">
+          <div className="pointer-events-auto w-full lg:hidden">
             {/* Mobile Bar */}
             <div
               style={{
                 width: "100%",
-                height: "56px",
+                height: MOBILE_NAV_H,
                 display: "flex",
                 alignItems: "center",
                 background: "#000000",
@@ -788,17 +800,19 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                 }}
               >
                 {/* Mobile TNEA Badge */}
-                <div
-                  style={{
-                    ...topPillStyle,
-                    height: "26px",
-                    padding: "0 8px",
-                    fontSize: "10.5px",
-                  }}
-                >
-                  <span style={{ color: "rgba(255,255,255,0.7)" }}>TNEA:</span>
-                  <span style={{ color: "#F1C40F", fontWeight: 700 }}>{tneaCode}</span>
-                </div>
+                {tneaCode && tneaCode !== "2738" && (
+                  <div
+                    style={{
+                      ...topPillStyle,
+                      height: "26px",
+                      padding: "0 8px",
+                      fontSize: "10.5px",
+                    }}
+                  >
+                    <span style={{ color: "rgba(255,255,255,0.7)" }}>TNEA:</span>
+                    <span style={{ color: "#F1C40F", fontWeight: 700 }}>{tneaCode}</span>
+                  </div>
+                )}
 
                 {/* Mobile Call Button */}
                 {isPhoneValid && (
@@ -835,28 +849,21 @@ export function Navbar({ clubs = [] }: NavbarProps) {
             <div
               style={{
                 width: "100%",
-                height: "34px",
+                height: MOBILE_NOTICE_H,
                 background: "#374151",
                 borderBottom: "1px solid rgba(255,255,255,0.12)",
                 overflow: "hidden",
               }}
             >
-              <WordReelStrip fullWidth style={{ height: "34px" }} />
+              <WordReelStrip fullWidth style={{ height: MOBILE_NOTICE_H }} />
             </div>
           </div>
         </nav>
       </header>
 
-      {/* PAGE TOP SPACER
-          Keeps hero poster / top content perfectly aligned under the fixed header */}
-      <div
-        aria-hidden="true"
-        style={{
-          width: "100%",
-          height: isScrolled ? `${COND_NAV_H}px` : `${TOTAL_TOP_H}px`,
-          transition: "height 200ms ease",
-        }}
-      />
+      {/* Reserve the initial header height so collapsing never moves the page. */}
+      <div aria-hidden="true" className="w-full shrink-0 lg:hidden" style={{ height: MOBILE_NAV_H + MOBILE_NOTICE_H }} />
+      <div aria-hidden="true" className="hidden w-full shrink-0 lg:block" style={{ height: TOTAL_TOP_H }} />
 
       {/* FULL DRAWER MENU */}
       <NavDrawer

@@ -10,7 +10,7 @@ import { campusLifeEntries, campusLifeReelImages } from "@/data/campus";
 export const metadata: Metadata = {
   title: "Campus Life - Department of Information Technology",
   description:
-    "Experience campus life at the Department of Information Technology at SRIET: computing facilities, industrial visits, cultural activities, and sports.",
+    "Experience campus life at the Department of Information Technology at Rathinam Institute of Technology: computing facilities, industrial visits, cultural activities, and sports.",
 };
 
 export default function CampusLifePage() {

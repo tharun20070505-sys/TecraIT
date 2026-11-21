@@ -37,7 +37,7 @@ export default function AdminSettingsPage() {
   const [officePhone, setOfficePhone] = useState("");
   const [highlightPillText, setHighlightPillText] = useState("");
   const [brochurePdfUrl, setBrochurePdfUrl] = useState("");
-  const [srietLogoSrc, setSrietLogoSrc] = useState("/images/logos/sriet-logo.png");
+  const [srietLogoSrc, setSrietLogoSrc] = useState("/images/logos/tecra-logo.png");
   const [navbarBadgeLogos, setNavbarBadgeLogos] = useState<NavbarBadgeLogo[]>([]);
   const [brandReel, setBrandReel] = useState<BrandReelItem[]>([]);
 
@@ -73,13 +73,13 @@ export default function AdminSettingsPage() {
           setOfficePhone(s.officePhone || "");
           setHighlightPillText(s.highlightPillText || "");
           setBrochurePdfUrl(s.brochurePdfUrl || "");
-          setSrietLogoSrc(s.srietLogoSrc || "/images/logos/sriet-logo.png");
+          setSrietLogoSrc(s.srietLogoSrc || "/images/logos/tecra-logo.png");
           setNavbarBadgeLogos(s.navbarBadgeLogos || []);
           setBrandReel(
             s.brandReel || [
               { id: "br-1", text: "TECRA", order: 1, active: true },
               { id: "br-2", text: "Department of Information Technology", order: 2, active: true },
-              { id: "br-3", text: "Sri Ranganathar Institute of Engineering and Technology", order: 3, active: true },
+              { id: "br-3", text: "Rathinam Institute of Technology", order: 3, active: true },
               { id: "br-4", text: "Rathinam Group of Institutions", order: 4, active: true },
             ]
           );
@@ -151,7 +151,7 @@ export default function AdminSettingsPage() {
     return data.url as string;
   };
 
-  // SRIET Logo Upload
+  // Rathinam Institute of Technology Logo Upload
   const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -161,7 +161,7 @@ export default function AdminSettingsPage() {
       setSrietLogoSrc(url);
       setStatusMessage({
         type: "success",
-        text: "SRIET logo updated. Click 'Save Settings' to apply changes.",
+        text: "Rathinam Institute of Technology logo updated. Click 'Save Settings' to apply changes.",
       });
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Failed to upload logo";
@@ -529,7 +529,7 @@ export default function AdminSettingsPage() {
           </div>
         </div>
 
-        {/* SECTION 3: LOGOS MODULE (SRIET Logo & Optional Navbar Badges) */}
+        {/* SECTION 3: LOGOS MODULE (Rathinam Institute of Technology Logo & Optional Navbar Badges) */}
         <div className="bg-midnight border border-sand/20 rounded-[3px] p-6 lg:p-8 space-y-6">
           <div className="border-b border-sand/15 pb-4">
             <h2 className="font-heading font-bold text-xl text-white flex items-center gap-2">
@@ -537,17 +537,17 @@ export default function AdminSettingsPage() {
               <span>Logos & Accreditation Badges</span>
             </h2>
             <p className="text-[13px] text-sand/75 mt-1">
-              Manage the SRIET College logo and optional badges shown in the left white panel of the navbar.
+              Manage the Rathinam Institute of Technology College logo and optional badges shown in the left white panel of the navbar.
             </p>
           </div>
 
-          {/* SRIET Logo */}
+          {/* Rathinam Institute of Technology Logo */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-[2px] bg-deep-navy/40 border border-sand/15">
             <div className="flex items-center gap-4">
               <div className="w-14 h-14 bg-white rounded-[2px] p-1.5 flex items-center justify-center border border-sand/30 shrink-0">
                 <Image
                   src={srietLogoSrc}
-                  alt="SRIET Logo"
+                  alt="Rathinam Institute of Technology Logo"
                   width={48}
                   height={48}
                   unoptimized
@@ -556,7 +556,7 @@ export default function AdminSettingsPage() {
               </div>
               <div>
                 <span className="font-semibold text-white block text-[15px]">
-                  SRIET College Logo (Navbar Left Panel)
+                  Rathinam Institute of Technology College Logo (Navbar Left Panel)
                 </span>
                 <span className="text-[12px] text-sand/60 font-mono">{srietLogoSrc}</span>
               </div>
@@ -579,10 +579,10 @@ export default function AdminSettingsPage() {
                 <span>Replace Logo PNG</span>
               </label>
 
-              {srietLogoSrc !== "/images/logos/sriet-logo.png" && (
+              {srietLogoSrc !== "/images/logos/tecra-logo.png" && (
                 <button
                   type="button"
-                  onClick={() => setSrietLogoSrc("/images/logos/sriet-logo.png")}
+                  onClick={() => setSrietLogoSrc("/images/logos/tecra-logo.png")}
                   className="text-coral hover:text-white text-[12px] underline"
                 >
                   Reset Default
@@ -633,7 +633,7 @@ export default function AdminSettingsPage() {
               </div>
             ) : (
               <p className="text-[13px] text-sand/50 italic">
-                No badges uploaded. The left panel shows only the SRIET logo and department typography.
+                No badges uploaded. The left panel shows only the Rathinam Institute of Technology logo and department typography.
               </p>
             )}
 

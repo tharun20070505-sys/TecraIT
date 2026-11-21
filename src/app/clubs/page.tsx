@@ -14,7 +14,7 @@ import { Code, Palette } from "lucide-react";
 export const metadata: Metadata = {
   title: "Department Clubs and Societies - Department of Information Technology",
   description:
-    "Explore the technical and non-technical student clubs of the Department of Information Technology at SRIET: TechNexus, Aesthetic AI Club, Fine and Arts Club, and Media Club.",
+    "Explore the technical and non-technical student clubs of the Department of Information Technology at Rathinam Institute of Technology: TechNexus, Aesthetic AI Club, Fine and Arts Club, and Media Club.",
 };
 
 export default async function ClubsOverviewPage() {
@@ -46,7 +46,7 @@ export default async function ClubsOverviewPage() {
             />
             <Reveal>
               <p className="text-base sm:text-lg text-text-muted leading-relaxed">
-                Student clubs form the energetic core of the Information Technology department at SRIET. Divided into rigorous technical societies and multidisciplinary creative guilds, these chapters provide structured weekly programming, hackathons, peer code reviews, art showcases, and multimedia productions throughout the academic year.
+                Student clubs form the energetic core of the Information Technology department at Rathinam Institute of Technology. Divided into rigorous technical societies and multidisciplinary creative guilds, these chapters provide structured weekly programming, hackathons, peer code reviews, art showcases, and multimedia productions throughout the academic year.
               </p>
             </Reveal>
           </div>
@@ -81,11 +81,11 @@ export default async function ClubsOverviewPage() {
 
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
-                    <div className="relative w-14 h-14 rounded-[3px] bg-midnight p-2 border border-sand/30 flex items-center justify-center">
+                    <div className={`relative rounded-[3px] p-2 flex items-center justify-center ${club.slug === "technexus" ? "w-28 h-12" : "w-14 h-14 bg-mist border border-sand/30"}`}>
                       <Image
                         src={club.logoUrl}
                         alt={`${club.name} logo`}
-                        width={40}
+                        width={club.slug === "technexus" ? 96 : 40}
                         height={40}
                         className="object-contain"
                       />
@@ -158,11 +158,11 @@ export default async function ClubsOverviewPage() {
 
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
-                    <div className="relative w-14 h-14 rounded-[3px] bg-midnight p-2 border border-sand/30 flex items-center justify-center">
+                    <div className={`relative rounded-[3px] p-2 flex items-center justify-center ${club.slug === "technexus" ? "w-28 h-12" : "w-14 h-14 bg-mist border border-sand/30"}`}>
                       <Image
                         src={club.logoUrl}
                         alt={`${club.name} logo`}
-                        width={40}
+                        width={club.slug === "technexus" ? 96 : 40}
                         height={40}
                         className="object-contain"
                       />
