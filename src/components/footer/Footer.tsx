@@ -95,12 +95,12 @@ export function Footer({ heroImageSrc }: { heroImageSrc?: string | null }) {
           {/* Column 1: Department Brand and College Name (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-[3px] bg-midnight border border-sand/20 flex items-center justify-center p-1">
+              <div className="size-20 shrink-0 sm:size-24">
                 <Image
-                  src="/images/logos/tecra-department-emblem.webp"
+                  src="/images/logos/tecra-flame.webp"
                   alt="TECRA Logo"
-                  width={36}
-                  height={36}
+                  width={96}
+                  height={96}
                   className="object-contain"
                 />
               </div>

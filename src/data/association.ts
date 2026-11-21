@@ -3,7 +3,7 @@ import { ITAssociationInfo } from "@/types";
 export const associationData: ITAssociationInfo = {
   name: "TECRA IT Association",
   tagline: "Connecting Academic Ambition with Technical Leadership",
-  logoUrl: "/images/logos/tecra-association-transparent.png",
+  logoUrl: "/images/logos/tecra-flame.webp",
   about:
     "The TECRA Information Technology Association is the student governing body of the department. It coordinates academic guest lectures, technical symposiums, hackathons, and community programs, encouraging students to build organizational leadership.",
   objectives: [

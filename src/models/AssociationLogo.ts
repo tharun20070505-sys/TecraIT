@@ -12,7 +12,7 @@ export interface IAssociationLogoDoc extends Document {
 
 const AssociationLogoSchema = new Schema<IAssociationLogoDoc>(
   {
-    logoLight: { type: String, default: "/images/logos/tecra-department-emblem.webp" },
+    logoLight: { type: String, default: "/images/logos/tecra-flame.webp" },
     logoDark: { type: String, default: "" },
     alt: { type: String, default: "TECRA IT Association Emblem", trim: true },
     showInFooter: { type: Boolean, default: false },

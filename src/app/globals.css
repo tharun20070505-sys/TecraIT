@@ -249,7 +249,7 @@ html.reader-mode.motion-js [data-motion-piece] {
 
 body {
   font-family: var(--type-body), "Segoe UI", sans-serif;
-  font-size: 17.5px;
+  font-size: 16.5px;
   line-height: 1.6;
   background-color: transparent;
   background-image: none;
@@ -584,3 +584,8 @@ small,
   transform: none;
   filter: none;
 }
+
+html { font-size: 96%; }
+.association-page .page-banner .max-w-4xl { margin-inline: auto; text-align: center; }
+.association-page .page-banner p { margin-inline: auto; }
+.association-page .page-banner h1, .association-page h2.max-w-3xl { text-align: center; }

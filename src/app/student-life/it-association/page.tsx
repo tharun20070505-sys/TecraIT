@@ -24,10 +24,10 @@ export default async function ITAssociationPage() {
     : associationData.membersByBatch;
 
   return (
-    <div className="w-full bg-ivory text-text">
+    <div className="association-page w-full bg-ivory text-text">
       {/* 1. Page Banner */}
       <PageBanner
-        title="IT Association"
+        title="TECRA IT Association"
         eyebrow="STUDENT GOVERNANCE"
         breadcrumbs={[
           { label: "Student Life", href: "/student-life" },
@@ -54,7 +54,7 @@ export default async function ITAssociationPage() {
 
         {/* Association Logo Centred under Page Title */}
         <div className="pt-4 flex justify-center">
-          <div className="relative w-60 h-60 sm:w-80 sm:h-80 flex items-center justify-center">
+          <div className="relative aspect-square w-full max-w-[420px] flex items-center justify-center">
             <Image
               src={associationData.logoUrl}
               alt="TECRA IT Association emblem"

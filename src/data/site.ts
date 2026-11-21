@@ -71,7 +71,7 @@ export const siteSettings: SiteSettings = {
   },
   footerNotice: "Rathinam Institute of Technology. All rights reserved.",
   accreditationNote: "Approved by AICTE, New Delhi and Affiliated to Anna University, Chennai.",
-  srietLogoSrc: "/images/logos/tecra-department-emblem.webp",
+  srietLogoSrc: "/images/logos/tecra-flame.webp",
   tneaCode: "",
   officePhone: "+91 422 269 7799",
   highlightPillText: "",

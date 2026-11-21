@@ -10,7 +10,7 @@ export function DepartmentJsonLd() {
     name: `${siteSettings.departmentName}, ${siteSettings.institutionName}`,
     alternateName: ["TECRA IT", "Rathinam Institute of Technology IT", "TECRA Department of Information Technology"],
     url: siteUrl,
-    logo: `${siteUrl}/images/logos/tecra-department-emblem.webp`,
+    logo: `${siteUrl}/images/logos/tecra-flame.webp`,
     image: `${siteUrl}/images/hero/sriet-campus.png`,
     description: siteSettings.heroDescription,
     parentOrganization: {

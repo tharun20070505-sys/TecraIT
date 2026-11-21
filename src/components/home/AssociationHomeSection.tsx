@@ -62,7 +62,7 @@ export function AssociationHomeSection({ association }: AssociationHomeSectionPr
 
             {/* Right Association Logo Poster (4 cols) */}
             <div className="lg:col-span-4 flex flex-col items-center justify-center">
-              <div className="relative w-56 h-56 sm:w-72 sm:h-72 flex items-center justify-center">
+              <div className="relative aspect-square w-full max-w-[380px] flex items-center justify-center">
                 <Image
                   src={association.logoUrl}
                   alt={`${association.name} Logo`}

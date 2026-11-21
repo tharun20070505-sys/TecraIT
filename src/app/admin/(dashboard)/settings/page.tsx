@@ -37,7 +37,7 @@ export default function AdminSettingsPage() {
   const [officePhone, setOfficePhone] = useState("");
   const [highlightPillText, setHighlightPillText] = useState("");
   const [brochurePdfUrl, setBrochurePdfUrl] = useState("");
-  const [srietLogoSrc, setSrietLogoSrc] = useState("/images/logos/tecra-department-emblem.webp");
+  const [srietLogoSrc, setSrietLogoSrc] = useState("/images/logos/tecra-flame.webp");
   const [navbarBadgeLogos, setNavbarBadgeLogos] = useState<NavbarBadgeLogo[]>([]);
   const [brandReel, setBrandReel] = useState<BrandReelItem[]>([]);
 
@@ -73,7 +73,7 @@ export default function AdminSettingsPage() {
           setOfficePhone(s.officePhone || "");
           setHighlightPillText(s.highlightPillText || "");
           setBrochurePdfUrl(s.brochurePdfUrl || "");
-          setSrietLogoSrc(s.srietLogoSrc || "/images/logos/tecra-department-emblem.webp");
+          setSrietLogoSrc(s.srietLogoSrc || "/images/logos/tecra-flame.webp");
           setNavbarBadgeLogos(s.navbarBadgeLogos || []);
           setBrandReel(
             s.brandReel || [
@@ -579,10 +579,10 @@ export default function AdminSettingsPage() {
                 <span>Replace Logo PNG</span>
               </label>
 
-              {srietLogoSrc !== "/images/logos/tecra-department-emblem.webp" && (
+              {srietLogoSrc !== "/images/logos/tecra-flame.webp" && (
                 <button
                   type="button"
-                  onClick={() => setSrietLogoSrc("/images/logos/tecra-department-emblem.webp")}
+                  onClick={() => setSrietLogoSrc("/images/logos/tecra-flame.webp")}
                   className="text-coral hover:text-white text-[12px] underline"
                 >
                   Reset Default
