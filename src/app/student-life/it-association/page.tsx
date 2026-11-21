@@ -8,7 +8,7 @@ import { RevealText } from "@/components/common/RevealText";
 import { ImageReel } from "@/components/reels/ImageReel";
 import { BatchMembersTabs } from "@/components/association/BatchMembersTabs";
 import { associationData } from "@/data/association";
-import { getAssociationData, getAssociationLogoConfig } from "@/lib/db-data";
+import { getAssociationData } from "@/lib/db-data";
 import { Users } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -18,15 +18,10 @@ export const metadata: Metadata = {
 };
 
 export default async function ITAssociationPage() {
-  const [dbData, logoConfig] = await Promise.all([
-    getAssociationData(),
-    getAssociationLogoConfig(),
-  ]);
+  const dbData = await getAssociationData();
   const batches = dbData.membersByBatch && dbData.membersByBatch.length > 0
     ? dbData.membersByBatch
     : associationData.membersByBatch;
-
-  const effectiveLogo = logoConfig.logoDark || logoConfig.logoLight;
 
   return (
     <div className="w-full bg-ivory text-text">
@@ -61,8 +56,8 @@ export default async function ITAssociationPage() {
         <div className="pt-4 flex justify-center">
           <div className="relative w-60 h-60 sm:w-80 sm:h-80 flex items-center justify-center">
             <Image
-              src={effectiveLogo}
-              alt={logoConfig.alt}
+              src={associationData.logoUrl}
+              alt="TECRA IT Association emblem"
               width={320}
               height={320}
               className="h-full w-full object-contain"
