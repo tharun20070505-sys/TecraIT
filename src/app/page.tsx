@@ -22,30 +22,32 @@ import {
 import { associationData } from "@/data/association";
 import { getFaculty, getEvents, getClubs, getLogoReelData } from "@/lib/db-data";
 import { getHeroPresentation } from "@/lib/hero-data";
-import { cookies } from "next/headers";
+import type { HeroSlide } from "@/types";
 
 export default async function HomePage() {
-  const [faculty, events, clubs, heroPresentation, reelData, cookieStore] = await Promise.all([
+  const [faculty, events, clubs, heroPresentation, reelData] = await Promise.all([
     getFaculty(),
     getEvents(),
     getClubs(),
     getHeroPresentation(),
     getLogoReelData(),
-    cookies(),
   ]);
-  const previousHeroIndex = Number(cookieStore.get("tecra-hero-last-index")?.value);
-  const initialHeroIndex = Number.isInteger(previousHeroIndex) && heroPresentation.slides.length > 1
-    ? (previousHeroIndex + 1) % heroPresentation.slides.length
-    : 0;
+  const campusNight: HeroSlide = {
+    id: "rathinam-campus-night", url: "/images/hero/rathinam-campus-night.webp",
+    label: "Rathinam Institute of Technology illuminated at night",
+    responsiveUrls: [], blurDataUrl: "", active: true, order: 0, overlay: null,
+    focalDesktop: { x: 50, y: 45 }, focalMobile: { x: 50, y: 45 },
+  };
+  const slides = [campusNight, ...heroPresentation.slides.filter(slide => slide.url !== campusNight.url)];
 
   return (
     <div className="w-full bg-ivory">
       {/* 1. Hero Poster with Static Campus Background and 3D Rotating Node Network Layer */}
       <HeroSection
-        slides={heroPresentation.slides}
+        slides={slides}
         intervalSeconds={heroPresentation.intervalSeconds}
         overlayMinimum={heroPresentation.overlayMinimum}
-        initialIndex={initialHeroIndex}
+        initialIndex={0}
         lineOne={heroPresentation.heroTitleLineOne}
         lineTwo={heroPresentation.heroTitleLineTwo}
         secondsPerText={heroPresentation.heroTextSeconds}

@@ -7,8 +7,6 @@ import type { CSSProperties } from "react";
 import type { HeroSlide } from "@/types";
 
 const PRELOAD_AFTER_MS = 3_000;
-const SESSION_INDEX_KEY = "tecra-hero-last-index";
-const SESSION_COOKIE_NAME = "tecra-hero-last-index";
 const NEXT_IMAGE_DEVICE_WIDTHS = [640, 750, 828, 1080, 1200, 1920, 2048, 3840];
 
 function rotationIsRestricted(): boolean {
@@ -111,7 +109,6 @@ export function HeroSlideshow({
 }: HeroSlideshowProps) {
   const safeInitialIndex = slides.length ? Math.max(0, Math.min(slides.length - 1, initialIndex)) : 0;
   const [currentIndex, setCurrentIndex] = useState(safeInitialIndex);
-  const initialCurrentIndexRef = useRef(safeInitialIndex);
   const [currentSource, setCurrentSource] = useState(slides[safeInitialIndex]?.url ?? "");
   const [hasRotated, setHasRotated] = useState(false);
   const [initialImageLoaded, setInitialImageLoaded] = useState(slides.length === 0);
@@ -143,18 +140,6 @@ export function HeroSlideshow({
     };
   }, []);
 
-  const storeLastIndex = useCallback((index: number) => {
-    try {
-      window.sessionStorage.setItem(SESSION_INDEX_KEY, String(index));
-    } catch {
-      // Storage can be disabled; the session cookie remains a best-effort hint.
-    }
-    try {
-      document.cookie = `${SESSION_COOKIE_NAME}=${index}; path=/; SameSite=Lax`;
-    } catch {
-      // Cookie restrictions must never interrupt the slideshow.
-    }
-  }, []);
 
   const getNextDecodedSlide = useCallback(async (): Promise<PreparedSlide | null> => {
     if (fallbackShownRef.current) return null;
@@ -232,53 +217,6 @@ export function HeroSlideshow({
   }, [slides]);
 
   useEffect(() => {
-    if (slides.length === 0) return;
-    let desiredIndex = initialIndex;
-    if (!rotationIsRestricted() && slides.length > 1) {
-      try {
-        const lastIndex = Number(window.sessionStorage.getItem(SESSION_INDEX_KEY));
-        if (Number.isInteger(lastIndex) && lastIndex >= 0) {
-          desiredIndex = (lastIndex + 1) % slides.length;
-        }
-      } catch {
-        // The server-provided cookie hint remains usable when sessionStorage is blocked.
-      }
-    } else {
-      desiredIndex = 0;
-    }
-
-    let cancelled = false;
-    const commitStartIndex = async () => {
-      const target = slides[desiredIndex];
-      if (!target) return;
-      if (desiredIndex === initialCurrentIndexRef.current) {
-        return;
-      }
-      const src = nextImageSource(target, window.innerWidth);
-      try {
-        await preloadAndDecode(src, (image) => { preloadImageRef.current = image; });
-        if (cancelled) return;
-        if (rotationIsRestricted()) {
-          setCurrentIndex(0);
-          setCurrentSource(slides[0]?.url ?? "");
-          setHasRotated(false);
-          setInitialImageLoaded(false);
-          storeLastIndex(0);
-        } else {
-          setFadingTo({ fromIndex: initialCurrentIndexRef.current, index: desiredIndex, src });
-        }
-      } catch (error) {
-        reportFailedImage(target.url, error instanceof Error ? error.message : "Could not restore session image");
-        storeLastIndex(initialCurrentIndexRef.current);
-      }
-    };
-    void commitStartIndex();
-    return () => {
-      cancelled = true;
-    };
-  }, [initialIndex, slides, storeLastIndex]);
-
-  useEffect(() => {
     if (slides.length < 2 || !rotationAllowed || fadingTo || !initialImageLoaded) return;
     const clearTimers = () => {
       timerRefs.current.forEach((timer) => window.clearTimeout(timer));
@@ -348,7 +286,6 @@ export function HeroSlideshow({
     if (fadingTo.isFallback) setRotationAllowed(false);
     elapsedMsRef.current = 0;
     startedAtRef.current = null;
-    storeLastIndex(fadingTo.index);
   };
 
   const handleImageFailure = async (url: string) => {
@@ -388,7 +325,6 @@ export function HeroSlideshow({
           onLoad={(event) => {
             setInitialImageLoaded(true);
             if (!hasRotated && event.currentTarget.currentSrc) setCurrentSource(event.currentTarget.currentSrc);
-            if (!hasRotated) storeLastIndex(currentIndex);
           }}
           onError={() => {
             setInitialImageLoaded(true);
