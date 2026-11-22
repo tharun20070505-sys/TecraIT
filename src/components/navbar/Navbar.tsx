@@ -4,12 +4,13 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, Phone, FileText } from "lucide-react";
+import { ChevronDown, Menu, Phone, Mail, House, GraduationCap, Download, Search } from "lucide-react";
 import { siteSettings } from "@/data/site";
 import { defaultNavItems } from "@/data/navItems";
 import { clubsData } from "@/data/clubs";
 import { WordReelStrip } from "./WordReelStrip";
 import { NavDrawer } from "./NavDrawer";
+import "./reference-header.css";
 import type { Club, DbNavItem } from "@/types";
 
 interface NavbarProps {
@@ -17,14 +18,6 @@ interface NavbarProps {
   notices?: never[];
   upcomingEvents?: never[];
 }
-
-// ─── Layout Constants ─────────────────────────────────────────────────────────
-const FULL_NAV_H  = 88;  // Height of 2-tier navbar on desktop
-const NOTICE_H    = 38;  // Height of notice strip
-const COND_NAV_H  = 56;  // Height of condensed sticky navbar
-const TOTAL_TOP_H = FULL_NAV_H + NOTICE_H;
-const MOBILE_NAV_H = 56;
-const MOBILE_NOTICE_H = 34;
 
 // ─── Nav item fetch with clubs fallback ───────────────────────────────────────
 function useNavItems(clubs: Club[]): DbNavItem[] {
@@ -307,7 +300,7 @@ function NavLink({
           if (!isActive) (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.92)";
         }}
       >
-        <span>{item.label}</span>
+        {item.href === "/" && <House size={18} />}<span>{item.label}</span>
       </Link>
     );
   }
@@ -365,14 +358,12 @@ export function Navbar({ clubs = [] }: NavbarProps) {
   const pathname = usePathname();
   const navItems = useNavItems(clubs);
   const [tneaCode, setTneaCode] = useState(siteSettings.tneaCode ?? "");
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState("");
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [prevPathname, setPrevPathname] = useState(pathname);
   const navRef = useRef<HTMLElement>(null);
-  const rafRef = useRef<number | null>(null);
-  const isScrolledRef = useRef(false);
-
   useEffect(() => {
     let cancelled = false;
     fetch("/api/admin/settings", { cache: "no-store" })
@@ -389,31 +380,10 @@ export function Navbar({ clubs = [] }: NavbarProps) {
     };
   }, [pathname]);
 
-  // Scroll listener for sticky condensed header
-  useEffect(() => {
-    const onScroll = () => {
-      if (rafRef.current !== null) return;
-      rafRef.current = requestAnimationFrame(() => {
-        const nextIsScrolled = window.scrollY > 80;
-        if (nextIsScrolled !== isScrolledRef.current) {
-          isScrolledRef.current = nextIsScrolled;
-          setIsScrolled(nextIsScrolled);
-        }
-        rafRef.current = null;
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
-      rafRef.current = null;
-    };
-  }, []);
-
   // Close dropdown on route change
   if (prevPathname !== pathname) {
     setPrevPathname(pathname);
+    setSearchOpen(false);
     setOpenDropdown(null);
     setDrawerOpen(false);
   }
@@ -421,7 +391,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
   // Close dropdown on outside click or escape key
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpenDropdown(null);
+      if (e.key === "Escape") { setOpenDropdown(null); setSearchOpen(false); }
     };
     const onOutside = (e: MouseEvent | TouchEvent) => {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
@@ -442,11 +412,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
   if (pathname?.startsWith("/admin")) return null;
 
   const phone = siteSettings.officePhone || siteSettings.departmentOffice?.phone || "+91 422 269 7799";
-  const isPhoneValid = phone && !phone.toLowerCase().includes("content") && !phone.toLowerCase().includes("required");
-  const brochureUrl = siteSettings.brochurePdfUrl?.trim() || "/docs/brochure.pdf";
-  const instituteBanner = "/images/logos/rathinam-institute-banner.webp";
-  const departmentLogo = siteSettings.srietLogoSrc || "/images/logos/tecra-flame.webp";
-
+  const brochureUrl = siteSettings.brochurePdfUrl || "/docs/brochure.pdf";
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : !!pathname?.startsWith(href);
 
@@ -456,428 +422,40 @@ export function Navbar({ clubs = [] }: NavbarProps) {
 
   const visibleItems = navItems.filter((n) => n.visible).sort((a, b) => a.order - b.order);
 
-  // Common dark pill style for top utilities
-  const topPillStyle: React.CSSProperties = {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "6px",
-    height: "28px",
-    padding: "0 12px",
-    borderRadius: "999px",
-    background: "rgba(255,255,255,0.12)",
-    border: "1px solid rgba(255,255,255,0.22)",
-    color: "#ffffff",
-    fontSize: "11.5px",
-    fontFamily: "var(--font-heading)",
-    fontWeight: 600,
-    letterSpacing: "0.02em",
-    cursor: "pointer",
-    textDecoration: "none",
-    flexShrink: 0,
-    transition: "background 150ms ease, border-color 150ms ease",
-    whiteSpace: "nowrap",
-  };
+  const results = visibleItems.flatMap(item => [item, ...item.children.filter(child => child.visible)])
+    .filter(item => item.label.toLowerCase().includes(query.trim().toLowerCase()));
 
-  const burgerBtnStyle: React.CSSProperties = {
-    width: "32px",
-    height: "32px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    background: "rgba(255,255,255,0.12)",
-    border: "1px solid rgba(255,255,255,0.22)",
-    borderRadius: "6px",
-    color: "#ffffff",
-    cursor: "pointer",
-    flexShrink: 0,
-    transition: "background 150ms ease",
-  };
-
-  return (
-    <>
-      {/* Skip link for accessibility */}
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:font-bold focus:outline-2 focus:outline-black"
-      >
-        Skip to main content
-      </a>
-
-      {/* FIXED TOP HEADER */}
-      <header
-        ref={navRef as React.RefObject<HTMLElement>}
-        className="fixed top-0 left-0 right-0 z-40 w-full select-none pointer-events-none"
-        aria-label="Site header"
-      >
-        <nav aria-label="Main navigation" className="w-full">
-          {/* ============================================================
-              DESKTOP (≥ 1024 px)
-          ============================================================ */}
-          <div className="relative hidden w-full lg:block" style={{ height: TOTAL_TOP_H }}>
-            {/* FULL TWO-TIER NAVBAR (When at top of page) */}
-            <div
-              className="motion-safe:transition-[opacity,transform] motion-safe:duration-150 motion-safe:ease-out"
-              aria-hidden={isScrolled}
-              inert={isScrolled}
-              style={{
-                width: "100%",
-                height: `${FULL_NAV_H}px`,
-                display: "flex",
-                background: "linear-gradient(110deg, rgba(7, 11, 24, 0.97), rgba(12, 21, 53, 0.95) 70%, rgba(6, 54, 63, 0.94))",
-                borderBottom: "1px solid rgba(0,0,0,0.15)",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
-                opacity: isScrolled ? 0 : 1,
-                pointerEvents: isScrolled ? "none" : "auto",
-
-                transform: isScrolled ? "translateY(-10px)" : "translateY(0)",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                zIndex: 2,
-              }}
-            >
-              {/* Institute identity and department brand */}
-              <div className="flex h-full shrink-0 items-center gap-3 border-r border-slate-200 bg-white px-3 xl:gap-4 xl:px-5">
-                <Link href="/" aria-label="Rathinam Institute of Technology, TECRA home" className="flex items-center">
-                  <Image src={instituteBanner} alt="Rathinam Institute of Technology (Autonomous), NAAC A+ and NBA accreditation" width={252} height={84} style={{ width: "auto" }} className="h-[72px] max-w-[216px] object-contain xl:h-[80px] xl:max-w-[240px]" priority />
-                </Link>
-                <div className="flex items-center gap-2 border-l border-slate-200 pl-3 xl:gap-3 xl:pl-4">
-                  <Image src={departmentLogo} alt="TECRA Department of Information Technology emblem" width={56} height={56} className="size-[66px] shrink-0 object-contain xl:size-[76px]" priority />
-                  <div className="hidden min-w-0 xl:block">
-                  <span className="block text-[22px] font-black leading-none text-[#7C1A77]">TECRA</span>
-                  <span className="mt-1 block max-w-[180px] text-[10px] font-bold uppercase leading-tight tracking-wide text-slate-900">Department of Information Technology</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* RIGHT PANEL: 100% Solid Pitch Black (#000000) */}
-              <div
-                style={{
-                  flex: 1,
-                  background: "linear-gradient(120deg, #070B18, #0C1535 72%, #06363F)",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  overflow: "visible",
-                }}
-              >
-                {/* TOP TIER: Institutional Utilities & Pills */}
-                <div
-                  style={{
-                    height: "38px",
-                    padding: "0 20px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "flex-end",
-                    gap: "10px",
-                    borderBottom: "1px solid rgba(255,255,255,0.15)",
-                  }}
-                >
-                  {/* TNEA Counselling Code Pill */}
-                  {tneaCode && tneaCode !== "2738" && (
-                    <div
-                      style={topPillStyle}
-                      title="Anna University TNEA Counselling Code"
-                    >
-                      <span style={{ color: "rgba(255,255,255,0.85)" }}>TNEA Counselling Code :</span>
-                      <span style={{ color: "#F1C40F", fontWeight: 700 }}>{tneaCode}</span>
-                    </div>
-                  )}
-
-                  {/* Call Us Pill */}
-                  {isPhoneValid && (
-                    <a
-                      href={`tel:${phone.replace(/[^0-9+]/g, "")}`}
-                      style={topPillStyle}
-                      aria-label={`Call department office at ${phone}`}
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.22)";
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.12)";
-                      }}
-                    >
-                      <Phone style={{ width: "12px", height: "12px", opacity: 0.85 }} aria-hidden="true" />
-                      <span>Call us :</span>
-                      <span>{phone}</span>
-                    </a>
-                  )}
-
-                  {/* Download Brochure Pill */}
-                  {brochureUrl && (
-                    <a
-                      href={brochureUrl}
-                      download
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={topPillStyle}
-                      title="Download Department Brochure"
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.22)";
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.12)";
-                      }}
-                    >
-                      <FileText style={{ width: "12px", height: "12px", opacity: 0.85 }} aria-hidden="true" />
-                      <span>Download Brochure</span>
-                    </a>
-                  )}
-
-                  {/* Square Hamburger Menu Button */}
-                  <button
-                    type="button"
-                    onClick={() => setDrawerOpen(true)}
-                    aria-label="Open full site navigation drawer"
-                    style={burgerBtnStyle}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.25)";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.12)";
-                    }}
-                  >
-                    <Menu style={{ width: "17px", height: "17px" }} aria-hidden="true" />
-                  </button>
-                </div>
-
-                {/* BOTTOM TIER: Main Navigation Links */}
-                <div
-                  style={{
-                    flex: 1,
-                    padding: "0 20px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "flex-end",
-                    gap: "clamp(12px, 1.6vw, 26px)",
-                    overflow: "visible",
-                  }}
-                >
-                  {visibleItems.map((item, idx) => (
-                    <NavLink
-                      key={item.id}
-                      item={item}
-                      isActive={isActive(item.href)}
-                      isOpen={openDropdown === item.id}
-                      alignRight={idx >= visibleItems.length - 3}
-                      condensed={false}
-                      clubs={clubs}
-                      onToggle={() => handleToggle(item.id)}
-                      onClose={handleClose}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* CONDENSED STICKY NAVBAR (Active when scrolled past 80px) */}
-            <div
-              className="motion-safe:transition-[opacity,transform] motion-safe:duration-150 motion-safe:ease-out"
-              aria-hidden={!isScrolled}
-              inert={!isScrolled}
-              style={{
-                width: "100%",
-                height: `${COND_NAV_H}px`,
-                display: "flex",
-                alignItems: "center",
-                background: "#000000",
-                borderBottom: "1px solid rgba(255,255,255,0.15)",
-                boxShadow: "0 6px 25px rgba(0,0,0,0.65)",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                opacity: isScrolled ? 1 : 0,
-                pointerEvents: isScrolled ? "auto" : "none",
-                transform: isScrolled ? "translateY(0)" : "translateY(-100%)",
-
-                zIndex: 3,
-              }}
-            >
-              <Link href="/" aria-label="Rathinam Institute of Technology, TECRA home" className="flex h-full shrink-0 items-center gap-2 border-r border-slate-200 bg-white px-3">
-                <Image src={instituteBanner} alt="Rathinam Institute of Technology" width={132} height={44} style={{ width: "auto" }} className="h-11 max-w-[132px] object-contain" priority />
-                <Image src={departmentLogo} alt="TECRA department emblem" width={40} height={40} className="size-[50px] object-contain" priority />
-                <span className="hidden text-lg font-black text-[#7C1A77] xl:inline">TECRA</span>
-              </Link>
-
-              {/* Black Right Nav Bar */}
-              <div
-                style={{
-                  flex: 1,
-                  background: "#000000",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "flex-end",
-                  gap: "clamp(10px, 1.4vw, 22px)",
-                  padding: "0 18px",
-                  height: "100%",
-                  overflow: "visible",
-                }}
-              >
-                {visibleItems.map((item, idx) => (
-                  <NavLink
-                    key={item.id}
-                    item={item}
-                    isActive={isActive(item.href)}
-                    isOpen={openDropdown === item.id}
-                    alignRight={idx >= visibleItems.length - 3}
-                    condensed={true}
-                    clubs={clubs}
-                    onToggle={() => handleToggle(item.id)}
-                    onClose={handleClose}
-                  />
-                ))}
-
-                <button
-                  type="button"
-                  onClick={() => setDrawerOpen(true)}
-                  aria-label="Open full site navigation drawer"
-                  style={{
-                    ...burgerBtnStyle,
-                    height: "30px",
-                    width: "30px",
-                    marginLeft: "6px",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.25)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.12)";
-                  }}
-                >
-                  <Menu style={{ width: "16px", height: "16px" }} aria-hidden="true" />
-                </button>
-              </div>
-            </div>
-
-            {/* NOTICE STRIP (Directly Below Desktop Navbar) */}
-            <div
-              className="motion-safe:transition-[opacity,transform] motion-safe:duration-150 motion-safe:ease-out"
-              aria-hidden={isScrolled}
-              inert={isScrolled}
-              style={{
-                width: "100%",
-                height: `${NOTICE_H}px`,
-                background: "#374151",
-                borderBottom: "1px solid rgba(255,255,255,0.12)",
-                overflow: "hidden",
-                opacity: isScrolled ? 0 : 1,
-                pointerEvents: isScrolled ? "none" : "auto",
-
-                transform: isScrolled ? "translateY(-6px)" : "translateY(0)",
-                position: "absolute",
-                top: FULL_NAV_H,
-              }}
-            >
-              <WordReelStrip fullWidth />
-            </div>
-          </div>
-
-          {/* ============================================================
-              MOBILE & TABLET (< 1024 px)
-          ============================================================ */}
-          <div className="pointer-events-auto w-full lg:hidden">
-            {/* Mobile Bar */}
-            <div
-              style={{
-                width: "100%",
-                height: MOBILE_NAV_H,
-                display: "flex",
-                alignItems: "center",
-                background: "#000000",
-                borderBottom: "1px solid rgba(255,255,255,0.18)",
-                boxShadow: "0 4px 15px rgba(0,0,0,0.5)",
-              }}
-            >
-              <Link href="/" aria-label="Rathinam Institute of Technology, TECRA home" className="flex h-full shrink-0 items-center border-r border-slate-200 bg-white px-2 sm:px-3">
-                <Image src={instituteBanner} alt="Rathinam Institute of Technology" width={138} height={46} style={{ width: "auto" }} className="h-[46px] max-w-[clamp(92px,33vw,138px)] object-contain sm:max-w-[150px]" priority />
-                <Image src={departmentLogo} alt="TECRA department emblem" width={42} height={42} className="ml-1 h-[50px] w-[50px] shrink-0 rounded object-contain" priority />
-              </Link>
-
-              {/* Black Right Mobile Utilities */}
-              <div
-                style={{
-                  flex: 1,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "flex-end",
-                  padding: "0 12px",
-                  gap: "8px",
-                }}
-              >
-                {/* Mobile TNEA Badge */}
-                {tneaCode && tneaCode !== "2738" && (
-                  <div
-                    style={{
-                      ...topPillStyle,
-                      height: "26px",
-                      padding: "0 8px",
-                      fontSize: "10.5px",
-                    }}
-                  >
-                    <span style={{ color: "rgba(255,255,255,0.7)" }}>TNEA:</span>
-                    <span style={{ color: "#F1C40F", fontWeight: 700 }}>{tneaCode}</span>
-                  </div>
-                )}
-
-                {/* Mobile Call Button */}
-                {isPhoneValid && (
-                  <a
-                    href={`tel:${phone.replace(/[^0-9+]/g, "")}`}
-                    aria-label={`Call department office at ${phone}`}
-                    style={{
-                      ...burgerBtnStyle,
-                      width: "32px",
-                      height: "32px",
-                    }}
-                  >
-                    <Phone style={{ width: "14px", height: "14px" }} aria-hidden="true" />
-                  </a>
-                )}
-
-                {/* Mobile Menu Button */}
-                <button
-                  type="button"
-                  onClick={() => setDrawerOpen(true)}
-                  aria-label="Open mobile navigation drawer"
-                  style={{
-                    ...burgerBtnStyle,
-                    width: "32px",
-                    height: "32px",
-                  }}
-                >
-                  <Menu style={{ width: "17px", height: "17px" }} aria-hidden="true" />
-                </button>
-              </div>
-            </div>
-
-            {/* Mobile Notice Strip */}
-            <div
-              style={{
-                width: "100%",
-                height: MOBILE_NOTICE_H,
-                background: "#374151",
-                borderBottom: "1px solid rgba(255,255,255,0.12)",
-                overflow: "hidden",
-              }}
-            >
-              <WordReelStrip fullWidth style={{ height: MOBILE_NOTICE_H }} />
-            </div>
-          </div>
-        </nav>
-      </header>
-
-      {/* Reserve the initial header height so collapsing never moves the page. */}
-      <div aria-hidden="true" className="w-full shrink-0 lg:hidden" style={{ height: MOBILE_NAV_H + MOBILE_NOTICE_H }} />
-      <div aria-hidden="true" className="hidden w-full shrink-0 lg:block" style={{ height: TOTAL_TOP_H }} />
-
-      {/* FULL DRAWER MENU */}
-      <NavDrawer
-        isOpen={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-        clubs={clubs}
-        navItems={visibleItems}
-      />
-    </>
-  );
+  return <>
+    <header ref={navRef} className="tecra-head">
+      <div className="tecra-tools">
+        <a href={`tel:${phone.replace(/[^0-9+]/g, "")}`}><Phone />{phone}</a>
+        <a href="mailto:it@rathinam.ac.in"><Mail />it@rathinam.ac.in</a>
+        <a href="https://rathinam.global/"><House />Rathinam Home</a>
+        <a href="https://portal.rathinam.in/"><GraduationCap />Student Portal</a>
+        <span>NAAC A+</span><span>NBA</span>
+        {tneaCode && tneaCode !== "2738" && <span>TNEA {tneaCode}</span>}
+      </div>
+      <Link href="/" className="tecra-brand">
+        <Image priority width={2048} height={170} src="/images/logos/header-brand.webp"
+          alt="Rathinam Institute of Technology (Autonomous), NAAC A+ accredited, NBA, TECRA Department of Information Technology" />
+      </Link>
+      <nav className="tecra-pill" aria-label="Department navigation">
+        <button className="tecra-mobile" onClick={() => setDrawerOpen(true)}><Menu /> Menu</button>
+        {visibleItems.map((item, index) => <div className="tecra-desktop" key={item.id}>
+          <NavLink item={item} isActive={isActive(item.href)} isOpen={openDropdown === item.id}
+            alignRight={index >= visibleItems.length - 3} clubs={clubs}
+            onToggle={() => handleToggle(item.id)} onClose={handleClose} />
+        </div>)}
+        <a className="tecra-download" href={brochureUrl} download><Download />Download Brochure</a>
+        <button aria-label="Search site navigation" aria-expanded={searchOpen} onClick={() => {setSearchOpen(!searchOpen); setQuery(""); handleClose();}}><Search /></button>
+        {searchOpen && <div className="tecra-search">
+          <input autoFocus aria-label="Search pages" placeholder="Search pages" value={query} onChange={e => setQuery(e.target.value)} />
+          {results.map((item, i) => <Link key={i} href={item.href} onClick={() => setSearchOpen(false)}>{item.label}</Link>)}
+          {!results.length && <p>No matching pages</p>}
+        </div>}
+      </nav>
+      <div className="tecra-strip"><WordReelStrip fullWidth /></div>
+    </header>
+    <NavDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} clubs={clubs} navItems={visibleItems} />
+  </>;
 }
