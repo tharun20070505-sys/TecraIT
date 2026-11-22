@@ -1,0 +1,28 @@
+.tecra-head { position:relative; z-index:40; padding:3.66vw 0 1.4vw; color:white; background:#1681dc url('/images/logos/header-sky.webp') center bottom/100% auto no-repeat; font-family:Arial,sans-serif }
+.tecra-head::before {content:""; position:absolute; inset:0 0 auto; height:3.68vw; background:url('/images/logos/header-canopy.webp') center/100% 100%}
+.tecra-tools,.tecra-pill {display:flex; align-items:center; background:#041e40; font-weight:700}
+.tecra-tools {padding:0 4.5%; min-height:3.07vw; font-size:clamp(12px,1.12vw,24px); gap:1.55vw}
+.tecra-tools a,.tecra-pill button,.tecra-download {display:inline-flex; align-items:center; gap:.5em}
+.tecra-tools a:nth-child(3){margin-left:auto}
+.tecra-tools > :is(a,span) + :is(a,span):not(:nth-child(3)){border-left:1px solid #fff9;padding-left:1.55vw}
+.tecra-tools svg,.tecra-pill svg {width:1.15em;height:1.15em}
+.tecra-brand,.tecra-brand img {display:block;width:100%;height:auto}
+.tecra-pill {position:relative; margin:0 2.5%; min-height:4.35vw; border-radius:99px; justify-content:space-between; padding:.5vw 1.8vw; gap:.4vw; box-shadow:0 5px 12px #00193666}
+.tecra-desktop .nav-hover-underline {font:700 clamp(12px,1.22vw,26px)/1.2 Arial,sans-serif!important;color:white!important}
+.tecra-desktop .nav-active,.tecra-download {background:linear-gradient(100deg,#0035aa,#0788ff)!important;border-radius:4em;padding:.53em 1.2em!important;color:white}
+.tecra-download {font-size:clamp(12px,1.12vw,24px);border:1px solid #699dff}
+.tecra-strip {margin:1.3vw 2.6% 0;border-radius:99px;overflow:hidden;background:#062449}
+.tecra-strip > div {background:#062449!important}
+.tecra-pill .tecra-mobile{display:none}
+.tecra-search {position:absolute;z-index:5;right:0;top:100%;background:#062449;width:min(310px,93vw);padding:14px;border-radius:14px;max-height:45vh;overflow:auto}
+.tecra-search input,.tecra-search a {display:block;width:100%;padding:7px;color:white}
+.tecra-search input {border:1px solid #abc;border-radius:6px}
+@media(max-width:1023px){
+.tecra-head {padding-bottom:10px}
+.tecra-tools {justify-content:center;flex-wrap:wrap;padding:7px;gap:4px 12px;font-size:12px}
+.tecra-tools a:nth-child(3){margin-left:0}
+.tecra-brand {height:clamp(70px,12vw,110px);background:#077ad8;display:grid;align-items:center}
+.tecra-pill {padding:7px 16px;min-height:44px}
+.tecra-desktop{display:none}.tecra-pill .tecra-mobile{display:inline-flex}
+.tecra-strip{margin-top:8px}
+}
