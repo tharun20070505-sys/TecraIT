@@ -95,7 +95,6 @@ async function preloadAndDecode(src: string, onCreate?: (image: HTMLImageElement
 
 function imagePosition(slide: HeroSlide): CSSProperties {
   return {
-    ...(slide.id === "rathinam-campus-night" ? { objectFit: "contain" } : {}),
     "--hero-focal-desktop": `${slide.focalDesktop.x}% ${slide.focalDesktop.y}%`,
     "--hero-focal-mobile": `${slide.focalMobile.x}% ${slide.focalMobile.y}%`,
   } as React.CSSProperties;
