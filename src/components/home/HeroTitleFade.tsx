@@ -1,13 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState, useMemo } from "react";
-import {
-  ENTER,
-  EXIT,
-  BAR_ENTER,
-  HERO_TITLE_TIMINGS,
-} from "@/lib/motion";
+import { ENTER, EXIT } from "@/lib/motion";
 
 export interface HeroTitleFadeProps {
   paused?: boolean;
@@ -17,8 +11,6 @@ export interface HeroTitleFadeProps {
   secondsPerText?: number;
 }
 
-type TitlePhase = "enter" | "hold" | "exit";
-
 export function HeroTitleFade({
   paused = false,
   manualPaused = false,
@@ -26,8 +18,6 @@ export function HeroTitleFade({
   lineTwo = "Department of Information Technology",
   secondsPerText = 3,
 }: HeroTitleFadeProps) {
-  const prefersReducedMotion = useReducedMotion();
-
   // Strip symbol characters to ensure purely letter/word glyph rendering
   const cleanLineOne = useMemo(
     () => lineOne.replace(/[^a-zA-Z0-9\s]/g, "").trim() || "TECRA",
@@ -57,7 +47,16 @@ export function HeroTitleFade({
 
   // State: slot index (0 = line 1, 1 = line 2) and current phase
   const [activeSlot, setActiveSlot] = useState<0 | 1>(0);
-  const [phase, setPhase] = useState<TitlePhase>("enter");
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() =>
+    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setPrefersReducedMotion(media.matches);
+    media.addEventListener("change", updatePreference);
+    return () => media.removeEventListener("change", updatePreference);
+  }, []);
 
   // Scheduling and drift correction refs
   const stepRef = useRef<number>(0);
@@ -84,7 +83,6 @@ export function HeroTitleFade({
       stepRef.current = 0;
       const timer = window.setTimeout(() => {
         setActiveSlot(0);
-        setPhase("hold");
       }, 0);
       return () => window.clearTimeout(timer);
     }
@@ -121,18 +119,17 @@ export function HeroTitleFade({
 
       // Determine initial phase based on offset
       if (initialOffset < enterMs) {
-        setPhase("enter");
         const holdTarget = slotStartAnchor + enterMs;
         const holdDelay = Math.max(0, holdTarget - performance.now());
         timeoutIdsRef.current.push(
           window.setTimeout(() => {
-            setPhase("hold");
+            // setPhase("hold");
           }, holdDelay)
         );
       } else if (initialOffset < enterMs + holdMs) {
-        setPhase("hold");
+        // setPhase("hold");
       } else {
-        setPhase("exit");
+        // setPhase("exit");
       }
 
       // Schedule exit phase if offset hasn't passed it
@@ -141,7 +138,7 @@ export function HeroTitleFade({
         const exitDelay = Math.max(0, exitTarget - performance.now());
         timeoutIdsRef.current.push(
           window.setTimeout(() => {
-            setPhase("exit");
+            // setPhase("exit");
           }, exitDelay)
         );
       }
@@ -177,31 +174,6 @@ export function HeroTitleFade({
     exitMs,
   ]);
 
-  // Reduced motion: static text, no switching, no blur, no movement
-  if (prefersReducedMotion) {
-    return (
-      <div
-        className="relative w-full min-h-[160px] sm:min-h-[185px] md:min-h-[220px] lg:min-h-[260px] xl:min-h-[290px] flex flex-col justify-center text-left contain-layout"
-        style={{ contain: "layout" }}
-      >
-        <h1 className="sr-only">{`${cleanLineOne}, ${cleanLineTwo}`}</h1>
-        <div aria-hidden="true" className="text-left">
-          <div
-            className="block font-heading text-[clamp(3rem,13vw,11rem)] font-extrabold leading-none tracking-[-0.07em] text-ivory"
-          >
-            {cleanLineOne}
-          </div>
-          <p className="mt-4 max-w-xl font-heading text-xl font-semibold leading-snug text-ivory sm:text-3xl">
-            {cleanLineTwo}
-          </p>
-          <div className="mt-5 h-1 w-28 rounded-full brand-spectrum" />
-        </div>
-      </div>
-    );
-  }
-
-  const isPausedHold = manualPaused && phase === "hold";
-
   return (
     <div
       className="relative w-full min-h-[160px] sm:min-h-[185px] md:min-h-[220px] lg:min-h-[260px] xl:min-h-[290px] flex flex-col justify-center text-left contain-layout"
@@ -217,109 +189,43 @@ export function HeroTitleFade({
       >
         <div className="relative block">
           {activeSlot === 0 ? (
-            <motion.div
+            <div
               key={`slot-0-${cleanLineOne}`}
               className="block font-heading font-extrabold text-ivory text-left"
-              animate={
-                phase === "exit"
-                  ? { opacity: 0, y: -8 }
-                  : { opacity: 1, y: 0 }
-              }
-              transition={{
-                duration: EXIT / 1000,
-                ease: [0.22, 1, 0.36, 1],
-              }}
             >
               <span className="inline-block text-[clamp(3rem,13vw,11rem)] leading-none tracking-[-0.07em]">
                 {lettersLineOne.map((letter, index) => (
-                  <motion.span
+                  <span
                     key={`${letter}-${index}`}
-                    initial={
-                      isPausedHold
-                        ? false
-                        : {
-                            opacity: 0,
-                            y: HERO_TITLE_TIMINGS.RISE_PX,
-                          }
-                    }
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                    }}
-                    transition={{
-                      duration: isPausedHold ? 0 : HERO_TITLE_TIMINGS.LINE1_DURATION / 1000,
-                      delay: isPausedHold
-                        ? 0
-                        : (Math.min(index, 8) * HERO_TITLE_TIMINGS.LINE1_STAGGER) / 1000,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
                     className="inline-block whitespace-pre"
                   >
                     {letter}
-                  </motion.span>
+                  </span>
                 ))}
               </span>
-            </motion.div>
+            </div>
           ) : (
-            <motion.div
+            <div
               key={`slot-1-${cleanLineTwo}`}
               className="block max-w-5xl font-heading font-extrabold text-ivory text-left"
-              animate={
-                phase === "exit"
-                  ? { opacity: 0, y: -8 }
-                  : { opacity: 1, y: 0 }
-              }
-              transition={{
-                duration: EXIT / 1000,
-                ease: [0.22, 1, 0.36, 1],
-              }}
             >
               <span className="block text-[clamp(1.85rem,5.7vw,5rem)] leading-[1.08] tracking-[-0.045em]">
                 {wordsLineTwo.map((word, index) => (
-                  <motion.span
+                  <span
                     key={`${word}-${index}`}
-                    initial={{
-                      opacity: 0,
-                      y: HERO_TITLE_TIMINGS.RISE_PX,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                    }}
-                    transition={{
-                      duration: HERO_TITLE_TIMINGS.LINE2_DURATION / 1000,
-                      delay:
-                        (Math.min(index, 5) * HERO_TITLE_TIMINGS.LINE2_STAGGER) / 1000,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
                     className="mr-[0.3em] inline-block last:mr-0"
                   >
                     {word}
-                  </motion.span>
+                  </span>
                 ))}
               </span>
-            </motion.div>
+            </div>
           )}
 
-          <motion.div
+          <div
             key={`bar-${activeSlot}`}
             aria-hidden="true"
             className="mt-4 sm:mt-5 h-[4px] w-28 rounded-full brand-spectrum origin-left"
-            initial={isPausedHold ? false : { opacity: 0, scaleX: 0 }}
-            animate={
-              phase === "exit"
-                ? { opacity: 0, scaleX: 0 }
-                : { opacity: 1, scaleX: 1 }
-            }
-            transition={{
-              duration:
-                isPausedHold
-                  ? 0
-                  : phase === "exit"
-                  ? EXIT / 1000
-                  : BAR_ENTER / 1000,
-              ease: [0.22, 1, 0.36, 1],
-            }}
           />
         </div>
       </div>

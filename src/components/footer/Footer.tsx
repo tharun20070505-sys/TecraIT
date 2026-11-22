@@ -296,7 +296,7 @@ export function Footer({ heroImageSrc }: { heroImageSrc?: string | null }) {
           <p>
             Copyright {currentYear} TECRA, Department of Information Technology, Rathinam Institute of Technology.
           </p>
-          <p className="text-[13px] text-sand/50">
+          <p className="text-[13px] text-sand/70">
             Rathinam Institute of Technology, Coimbatore
           </p>
         </div>

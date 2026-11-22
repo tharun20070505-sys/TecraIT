@@ -47,13 +47,17 @@ export async function GET() {
         visible: doc.visible,
         isSystem: doc.isSystem,
       }));
-      return NextResponse.json({ items });
+      const response = NextResponse.json({ items });
+      response.headers.set("Cache-Control", "public, s-maxage=300, stale-while-revalidate=3600");
+      return response;
     }
   } catch (err) {
     console.warn("[nav-items GET]", err);
   }
   // Fallback: static defaults (no auth needed for read)
-  return NextResponse.json({ items: defaultNavItems });
+  const fallback = NextResponse.json({ items: defaultNavItems });
+  fallback.headers.set("Cache-Control", "public, s-maxage=300, stale-while-revalidate=3600");
+  return fallback;
 }
 
 // ─── POST /api/admin/nav-items ────────────────────────────────────────────────

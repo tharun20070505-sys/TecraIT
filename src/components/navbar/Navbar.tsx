@@ -9,7 +9,13 @@ import { siteSettings } from "@/data/site";
 import { defaultNavItems } from "@/data/navItems";
 import { clubsData } from "@/data/clubs";
 import { WordReelStrip } from "./WordReelStrip";
-import { NavDrawer } from "./NavDrawer";
+import dynamic from "next/dynamic";
+
+const NavDrawer = dynamic(
+  () => import("./NavDrawer").then((module) => module.NavDrawer),
+  { ssr: false }
+);
+
 import type { Club, DbNavItem } from "@/types";
 
 interface NavbarProps {
@@ -590,7 +596,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
                     <a
                       href={`tel:${phone.replace(/[^0-9+]/g, "")}`}
                       style={topPillStyle}
-                      aria-label={`Call department office at ${phone}`}
+                      aria-label={`Call us: ${phone}`}
                       onMouseEnter={(e) => {
                         (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.22)";
                       }}

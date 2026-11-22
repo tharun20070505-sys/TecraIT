@@ -10,7 +10,7 @@ export async function GET() {
     if (isConnected) {
       const doc = await SiteSettingsModel.findOne().lean();
       if (doc) {
-        return NextResponse.json({
+        const response = NextResponse.json({
           settings: {
             tneaCode: doc.tneaCode ?? siteSettings.tneaCode ?? "2738",
             officePhone: doc.officePhone ?? siteSettings.officePhone ?? "",
@@ -27,6 +27,8 @@ export async function GET() {
             brandReel: doc.brandReel ?? siteSettings.brandReel ?? [],
           },
         });
+        response.headers.set("Cache-Control", "public, s-maxage=300, stale-while-revalidate=3600");
+        return response;
       }
     }
   } catch (err) {
@@ -34,7 +36,7 @@ export async function GET() {
   }
 
   // Fallback to static siteSettings
-  return NextResponse.json({
+  const response = NextResponse.json({
     settings: {
       tneaCode: siteSettings.tneaCode ?? "2738",
       officePhone: siteSettings.officePhone ?? "",
@@ -51,6 +53,8 @@ export async function GET() {
       brandReel: siteSettings.brandReel ?? [],
     },
   });
+  response.headers.set("Cache-Control", "public, s-maxage=300, stale-while-revalidate=3600");
+  return response;
 }
 
 export async function POST(req: NextRequest) {

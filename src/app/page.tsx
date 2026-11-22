@@ -22,21 +22,16 @@ import {
 import { associationData } from "@/data/association";
 import { getFaculty, getEvents, getClubs, getLogoReelData } from "@/lib/db-data";
 import { getHeroPresentation } from "@/lib/hero-data";
-import { cookies } from "next/headers";
 
 export default async function HomePage() {
-  const [faculty, events, clubs, heroPresentation, reelData, cookieStore] = await Promise.all([
+  const [faculty, events, clubs, heroPresentation, reelData] = await Promise.all([
     getFaculty(),
     getEvents(),
     getClubs(),
     getHeroPresentation(),
     getLogoReelData(),
-    cookies(),
   ]);
-  const previousHeroIndex = Number(cookieStore.get("tecra-hero-last-index")?.value);
-  const initialHeroIndex = Number.isInteger(previousHeroIndex) && heroPresentation.slides.length > 1
-    ? (previousHeroIndex + 1) % heroPresentation.slides.length
-    : 0;
+  const initialHeroIndex = 0;
 
   return (
     <div className="w-full bg-ivory">

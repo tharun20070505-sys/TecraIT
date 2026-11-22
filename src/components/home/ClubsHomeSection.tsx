@@ -56,7 +56,7 @@ export function ClubsHomeSection({
           />
           <Link
             href="/clubs"
-            className="inline-flex items-center justify-center px-5 py-2.5 rounded-[3px] bg-emerald text-white text-[14px] font-semibold hover:bg-emerald/90 transition-colors shadow-xs shrink-0"
+            className="inline-flex items-center justify-center px-5 py-2.5 rounded-[3px] bg-emerald-deep text-white text-[14px] font-semibold hover:bg-emerald-text transition-colors shadow-xs shrink-0"
           >
             View All Clubs
           </Link>
