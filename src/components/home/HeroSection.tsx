@@ -52,7 +52,7 @@ export function HeroSection({
   return (
     <section
       ref={posterRef}
-      className="relative w-full aspect-[2048/684] min-h-[min(580px,85svh)] flex items-center bg-midnight text-white overflow-hidden border-b border-sand/20"
+      className="relative w-full h-svh min-h-[min(560px,100svh)] flex items-center bg-midnight text-white overflow-hidden border-b border-sand/20"
       aria-label="Department Hero Poster"
     >
       <HeroSlideshow
