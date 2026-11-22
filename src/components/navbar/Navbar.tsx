@@ -436,8 +436,11 @@ export function Navbar({ clubs = [] }: NavbarProps) {
         {tneaCode && tneaCode !== "2738" && <span>TNEA {tneaCode}</span>}
       </div>
       <Link href="/" className="tecra-brand">
-        <Image priority width={1650} height={148} src="/images/logos/tecra-masthead.webp"
-          alt="Rathinam Institute of Technology (Autonomous), NAAC A+ accredited, NBA, TECRA Department of Information Technology" />
+        <Image priority width={900} height={293} className="tecra-college" src="/images/logos/rathinam-accreditation.webp"
+          alt="Rathinam Institute of Technology (Autonomous), NAAC A+ and NBA" />
+        <Image priority width={220} height={220} className="tecra-emblem" src="/images/logos/tecra-dragon-phoenix.webp"
+          alt="TECRA" />
+        <span className="tecra-dept">Department of<br />Information Technology</span>
       </Link>
       <nav className="tecra-pill" aria-label="Department navigation">
         <button className="tecra-mobile" onClick={() => setDrawerOpen(true)}><Menu /> Menu</button>
