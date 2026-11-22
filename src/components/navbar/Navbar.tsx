@@ -426,7 +426,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
     .filter(item => typeof item.label === "string" && typeof item.href === "string" && item.label.toLowerCase().includes(query.trim().toLowerCase()));
 
   return <>
-    <header ref={navRef} className="tecra-head">
+    <header ref={navRef} className="tecra-head" data-home={pathname === "/"}>
       <div className="tecra-tools">
         <a href={`tel:${phone.replace(/[^0-9+]/g, "")}`}><Phone />{phone}</a>
         <a href="mailto:it@rathinam.ac.in"><Mail />it@rathinam.ac.in</a>
@@ -436,7 +436,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
         {tneaCode && tneaCode !== "2738" && <span>TNEA {tneaCode}</span>}
       </div>
       <Link href="/" className="tecra-brand">
-        <Image priority width={2048} height={170} src="/images/logos/header-brand.webp"
+        <Image priority width={1650} height={148} src="/images/logos/tecra-masthead.webp"
           alt="Rathinam Institute of Technology (Autonomous), NAAC A+ accredited, NBA, TECRA Department of Information Technology" />
       </Link>
       <nav className="tecra-pill" aria-label="Department navigation">

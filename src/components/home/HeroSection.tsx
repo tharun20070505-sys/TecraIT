@@ -52,7 +52,7 @@ export function HeroSection({
   return (
     <section
       ref={posterRef}
-      className="relative w-full h-[calc(100svh-5rem)] min-h-[560px] flex items-center bg-midnight text-white overflow-hidden border-b border-sand/20"
+      className="relative w-full h-svh min-h-[560px] flex items-center bg-midnight text-white overflow-hidden border-b border-sand/20"
       aria-label="Department Hero Poster"
     >
       <HeroSlideshow
@@ -64,7 +64,7 @@ export function HeroSection({
       />
 
       {/* 3. Hero Title: Reserved-space drift-corrected title switcher */}
-      <div className="relative z-10 w-[min(calc(100%-2*clamp(20px,3.5vw,64px)),1840px)] mx-auto flex items-center justify-start h-full">
+      <div className="relative z-10 w-[min(calc(100%-2*clamp(20px,3.5vw,64px)),1840px)] mx-auto flex items-center justify-start h-full pt-40">
         <HeroTitleFade
           paused={paused}
           manualPaused={manualPaused}
