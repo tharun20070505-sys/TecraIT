@@ -423,7 +423,7 @@ export function Navbar({ clubs = [] }: NavbarProps) {
   const visibleItems = navItems.filter((n) => n.visible).sort((a, b) => a.order - b.order);
 
   const results = visibleItems.flatMap(item => [item, ...item.children.filter(child => child.visible)])
-    .filter(item => item.label.toLowerCase().includes(query.trim().toLowerCase()));
+    .filter(item => typeof item.label === "string" && typeof item.href === "string" && item.label.toLowerCase().includes(query.trim().toLowerCase()));
 
   return <>
     <header ref={navRef} className="tecra-head">
