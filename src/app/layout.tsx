@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ProfessionalNavbar } from "@/components/navbar/ProfessionalNavbar";
+import { Navbar } from "@/components/navbar/Navbar";
 import { Footer } from "@/components/footer/Footer";
 import { ScrollProgress } from "@/components/common/ScrollProgress";
 import { MotionInitializer } from "@/components/common/MotionInitializer";
@@ -116,7 +116,7 @@ export default async function RootLayout({
         <DepartmentJsonLd />
 
         <ScrollProgress />
-        <ProfessionalNavbar clubs={clubs} />
+        <Navbar />
         <main id="main-content" className="site-content flex-1 w-full focus:outline-hidden">
           {children}
         </main>
