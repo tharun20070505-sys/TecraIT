@@ -436,11 +436,11 @@ export function Navbar({ clubs = [] }: NavbarProps) {
         {tneaCode && tneaCode !== "2738" && <span>TNEA {tneaCode}</span>}
       </div>
       <Link href="/" className="tecra-brand">
-        <Image priority className="tecra-symbol" width={236} height={210} src="/images/logos/college-symbol.webp" alt="Rathinam college logo" />
-        <Image priority className="tecra-wordmark" width={550} height={203} src="/images/logos/college-wordmark.webp" alt="Rathinam Institute of Technology (Autonomous)" />
-        <Image priority className="tecra-accreditation" width={267} height={210} src="/images/logos/naac-accredited.webp" alt="NAAC A+ accredited" />
-        <Image priority className="tecra-accreditation" width={333} height={210} src="/images/logos/nba-accreditation.webp" alt="NBA accreditation" />
-        <Image priority width={220} height={220} className="tecra-emblem" src="/images/logos/tecra-dragon-phoenix.webp"
+        <Image priority unoptimized className="tecra-symbol" width={236} height={210} src="/images/logos/college-symbol.webp" alt="Rathinam college logo" />
+        <Image priority unoptimized className="tecra-wordmark" width={550} height={203} src="/images/logos/college-wordmark.webp" alt="Rathinam Institute of Technology (Autonomous)" />
+        <Image priority unoptimized className="tecra-accreditation" width={267} height={210} src="/images/logos/naac-accredited.webp" alt="NAAC A+ accredited" />
+        <Image priority unoptimized className="tecra-accreditation" width={333} height={210} src="/images/logos/nba-accreditation.webp" alt="NBA accreditation" />
+        <Image priority unoptimized width={220} height={220} className="tecra-emblem" src="/images/logos/tecra-dragon-phoenix.webp"
           alt="TECRA" />
         <span className="tecra-dept"><strong>TECRA</strong><br />Department of Information Technology</span>
       </Link>
