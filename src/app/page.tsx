@@ -31,6 +31,7 @@ export default async function HomePage() {
     getHeroPresentation(),
     getLogoReelData(),
   ]);
+
   const initialHeroIndex = 0;
 
   return (

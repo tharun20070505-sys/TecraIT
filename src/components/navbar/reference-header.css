@@ -1,0 +1,47 @@
+.tecra-head {position:relative;z-index:40;padding:5px 0 6px;color:white;background:#242424;font-family:Arial,sans-serif}
+.tecra-head[data-home="true"] {position:absolute;inset:0 0 auto;background:transparent}
+.tecra-tools,.tecra-pill {display:flex; align-items:center; background:rgb(0 0 0 / 76%); font-weight:700}
+.tecra-tools {padding:0 4.5%; min-height:25px; font-size:12px; gap:1.55vw}
+.tecra-tools a,.tecra-pill button,.tecra-download {display:inline-flex; align-items:center; gap:.5em}
+.tecra-tools a:nth-child(3){margin-left:auto}
+.tecra-tools > :is(a,span) + :is(a,span):not(:nth-child(3)){border-left:1px solid #fff9;padding-left:1.55vw}
+.tecra-tools svg,.tecra-pill svg {width:1.15em;height:1.15em}
+.tecra-brand {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,3fr) repeat(3,minmax(0,1fr)) minmax(0,2.6fr);
+  align-items:center;
+  width:100%;
+  box-sizing:border-box;
+  padding:5px clamp(10px,2.5vw,64px);
+  column-gap:clamp(8px,2vw,42px);
+}
+.tecra-brand img {display:block;width:100%;height:clamp(44px,5.8vw,82px);object-fit:contain}
+.tecra-dept {color:white;font-weight:700;font-size:clamp(10px,1.25vw,19px);line-height:1.15;text-shadow:0 1px 2px #000}
+.tecra-pill {position:relative; margin:0 2.5%; min-height:38px; border-radius:99px; justify-content:space-between; padding:3px 1.5vw; gap:.4vw; box-shadow:0 5px 12px #0005}
+.tecra-desktop .nav-hover-underline {font:700 clamp(12px,1vw,15px)/1.2 Arial,sans-serif!important;color:white!important}
+.tecra-desktop .nav-active,.tecra-download {background:rgb(255 255 255 / 17%)!important;border-radius:4em;padding:.53em 1.2em!important;color:white}
+.tecra-download {font-size:clamp(12px,1vw,14px);border:1px solid #ffffff70}
+.tecra-strip {margin:7px 2.6% 0;border-radius:99px;overflow:hidden;background:rgb(0 0 0 / 83%)}
+.tecra-strip > div {height:25px!important;background:transparent!important}
+.tecra-pill .tecra-mobile{display:none}
+.tecra-search {position:absolute;z-index:5;right:0;top:100%;background:rgb(0 0 0 / 83%);width:min(310px,93vw);padding:14px;border-radius:14px;max-height:45vh;overflow:auto}
+.tecra-search input,.tecra-search a {display:block;width:100%;padding:7px;color:white}
+.tecra-search input {border:1px solid #abc;border-radius:6px}
+@media (min-width:1024px) {
+  .tecra-brand {grid-template-columns:repeat(6,minmax(0,1fr));text-align:center}
+}
+
+@media(max-width:1023px){
+.tecra-head {padding-bottom:10px}
+.tecra-tools {justify-content:center;flex-wrap:wrap;padding:7px;gap:4px 12px;font-size:12px}
+.tecra-tools a:nth-child(3){margin-left:0}
+.tecra-pill {padding:7px 16px;min-height:44px}
+.tecra-desktop{display:none}.tecra-pill .tecra-mobile{display:inline-flex}
+.tecra-strip{margin-top:4px}
+}
+
+@media(max-width:560px){
+  .tecra-brand {grid-template-columns:1fr 2.5fr 1fr 1fr;gap:3px 8px}
+  .tecra-brand .tecra-emblem {grid-column:1 / 3;justify-self:end;width:36px;height:36px}
+  .tecra-dept {grid-column:3 / 5}
+}
