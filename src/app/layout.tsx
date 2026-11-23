@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Navbar } from "@/components/navbar/Navbar";
+import { ProfessionalNavbar } from "@/components/navbar/ProfessionalNavbar";
 import { Footer } from "@/components/footer/Footer";
 import { ScrollProgress } from "@/components/common/ScrollProgress";
 import { MotionInitializer } from "@/components/common/MotionInitializer";
@@ -115,16 +115,8 @@ export default async function RootLayout({
         {/* Schema.org EducationalOrganization structured data */}
         <DepartmentJsonLd />
 
-        {/* Accessible Skip to Main Content (WCAG 2.4.1) */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-gold focus:text-midnight focus:font-bold focus:rounded-[3px] focus:shadow-md focus:ring-2 focus:ring-royal-blue focus:outline-hidden transition-all"
-        >
-          Skip to main content
-        </a>
-
         <ScrollProgress />
-        <Navbar clubs={clubs} />
+        <ProfessionalNavbar clubs={clubs} />
         <main id="main-content" className="site-content flex-1 w-full focus:outline-hidden">
           {children}
         </main>

@@ -39,8 +39,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AUTH_SECRET: tecra_super_secret_auth_key_change_in_production_min_32_chars
-      ADMIN_SEED_EMAIL: admin@tecra.sriet.ac.in
-      ADMIN_SEED_PASSWORD: TecraAdminSecurePass2026!
+      ADMIN_SEED_EMAIL: tecrasriet.ac.in
+      ADMIN_SEED_PASSWORD: Admin@123456
       DATABASE_URL: mongodb://localhost:27017/tecra_it
       NEXT_PUBLIC_SITE_URL: https://tecra.sriet.ac.in
     steps:

@@ -104,7 +104,7 @@ export function AdminHeader({
               TECRA Admin
             </div>
             <div className="text-[10px] text-sand/50 font-mono mt-0.5">
-              admin@tecra.sriet.ac.in
+              tecrasriet.ac.in
             </div>
           </div>
         </div>

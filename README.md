@@ -120,8 +120,8 @@ AUTH_SECRET=tecra_super_secret_auth_key_change_in_production_min_32_chars
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 # Administrative Credentials
-ADMIN_SEED_EMAIL=admin@tecra.sriet.ac.in
-ADMIN_SEED_PASSWORD=TecraAdminSecurePass2026!
+ADMIN_SEED_EMAIL=tecrasriet.ac.in
+ADMIN_SEED_PASSWORD=Admin@123456
 
 # Email Service (Optional for live outbound mail notifications)
 EMAIL_FROM=noreply@tecra.sriet.ac.in
@@ -161,8 +161,8 @@ npm run start
 
 1. Navigate to **[http://localhost:3000/admin/login](http://localhost:3000/admin/login)**.
 2. Enter the authorized administrative credentials:
-   - **Administrative Email**: `admin@tecra.sriet.ac.in`
-   - **Security Password**: `TecraAdminSecurePass2026!`
+   - **Administrative Username**: `tecrasriet.ac.in`
+   - **Security Password**: `Admin@123456`
    *(A "Fill Credentials" auto-fill button is provided on the login page for convenience during evaluation).*
 3. Upon authentication, you will be redirected to the **Admin Control Center (`/admin`)**.
 4. The administrative session is cryptographically signed using Web Crypto HMAC-SHA256 and stored in an HTTP-Only secure cookie (`tecra_admin_session`, 7-day validity).

@@ -34,13 +34,7 @@ interface PreparedSlide {
   isFallback?: boolean;
 }
 
-const CLIENT_FALLBACKS = [
-  "/images/hero/hero-background.jpg",
-  "/images/hero/hero-background.jpeg",
-  "/images/hero/hero-background.png",
-  "/images/hero/hero-background.webp",
-  "/images/hero/sriet-campus.png",
-];
+const CLIENT_FALLBACKS = ["/images/hero/tecra-it-campus.webp"];
 
 function nextImageCandidates(slide: HeroSlide) {
   const configured = slide.responsiveUrls.map((url) => ({

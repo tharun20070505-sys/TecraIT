@@ -6,9 +6,8 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { email, password } = body;
 
-    const seedEmail = process.env.ADMIN_SEED_EMAIL || "admin@tecra.sriet.ac.in";
-    const seedPassword =
-      process.env.ADMIN_SEED_PASSWORD || "TecraAdminSecurePass2026!";
+    const seedEmail = process.env.ADMIN_SEED_EMAIL || "admin";
+    const seedPassword = process.env.ADMIN_SEED_PASSWORD || "password";
 
     if (!email || !password) {
       return NextResponse.json(
