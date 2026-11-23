@@ -16,8 +16,7 @@
   column-gap:clamp(8px,2vw,42px);
 }
 .tecra-brand img {display:block;width:100%;height:clamp(44px,5.8vw,82px);object-fit:contain}
-.tecra-wordmark,.tecra-symbol,.tecra-accreditation {filter:drop-shadow(0 0 1px white) drop-shadow(0 0 2px #fffc)}
-.tecra-dept {color:white;font-weight:700;font-size:clamp(10px,1.25vw,19px);line-height:1.15;text-shadow:0 1px 4px black}
+.tecra-dept {color:white;font-weight:700;font-size:clamp(10px,1.25vw,19px);line-height:1.15;text-shadow:0 1px 2px #000}
 .tecra-pill {position:relative; margin:0 2.5%; min-height:38px; border-radius:99px; justify-content:space-between; padding:3px 1.5vw; gap:.4vw; box-shadow:0 5px 12px #0005}
 .tecra-desktop .nav-hover-underline {font:700 clamp(12px,1vw,15px)/1.2 Arial,sans-serif!important;color:white!important}
 .tecra-desktop .nav-active,.tecra-download {background:rgb(255 255 255 / 17%)!important;border-radius:4em;padding:.53em 1.2em!important;color:white}
